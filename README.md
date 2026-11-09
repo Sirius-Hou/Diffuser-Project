@@ -1,5 +1,7 @@
 # Planning with Diffusion &nbsp;&nbsp; [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1YajKhu-CUIGBJeQPehjVPJcK_b38a8Nc?usp=sharing)
 
+> **ECE 780 project fork.** This repository adds a training-free rerouting study on top of the frozen Maze2D Diffuser. All project code, experiment configs, results and docs live in [`experiments/`](experiments/README.md) (start with [`experiments/b0_baseline/`](experiments/b0_baseline/README.md)). The upstream code below is unchanged except for four device-only CPU-compatibility edits.
+
 
 Training and visualizing of diffusion models from [Planning with Diffusion for Flexible Behavior Synthesis](https://diffusion-planning.github.io/).
 This branch has the Maze2D experiments and will be merged into main shortly.

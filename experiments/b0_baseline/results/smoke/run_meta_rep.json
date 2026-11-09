@@ -1,0 +1,39 @@
+{
+  "config": {
+    "name": "b0_smoke",
+    "description": "2-episode smoke test: checks the pipeline runs end to end and measures time per episode.",
+    "env": "maze2d-large-v1",
+    "diffusion_loadpath": "diffusion/H384_T256",
+    "diffusion_epoch": "latest",
+    "device": "cpu",
+    "torch_threads": 8,
+    "seeds": [
+      0,
+      1
+    ],
+    "success_radius": 0.5,
+    "obstacle": null,
+    "save_png": true,
+    "out": "experiments/b0_baseline/results/smoke"
+  },
+  "config_path": "experiments/b0_baseline/configs/smoke.json",
+  "seeds": [
+    0,
+    1
+  ],
+  "git_commit": "unknown",
+  "started": "2026-11-09 04:01:01",
+  "python": "3.8.20",
+  "max_episode_steps": 800,
+  "target": [
+    7.0,
+    9.0
+  ],
+  "diffusion_epoch": 1960000,
+  "horizon": 384,
+  "n_diffusion_steps": 256,
+  "device": "cpu",
+  "torch_threads": 8,
+  "torch_version": "1.9.1+cpu",
+  "load_time_s": 12.209650107000002
+}

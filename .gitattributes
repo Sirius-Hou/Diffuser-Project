@@ -3,3 +3,6 @@
 *.pt binary
 *.png binary
 *.ipynb text eol=lf
+# Shell scripts must keep LF endings or bash in WSL/Linux fails on \r
+*.sh text eol=lf
+*.npz binary

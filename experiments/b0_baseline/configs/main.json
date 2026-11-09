@@ -1,0 +1,15 @@
+{
+  "name": "b0_main",
+  "description": "Main B0 evaluation: 30 episodes, seeds 0-29, no obstacle, plan once at t=0.",
+  "env": "maze2d-large-v1",
+  "diffusion_loadpath": "diffusion/H384_T256",
+  "diffusion_epoch": "latest",
+  "device": "cpu",
+  "torch_threads": 8,
+  "seed_start": 0,
+  "n_episodes": 30,
+  "success_radius": 0.5,
+  "obstacle": null,
+  "save_png": true,
+  "out": "experiments/b0_baseline/results/main"
+}
