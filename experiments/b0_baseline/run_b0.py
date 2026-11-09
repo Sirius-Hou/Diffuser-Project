@@ -5,8 +5,8 @@ Same control loop as scripts/plan_maze2d.py (same Policy call, goal inpainting a
 waypoint controller), repeated over seeded episodes, recording the proposal metrics.
 Step 1 runs without obstacles; obstacle fields are kept (= 0) so later runs share the schema.
 
-    bash experiments/common/env/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/smoke.json
-    bash experiments/common/env/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/main.json
+    bash experiments/common/setup/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/smoke.json
+    bash experiments/common/setup/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/main.json
 Options override the config: --seeds 3 4  --out DIR  --tag _rep  --no_png
 """
 import argparse

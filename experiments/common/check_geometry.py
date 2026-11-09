@@ -4,7 +4,7 @@ Verify the qpos <-> maze-cell convention used in maze_utils.py with real MuJoCo 
 From cell (1,1) the ball is pushed in each of the 4 directions until it touches a wall.
 The contact position must equal the wall face predicted by maze_utils, plus the ball radius.
 
-    bash experiments/common/env/run.sh python experiments/common/check_geometry.py
+    bash experiments/common/setup/run.sh python experiments/common/check_geometry.py
 """
 import os
 import sys

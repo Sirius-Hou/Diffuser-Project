@@ -5,10 +5,10 @@
 #   bash experiments/b0_baseline/run_all.sh
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-RUN() { bash "$HERE/../common/env/run.sh" "$@"; }
+RUN() { bash "$HERE/../common/setup/run.sh" "$@"; }
 B0=experiments/b0_baseline
 
-echo "=== [1/6] environment check";        RUN python experiments/common/env/check_env.py
+echo "=== [1/6] environment check";        RUN python experiments/common/setup/check_env.py
 echo "=== [2/6] maze geometry check";      RUN python experiments/common/check_geometry.py
 echo "=== [3/6] smoke test (seeds 0,1)";   RUN python $B0/run_b0.py --config $B0/configs/smoke.json
 echo "=== [4/6] reproducibility re-run";   RUN python $B0/run_b0.py --config $B0/configs/smoke.json --tag _rep --no_png

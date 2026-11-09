@@ -48,9 +48,9 @@ New files:
 
 | File | Purpose |
 |---|---|
-| `experiments/common/env/wsl_env.sh` | Sets up the runtime (Python 3.8 env, MuJoCo 2.0, OSMesa, D4RL data dir). Every path can be overridden per machine |
-| `experiments/common/env/run.sh` | Runs a command inside that environment from the repo root |
-| `experiments/common/env/check_env.py` | Checks imports, the env, the dataset and the weights |
+| `experiments/common/setup/wsl_env.sh` | Sets up the runtime (Python 3.8 env, MuJoCo 2.0, OSMesa, D4RL data dir). Every path can be overridden per machine |
+| `experiments/common/setup/run.sh` | Runs a command inside that environment from the repo root |
+| `experiments/common/setup/check_env.py` | Checks imports, the env, the dataset and the weights |
 | `experiments/common/planner.py` | `FrozenDiffuserPlanner.plan(obs, goal, n)` → n plans + wall-clock time. Uses the original `Policy` with `cond = {0: obs, H-1: [goal, 0, 0]}`. `waypoint_action()` is the original `plan_maze2d.py` controller. **Shared interface for B1/B2/ours** |
 | `experiments/common/maze_utils.py` | qpos↔cell mapping, BFS shortest path (with `blocked` cells, ready for obstacles), plan-in-wall checks, MuJoCo wall-contact detection, maze drawing |
 | `experiments/common/check_geometry.py` | Pushes the ball into walls and checks the contact positions against `maze_utils`' geometry |
@@ -135,10 +135,10 @@ Weights, the dataset and the conda env are **not in git**; they are large. Steps
 2. **MuJoCo 2.0.** `~/.mujoco/mujoco200` + `~/.mujoco/mjkey.txt` (from roboti.us). You also need OSMesa headers and libraries (`libosmesa6-dev`, or a local bundle).
 3. **Weights.** Download `maze2d-logs.zip` (Dropbox link in the notebook, section 6) and unzip it so that `logs/maze2d-large-v1/diffusion/H384_T256/` exists inside this repo.
 4. **Dataset.** D4RL downloads it automatically on first use into `$D4RL_DATASET_DIR`. Or copy the existing `maze2d-large-sparse-v1.hdf5`.
-5. **Point the scripts at your paths.** Export any of `ECE780_ENV`, `ECE780_OSMESA`, `MUJOCO_PY_MUJOCO_PATH`, `D4RL_DATASET_DIR` before running, or edit the defaults in `experiments/common/env/wsl_env.sh`.
+5. **Point the scripts at your paths.** Export any of `ECE780_ENV`, `ECE780_OSMESA`, `MUJOCO_PY_MUJOCO_PATH`, `D4RL_DATASET_DIR` before running, or edit the defaults in `experiments/common/setup/wsl_env.sh`.
 6. **Check:**
    ```bash
-   bash experiments/common/env/run.sh python experiments/common/env/check_env.py
+   bash experiments/common/setup/run.sh python experiments/common/setup/check_env.py
    ```
    It should print `ALL OK`.
 
@@ -151,13 +151,13 @@ bash experiments/b0_baseline/run_all.sh
 ```
 Or step by step:
 ```bash
-bash experiments/common/env/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/smoke.json
+bash experiments/common/setup/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/smoke.json
 ```
 ```bash
-bash experiments/common/env/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/main.json
+bash experiments/common/setup/run.sh python experiments/b0_baseline/run_b0.py --config experiments/b0_baseline/configs/main.json
 ```
 ```bash
-bash experiments/common/env/run.sh python experiments/b0_baseline/analyze_b0.py experiments/b0_baseline/results/main
+bash experiments/common/setup/run.sh python experiments/b0_baseline/analyze_b0.py experiments/b0_baseline/results/main
 ```
 From Windows Git Bash, prefix with `MSYS_NO_PATHCONV=1 wsl -d Ubuntu -- bash "/mnt/d/.../diffuser/experiments/b0_baseline/run_all.sh"`. The quotes matter because the path contains spaces.
 

@@ -2,7 +2,7 @@
 Aggregate per-episode B0 results into episodes.csv, summary.json, by_start_cell.csv and figures,
 and evaluate the B0 acceptance criteria.
 
-    bash experiments/common/env/run.sh python experiments/b0_baseline/analyze_b0.py experiments/b0_baseline/results/main
+    bash experiments/common/setup/run.sh python experiments/b0_baseline/analyze_b0.py experiments/b0_baseline/results/main
 """
 import glob
 import json

@@ -16,7 +16,7 @@ The upstream Diffuser code (`diffuser/`, `scripts/`, `config/`) is used **frozen
 ```
 experiments/
   common/                 shared, reusable code. Import it; don't copy it
-    env/                  wsl_env.sh (runtime paths), run.sh (run in env), check_env.py
+    setup/                wsl_env.sh (runtime paths), run.sh (run in env), check_env.py
     planner.py            FrozenDiffuserPlanner.plan(obs, goal, n) + original waypoint controller
     maze_utils.py         geometry, BFS (with blocked cells), wall/contact checks, drawing
     check_geometry.py     verifies the coordinate convention
@@ -39,7 +39,7 @@ Rules:
 ## Quick start (Linux / WSL)
 
 ```bash
-bash experiments/common/env/run.sh python experiments/common/env/check_env.py
+bash experiments/common/setup/run.sh python experiments/common/setup/check_env.py
 ```
 
 ```bash
