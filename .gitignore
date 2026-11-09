@@ -1,0 +1,43 @@
+# Generated outputs, checkpoints and logs (large / reproducible)
+logs/
+results/
+wandb/
+bin/
+artifacts/
+tmp/
+*.pt
+*.pth
+*.ckpt
+*.hdf5
+*.h5
+*.zip
+*.log
+*.mp4
+*.gif
+
+# Local-only reference documents
+*.pdf
+Final_Project_*.md
+Diffuser_Maze2D_Large_*.ipynb
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+.ipynb_checkpoints/
+
+# Local environments / secrets
+.venv/
+venv/
+env/
+.env
+fuse.cfg
+ray/auth.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
