@@ -1,0 +1,242 @@
+{
+  "methods": [
+    "B0",
+    "B2",
+    "ours",
+    "oracle"
+  ],
+  "n_paired_scenarios": 8,
+  "dropped_seeds": [],
+  "overall": {
+    "B0": {
+      "n": 8,
+      "n_success": 2,
+      "success_rate": 0.25,
+      "ci_lo": 0.07147768885802763,
+      "ci_hi": 0.5907301208974108,
+      "obstacle_collision_rate": 0.75,
+      "steps_to_success_median": 365.0,
+      "path_length_success_mean": 11.516773424336499,
+      "replans_mean": 0.0,
+      "samples_mean": 1.0,
+      "planning_time_s_mean": 4.431805920499983,
+      "wall_contact_events_mean": 2.25,
+      "failure_reasons": {
+        "obstacle_collision": 6
+      }
+    },
+    "B2": {
+      "n": 8,
+      "n_success": 2,
+      "success_rate": 0.25,
+      "ci_lo": 0.07147768885802763,
+      "ci_hi": 0.5907301208974108,
+      "obstacle_collision_rate": 0.625,
+      "steps_to_success_median": 482.0,
+      "path_length_success_mean": 15.737938288366252,
+      "replans_mean": 2.5,
+      "samples_mean": 41.0,
+      "planning_time_s_mean": 88.87821192375168,
+      "wall_contact_events_mean": 1.625,
+      "failure_reasons": {
+        "obstacle_collision": 5,
+        "stuck_on_wall": 1
+      }
+    },
+    "ours": {
+      "n": 8,
+      "n_success": 4,
+      "success_rate": 0.5,
+      "ci_lo": 0.21521252682444186,
+      "ci_hi": 0.7847874731755582,
+      "obstacle_collision_rate": 0.5,
+      "steps_to_success_median": 615.0,
+      "path_length_success_mean": 18.37157296517169,
+      "replans_mean": 4.625,
+      "samples_mean": 50.0,
+      "planning_time_s_mean": 118.81198878912551,
+      "wall_contact_events_mean": 2.125,
+      "failure_reasons": {
+        "obstacle_collision": 4
+      }
+    },
+    "oracle": {
+      "n": 8,
+      "n_success": 8,
+      "success_rate": 1.0,
+      "ci_lo": 0.6755843804891231,
+      "ci_hi": 1.0,
+      "obstacle_collision_rate": 0.0,
+      "steps_to_success_median": 284.0,
+      "path_length_success_mean": 7.182135841793263,
+      "replans_mean": 0.0,
+      "samples_mean": 0.0,
+      "planning_time_s_mean": 0.0,
+      "wall_contact_events_mean": 0.0,
+      "failure_reasons": {}
+    }
+  },
+  "by_obstacle": {
+    "B0": {
+      "partial, detour exists": {
+        "n": 3,
+        "n_success": 1,
+        "success_rate": 0.3333333333333333,
+        "ci_lo": 0.0614903152761605,
+        "ci_hi": 0.7923450448735121,
+        "obstacle_collision_rate": 0.6666666666666666,
+        "steps_to_success_median": 360.0,
+        "path_length_success_mean": 12.521596502245956,
+        "replans_mean": 0.0,
+        "samples_mean": 1.0,
+        "planning_time_s_mean": 4.405831389000014,
+        "wall_contact_events_mean": 2.3333333333333335,
+        "failure_reasons": {
+          "obstacle_collision": 2
+        }
+      },
+      "partial, no detour": {
+        "n": 5,
+        "n_success": 1,
+        "success_rate": 0.2,
+        "ci_lo": 0.03622316096978745,
+        "ci_hi": 0.6244717358814613,
+        "obstacle_collision_rate": 0.8,
+        "steps_to_success_median": 370.0,
+        "path_length_success_mean": 10.51195034642704,
+        "replans_mean": 0.0,
+        "samples_mean": 1.0,
+        "planning_time_s_mean": 4.4473906393999645,
+        "wall_contact_events_mean": 2.2,
+        "failure_reasons": {
+          "obstacle_collision": 4
+        }
+      }
+    },
+    "B2": {
+      "partial, detour exists": {
+        "n": 3,
+        "n_success": 1,
+        "success_rate": 0.3333333333333333,
+        "ci_lo": 0.0614903152761605,
+        "ci_hi": 0.7923450448735121,
+        "obstacle_collision_rate": 0.3333333333333333,
+        "steps_to_success_median": 500.0,
+        "path_length_success_mean": 15.62059444585601,
+        "replans_mean": 3.6666666666666665,
+        "samples_mean": 59.666666666666664,
+        "planning_time_s_mean": 128.20609889933743,
+        "wall_contact_events_mean": 1.3333333333333333,
+        "failure_reasons": {
+          "stuck_on_wall": 1,
+          "obstacle_collision": 1
+        }
+      },
+      "partial, no detour": {
+        "n": 5,
+        "n_success": 1,
+        "success_rate": 0.2,
+        "ci_lo": 0.03622316096978745,
+        "ci_hi": 0.6244717358814613,
+        "obstacle_collision_rate": 0.8,
+        "steps_to_success_median": 464.0,
+        "path_length_success_mean": 15.855282130876494,
+        "replans_mean": 1.8,
+        "samples_mean": 29.8,
+        "planning_time_s_mean": 65.28147973840024,
+        "wall_contact_events_mean": 1.8,
+        "failure_reasons": {
+          "obstacle_collision": 4
+        }
+      }
+    },
+    "ours": {
+      "partial, detour exists": {
+        "n": 3,
+        "n_success": 3,
+        "success_rate": 1.0,
+        "ci_lo": 0.43849391955098227,
+        "ci_hi": 1.0,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 730.0,
+        "path_length_success_mean": 19.21033657660342,
+        "replans_mean": 9.333333333333334,
+        "samples_mean": 83.66666666666667,
+        "planning_time_s_mean": 209.54088290666732,
+        "wall_contact_events_mean": 2.6666666666666665,
+        "failure_reasons": {}
+      },
+      "partial, no detour": {
+        "n": 5,
+        "n_success": 1,
+        "success_rate": 0.2,
+        "ci_lo": 0.03622316096978745,
+        "ci_hi": 0.6244717358814613,
+        "obstacle_collision_rate": 0.8,
+        "steps_to_success_median": 464.0,
+        "path_length_success_mean": 15.855282130876494,
+        "replans_mean": 1.8,
+        "samples_mean": 29.8,
+        "planning_time_s_mean": 64.37465231860043,
+        "wall_contact_events_mean": 1.8,
+        "failure_reasons": {
+          "obstacle_collision": 4
+        }
+      }
+    },
+    "oracle": {
+      "partial, detour exists": {
+        "n": 3,
+        "n_success": 3,
+        "success_rate": 1.0,
+        "ci_lo": 0.43849391955098227,
+        "ci_hi": 1.0,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 298.0,
+        "path_length_success_mean": 8.577530994604306,
+        "replans_mean": 0.0,
+        "samples_mean": 0.0,
+        "planning_time_s_mean": 0.0,
+        "wall_contact_events_mean": 0.0,
+        "failure_reasons": {}
+      },
+      "partial, no detour": {
+        "n": 5,
+        "n_success": 5,
+        "success_rate": 1.0,
+        "ci_lo": 0.5655085052479191,
+        "ci_hi": 1.0,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 270.0,
+        "path_length_success_mean": 6.344898750106639,
+        "replans_mean": 0.0,
+        "samples_mean": 0.0,
+        "planning_time_s_mean": 0.0,
+        "wall_contact_events_mean": 0.0,
+        "failure_reasons": {}
+      }
+    }
+  },
+  "best_of_n_at_first_trigger": {
+    "B2/partial, detour exists": {
+      "n_triggered": 3,
+      "best_of_n_found_clear_plan": 0.3333333333333333,
+      "mean_clear_samples": 4.0
+    },
+    "B2/partial, no detour": {
+      "n_triggered": 5,
+      "best_of_n_found_clear_plan": 0.8,
+      "mean_clear_samples": 4.4
+    },
+    "ours/partial, detour exists": {
+      "n_triggered": 3,
+      "best_of_n_found_clear_plan": 0.3333333333333333,
+      "mean_clear_samples": 4.0
+    },
+    "ours/partial, no detour": {
+      "n_triggered": 5,
+      "best_of_n_found_clear_plan": 0.8,
+      "mean_clear_samples": 4.4
+    }
+  }
+}

@@ -29,7 +29,7 @@
   "n_no_detour": 0,
   "legs": 0,
   "waypoints_reached": 0,
-  "episode_time_s": 0.07490938600130903,
+  "episode_time_s": 0.07132980200003658,
   "path_length": 13.125956703205837,
   "exec_cells_visited": 16,
   "wall_contact_steps": 0,

@@ -7,7 +7,8 @@ The obstacle becomes known at t_appear; touching it ends the episode as a failur
   B0     : never replans
   B1     : replans every `k_fixed` steps, best-of-N against the obstacle once it is known
   B2     : every `k` steps checks the rest of the plan against the obstacle; replans (best-of-N) only on a hit
-  ours   : B2, and when all N samples hit: A* around the blocked cell, then one short plan per waypoint
+  ours   : B2, and when all N samples hit: A* around the blocked cell, then one short plan per waypoint.
+           With gap_route, a partial obstacle that no route avoids is passed through its gap on waypoint legs
   oracle : A* on the known map with a PD controller (reference only)
 
     bash experiments/common/setup/run.sh python experiments/blocked/run_blocked.py --config experiments/blocked/configs/smoke.json --method ours
@@ -41,6 +42,7 @@ class PlanningLoop:
         self.goal_cell = mu.xy_to_cell(target)
         self.seq, self.t0 = plan0, 0                # current plan and the step it started at
         self.legs, self.leg_i = None, 0             # ours: waypoint legs once A* has been used
+        self.route_blocked = [obstacle.cell]        # ours: cells the legs' A* avoids ([] through a gap)
         self.path_xy = None                         # oracle: route as a list of points
         self.plans = [] if method == 'oracle' else [(0, plan0)]     # every adopted plan, for plotting
         self.events = []
@@ -100,25 +102,52 @@ class PlanningLoop:
 
     # ---- ours: A* route and waypoint legs ------------------------------------------------------
 
+    def needs_gap(self, state):
+        """gap_route: the obstacle is partial and every route to the goal passes through its cell."""
+        return (self.cfg.get('gap_route', False) and self.obstacle.kind == 'partial' and
+                mg.astar(self.maze, mu.xy_to_cell(state[:2]), self.goal_cell, [self.obstacle.cell]) is None)
+
     def start_route(self, t, state):
         cur = mu.xy_to_cell(state[:2])
-        blocked = [self.obstacle.cell]
+        gap = self.needs_gap(state)
+        blocked = [] if gap else [self.obstacle.cell]
         path = mg.astar(self.maze, cur, self.goal_cell, blocked)
         self.n_astar += 1
-        if path is None or len(path) < 2:
+        if path is None or len(path) < 2 or (gap and self.obstacle.cell not in path[1:-1]):
             self.log(t, 'no_detour', cell=list(cur))
             return False
         wp = mg.waypoints(self.maze, path, blocked, self.cfg['max_leg_cells'],
                           corners=self.cfg['waypoint_mode'] == 'corners')
-        self.legs = [dict(cell=path[i], xy=mu.cell_center(path[i])) for i in wp]
+        self.legs = [dict(cell=path[i], xy=mu.cell_center(path[i]), radius=self.cfg['waypoint_radius'])
+                     for i in wp]
+        if gap:
+            self.add_gap_waypoints(path, wp)
         self.legs[-1]['xy'] = self.target
-        self.leg_i = 0
-        self.log(t, 'astar', route_cells=len(path) - 1, waypoints=[list(path[i]) for i in wp])
+        self.leg_i, self.route_blocked = 0, blocked
+        self.log(t, 'astar', route_cells=len(path) - 1, through_gap=gap,
+                 waypoints=[list(leg['cell']) for leg in self.legs])
         return True
+
+    def add_gap_waypoints(self, path, wp):
+        """Make the cells before and after the obstacle cell waypoints, moved sideways onto the centre line
+        of the gap (as the oracle's route does), so the leg through the obstacle cell runs straight along
+        the gap. The ball has to come within gap_waypoint_radius of them: the gap leaves little room."""
+        i = path.index(self.obstacle.cell)
+        gap = self.obstacle.gap_center()
+        w = int(np.argmax(np.abs(gap - mu.cell_center(self.obstacle.cell))))     # axis across the corridor
+        idx = sorted(set(wp) | {i - 1, i + 1})
+        legs = []
+        for j in idx:
+            xy = mu.cell_center(path[j])
+            radius = self.cfg['waypoint_radius']
+            if j in (i - 1, i + 1):
+                xy[w], radius = gap[w], self.cfg['gap_waypoint_radius']
+            legs.append(dict(cell=path[j], xy=xy, radius=radius))
+        self.legs = legs
 
     def plan_leg(self, t, state, why):
         leg = self.legs[self.leg_i]
-        path = mg.astar(self.maze, mu.xy_to_cell(state[:2]), leg['cell'], [self.obstacle.cell])
+        path = mg.astar(self.maze, mu.xy_to_cell(state[:2]), leg['cell'], self.route_blocked)
         cells = max(1, len(path) - 1) if path else 1
         h = self.planner.horizon_for(cells, self.cfg['steps_per_cell'], self.cfg['min_horizon'])
         n = self.cfg.get('n_samples_leg') or self.cfg['n_samples']
@@ -135,7 +164,7 @@ class PlanningLoop:
         """Move on when the waypoint is reached; plan the same leg again when its plan has run out."""
         leg = self.legs[self.leg_i]
         last = self.leg_i == len(self.legs) - 1
-        if not last and np.linalg.norm(state[:2] - leg['xy']) <= self.cfg['waypoint_radius']:
+        if not last and np.linalg.norm(state[:2] - leg['xy']) <= leg['radius']:
             self.log(t, 'waypoint_reached', leg=self.leg_i, waypoint=list(leg['cell']))
             self.leg_i += 1
             self.plan_leg(t, state, 'next_leg')
@@ -178,6 +207,11 @@ class PlanningLoop:
         if self.legs is not None:
             if self.plan_leg(t, state, 'leg_hits_obstacle') == 0 and self.start_route(t, state):
                 self.plan_leg(t, state, 'rerouted')
+            return
+        if method == 'ours' and self.needs_gap(state):
+            # A rare plan to the goal that clears a narrow gap fails on tracking error (probe_partial)
+            if self.start_route(t, state):
+                self.plan_leg(t, state, 'first_leg')
             return
         if self.replan_to_goal(t, state, True) > 0:
             return
@@ -261,7 +295,7 @@ def run_episode(sc, plan0, method, env, planner, cfg):
         xy = obs[:2].copy()
         rollout_xy.append(xy)
         contact.append(mu.wall_contact(env))
-        if t + 1 >= obstacle.t_appear and ob.ball_hits(xy, obstacle):
+        if t + 1 > obstacle.t_appear and ob.ball_hits(xy, obstacle):     # the state at t_appear is checked above
             collision_t = t + 1
             break
         if np.linalg.norm(xy - target) <= radius:

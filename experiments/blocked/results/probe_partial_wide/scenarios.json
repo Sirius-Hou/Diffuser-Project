@@ -1,0 +1,382 @@
+{
+  "config": {
+    "name": "blocked_probe_partial_wide",
+    "description": "As probe_partial.json but the obstacle covers 30% of the corridor (gap 0.7 instead of 0.5): does best-of-N find a way through a wider gap?",
+    "env": "maze2d-large-v1",
+    "diffusion_loadpath": "diffusion/H384_T256",
+    "diffusion_epoch": "latest",
+    "device": "cuda",
+    "torch_threads": 0,
+    "success_radius": 0.5,
+    "scenarios": {
+      "seed_start": 0,
+      "max_seeds": 150,
+      "n_full": 0,
+      "n_partial": 8,
+      "t_appear": [
+        60,
+        100,
+        140
+      ],
+      "min_ahead_cells": 2,
+      "partial_frac": 0.3
+    },
+    "n_samples": 16,
+    "k": 10,
+    "k_fixed": 100,
+    "max_triggers": 5,
+    "check_margin": 0.05,
+    "replan_horizon": "remaining",
+    "budget_slack_steps": 40,
+    "steps_per_cell": 32,
+    "min_horizon": 32,
+    "max_leg_cells": 4,
+    "waypoint_radius": 0.5,
+    "leg_grace_steps": 20,
+    "replan_seed_offset": 500000,
+    "oracle_kp": 5.0,
+    "oracle_vmax": 3.0,
+    "oracle_kv": 1.0,
+    "waypoint_mode": "corners",
+    "n_samples_leg": 8,
+    "leg_start_at_rest": true,
+    "save_png": true,
+    "out": "experiments/blocked/results/probe_partial_wide"
+  },
+  "device": "cpu",
+  "scenarios": [
+    {
+      "seed": 0,
+      "qpos": [
+        3.093078187448464,
+        1.0265381891168206
+      ],
+      "qvel": [
+        -0.057663079698441436,
+        -0.030459791474532066
+      ],
+      "start_cell": [
+        3,
+        1
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 140,
+      "plan0_time_s": 5.3035021830000915,
+      "obstacle": {
+        "cell": [
+          6,
+          8
+        ],
+        "rect": [
+          5.3,
+          6.3,
+          8.0,
+          8.3
+        ],
+        "kind": "partial",
+        "t_appear": 140
+      },
+      "cell_at_appear": [
+        3,
+        6
+      ],
+      "base_cells": 7,
+      "detour_cells": null
+    },
+    {
+      "seed": 1,
+      "qpos": [
+        3.0029000143971856,
+        2.9382236302311675
+      ],
+      "qvel": [
+        0.05663744335966008,
+        -0.06507597725434915
+      ],
+      "start_cell": [
+        3,
+        3
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 140,
+      "plan0_time_s": 4.1165543329989305,
+      "obstacle": {
+        "cell": [
+          5,
+          9
+        ],
+        "rect": [
+          5.0,
+          5.3,
+          8.3,
+          9.3
+        ],
+        "kind": "partial",
+        "t_appear": 140
+      },
+      "cell_at_appear": [
+        3,
+        6
+      ],
+      "base_cells": 7,
+      "detour_cells": 7
+    },
+    {
+      "seed": 2,
+      "qpos": [
+        1.04904392011467,
+        5.915674510036455
+      ],
+      "qvel": [
+        0.24444817954403295,
+        0.000950198342935763
+      ],
+      "start_cell": [
+        1,
+        6
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 140,
+      "plan0_time_s": 4.367565354999897,
+      "obstacle": {
+        "cell": [
+          6,
+          8
+        ],
+        "rect": [
+          5.3,
+          6.3,
+          8.0,
+          8.3
+        ],
+        "kind": "partial",
+        "t_appear": 140
+      },
+      "cell_at_appear": [
+        5,
+        6
+      ],
+      "base_cells": 5,
+      "detour_cells": null
+    },
+    {
+      "seed": 3,
+      "qpos": [
+        7.0688147548622675,
+        8.060165991977776
+      ],
+      "qvel": [
+        0.09638021647887608,
+        0.06224887054351547
+      ],
+      "start_cell": [
+        7,
+        8
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 60,
+      "plan0_time_s": 4.142892132998895,
+      "obstacle": {
+        "cell": [
+          6,
+          8
+        ],
+        "rect": [
+          5.3,
+          6.3,
+          8.0,
+          8.3
+        ],
+        "kind": "partial",
+        "t_appear": 60
+      },
+      "cell_at_appear": [
+        5,
+        8
+      ],
+      "base_cells": 3,
+      "detour_cells": null
+    },
+    {
+      "seed": 4,
+      "qpos": [
+        5.081425484654378,
+        5.938009440032262
+      ],
+      "qvel": [
+        0.1145731174829065,
+        -0.039734207032459
+      ],
+      "start_cell": [
+        5,
+        6
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 100,
+      "plan0_time_s": 4.190994782000416,
+      "obstacle": {
+        "cell": [
+          6,
+          8
+        ],
+        "rect": [
+          5.3,
+          6.3,
+          7.3,
+          7.6
+        ],
+        "kind": "partial",
+        "t_appear": 100
+      },
+      "cell_at_appear": [
+        3,
+        5
+      ],
+      "base_cells": 8,
+      "detour_cells": null
+    },
+    {
+      "seed": 5,
+      "qpos": [
+        2.9536610915066506,
+        2.029714193673752
+      ],
+      "qvel": [
+        -0.06490501761735533,
+        0.07573173007479447
+      ],
+      "start_cell": [
+        3,
+        2
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 60,
+      "plan0_time_s": 4.231998744000521,
+      "obstacle": {
+        "cell": [
+          3,
+          5
+        ],
+        "rect": [
+          3.0,
+          3.3,
+          4.3,
+          5.3
+        ],
+        "kind": "partial",
+        "t_appear": 60
+      },
+      "cell_at_appear": [
+        3,
+        3
+      ],
+      "base_cells": 10,
+      "detour_cells": null
+    },
+    {
+      "seed": 6,
+      "qpos": [
+        5.083931162931798,
+        10.022412289006494
+      ],
+      "qvel": [
+        -0.08507191053202634,
+        -0.12524257504501543
+      ],
+      "start_cell": [
+        5,
+        10
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 140,
+      "plan0_time_s": 4.820182933000979,
+      "obstacle": {
+        "cell": [
+          5,
+          7
+        ],
+        "rect": [
+          5.0,
+          5.3,
+          6.3,
+          7.3
+        ],
+        "kind": "partial",
+        "t_appear": 140
+      },
+      "cell_at_appear": [
+        4,
+        6
+      ],
+      "base_cells": 6,
+      "detour_cells": 16
+    },
+    {
+      "seed": 7,
+      "qpos": [
+        5.083736262062526,
+        1.9792390396272583
+      ],
+      "qvel": [
+        -0.0021591848840549024,
+        0.10676006982001565
+      ],
+      "start_cell": [
+        5,
+        2
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 60,
+      "plan0_time_s": 4.280756901000132,
+      "obstacle": {
+        "cell": [
+          5,
+          7
+        ],
+        "rect": [
+          5.0,
+          5.3,
+          6.3,
+          7.3
+        ],
+        "kind": "partial",
+        "t_appear": 60
+      },
+      "cell_at_appear": [
+        4,
+        1
+      ],
+      "base_cells": 13,
+      "detour_cells": 21
+    }
+  ],
+  "excluded": [],
+  "unfilled": {
+    "full": 0,
+    "partial": 0
+  }
+}

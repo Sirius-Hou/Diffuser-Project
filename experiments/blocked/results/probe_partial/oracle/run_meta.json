@@ -56,7 +56,7 @@
     7
   ],
   "git_commit": "unknown",
-  "started": "2026-11-17 04:58:46",
+  "started": "2026-11-17 05:29:19",
   "python": "3.8.20",
   "max_episode_steps": 800,
   "target": [
@@ -69,5 +69,5 @@
   "device": "cpu",
   "torch_threads": 8,
   "torch_version": "1.9.1+cpu",
-  "load_time_s": 29.943035783000596
+  "load_time_s": 35.34180276599909
 }

@@ -8,8 +8,8 @@ The upstream Diffuser code (`diffuser/`, `scripts/`, `config/`) is used **frozen
 | Dir | Step | Status | Result |
 |---|---|---|---|
 | [`b0_baseline/`](b0_baseline/README.md) | 1: B0, plan once, no obstacle | ✅ done 2026-11-09 | 28/30 success, 2.0 s/plan, reproducible |
-| [`r3_horizon/`](r3_horizon/README.md) | 2: how short can a planning horizon be (R3), batch timing (R5) | code written, not run yet | — |
-| [`blocked/`](blocked/README.md) | 3: B0 / B1 / B2 / ours / oracle with a mid-episode blockage | code written, not run yet | — |
+| [`r3_horizon/`](r3_horizon/README.md) | 2: how short can a planning horizon be (R3), batch timing (R5) | ✅ done 2026-11-17 (CPU, Lima VM) | 32 steps per cell; straight legs 40/40; `plan(n=16)` 24–33 s on CPU |
+| [`blocked/`](blocked/README.md) | 3: B0 / B1 / B2 / ours / oracle with a mid-episode blockage | probes done 2026-11-17 (CPU, Lima VM); `main` not run | full blockage, forced detour: ours 8/9, B0 0/9, B1 1/9, B2 0/9; partial, no detour: ours 0/5 |
 
 ## Layout conventions (apply to every new experiment)
 

@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | Run on the real model (CPU, Lima VM): `smoke`, `probe` (12 full), `probe_partial` (8 partial). `main` not run yet |
+| **Status** | Run on the real model (CPU, Lima VM): `smoke`, `probe` (12 full), `probe_partial`, `probe_partial_gap`, `probe_partial_wide` (8 partial each). `main` not run yet |
 | **Project step** | Main experiment of the proposal |
 | **Run** | `bash experiments/blocked/run_all.sh smoke`, then `probe`, then `main` |
 
@@ -22,7 +22,7 @@ Seeds with no usable cell are listed under `excluded`.
 | B0 | never | follows the t = 0 plan |
 | B1 | every `k_fixed` steps | best-of-N against the obstacle once it is known (one sample before that) |
 | B2 | every `k` steps, if the rest of the plan hits the obstacle | best-of-N; if all N hit, takes the one that hits latest |
-| ours | same trigger as B2 | best-of-N; if all N hit: A* around the blocked cell, junctions and turns become waypoints, one short plan per straight leg |
+| ours | same trigger as B2 | best-of-N; if all N hit: A* around the blocked cell, junctions and turns become waypoints, one short plan per straight leg. Optional `gap_route` for partial obstacles with no detour (see results) |
 | oracle | at t = 0 and at `t_appear` | A* on the known map + speed-limited PD controller (gains untuned) |
 
 The obstacle is a virtual region: the first step on which the ball overlaps it ends the episode as a failure. An episode stops at the first step within `success_radius` of the goal.
@@ -41,7 +41,9 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 |---|---|
 | `smoke.json` | 2 full + 1 partial scenario, N = 4: does the pipeline run |
 | `probe.json` | 12 full scenarios, N = 16: R2 probe and the single-scenario detour check |
-| `probe_partial.json` | 8 partial scenarios, N = 16 |
+| `probe_partial.json` | 8 partial scenarios (gap 0.5), N = 16 |
+| `probe_partial_gap.json` | the same 8 scenarios, ours with `gap_route` |
+| `probe_partial_wide.json` | 8 partial scenarios with gap 0.7 (`partial_frac` 0.3) |
 | `main.json` | 35 full + 15 partial scenarios |
 
 `steps_per_cell` = 32 and `min_horizon` = 32 come from `r3_horizon` (F1, F2).
@@ -71,18 +73,43 @@ All methods start from the same stored start state and t = 0 plan, so each row i
 
 ### Partial blockage (`probe_partial`, 8 scenarios, gap = 0.5)
 
-| Method | All 8 | Detour exists (3) | No detour: must pass the gap (5) |
-|---|---|---|---|
-| B0 | 1/8 | 1/3 | 0/5 |
-| B1 | 1/8 | 1/3 | 0/5 |
-| B2 | 1/8 | 1/3 | 0/5 |
-| **ours** | 3/8 | **3/3** | 0/5 |
-| oracle | 7/8 | 3/3 | 4/5 |
+Seed 4 is dropped from every method: the oracle moves faster than the t = 0 plan and was already inside the cell when the obstacle appeared, so its episode is `excluded` (`obstacle_appeared_on_agent`). 7 paired scenarios remain. 4 of the 5 scenarios without a detour block the same cell, (6,8), the last corridor before the goal.
 
-- **The proposal's step 2 ("best-of-N finds a plan through the gap") does not hold at gap = 0.5**: at the first trigger, a median of 0 of 16 samples was clear (mean 0.4 when no detour exists). The model's plans run along the middle of the corridor, which the obstacle covers.
+| Method | All 7 | Detour exists (3) | No detour: must pass the gap (4) |
+|---|---|---|---|
+| B0 | 1/7 | 1/3 | 0/4 |
+| B1 | 1/7 | 1/3 | 0/4 |
+| B2 | 1/7 | 1/3 | 0/4 |
+| **ours** | 3/7 | **3/3** | 0/4 |
+| oracle | 7/7 | 3/3 | 4/4 |
+
+- **The proposal's step 2 ("best-of-N finds a plan through the gap") does not hold at gap = 0.5**: at the first trigger, a median of 0 of 16 samples was clear (mean 0.5 when no detour exists). The model's plans run along the middle of the corridor, which the obstacle covers.
 - When a detour exists: on seeds 6 and 7 all 16 samples hit, so ours treated the cell as blocked and took the 16- and 21-cell detours; on seed 1 a same-length route existed and best-of-N found it (12 of 16 clear). Ours: 3/3.
-- When no detour exists, nobody but the oracle passes the gap. Ours falls back to the B2 behaviour (same outcome on all 5 seeds): on seeds 0 and 2 it adopted the only clear sample and the ball's tracking error carried it into the obstacle; on seeds 3 and 4 the adopted plans toured and stalled on a wall; on seed 5 no sample was ever clear and the ball ran into the obstacle.
-- The oracle failure (seed 4) is an artifact: the oracle moves faster than the t = 0 plan, so it was already inside the cell when the obstacle appeared at t = 100 (`obstacle_collision_step` = `t_appear`).
+- When no detour exists, nobody but the oracle passes the gap. Ours falls back to the B2 behaviour (same outcome on every seed): on seeds 0 and 2 it adopted the only clear sample and the ball's tracking error carried it into the obstacle; on seeds 3 and 4 the adopted plans toured and stalled on a wall; on seed 5 no sample was ever clear and the ball ran into the obstacle.
+
+### Passing the gap on waypoint legs (`probe_partial_gap`, ours only)
+
+`gap_route: true` (off by default): when the obstacle is partial and no route avoids its cell, ours skips best-of-N to the goal and routes through the cell. The cells before and after it become waypoints moved sideways onto the centre line of the gap, as in the oracle's route, and the ball has to come within `gap_waypoint_radius` (0.1) of them. Same 8 scenarios (`scenarios.json` and `plans0.npz` copied from `probe_partial`).
+
+- No detour: **0/5** (4 timeouts, 1 obstacle hit; without `gap_route`: 3 hits, 2 stalls). Seeds 1, 6 and 7, which do not use the gap route, reproduce `probe_partial` step for step.
+- The ball never settles within 0.1 of the gap entry point (seeds 2, 3, 5): each 32-step leg plan ends, the leg is planned again 20 steps later, and this repeats until the step limit. Near (5,8) the leg plans curve east toward column 9, the same behaviour as the leg (5,8)->(7,8) that failed in `probe` (seed 10). On seed 0 the ball reached the entry point, but 0 of 8 samples of the leg through the gap were clear.
+- So the positioning the gap needs (about +-0.12 around the centre line for a 0.5 gap with `check_margin` 0.05) is finer than what the frozen model and the tracking controller deliver. A 0.5 gap with no detour is out of reach for this planning loop as it stands.
+
+### Wider gap (`probe_partial_wide`, gap = 0.7, `gap_route` off)
+
+Same seeds and cells as `probe_partial`; only `partial_frac` changes (0.3 instead of 0.5). No seed is excluded.
+
+| Method | All 8 | Detour exists (3) | No detour (5) |
+|---|---|---|---|
+| B0 | 2/8 | 1/3 | 1/5 |
+| B2 | 2/8 | 1/3 | 1/5 |
+| **ours** | 4/8 | **3/3** | 1/5 |
+| oracle | 8/8 | 3/3 | 5/5 |
+
+- With the wider gap, best-of-N finds a clear plan: at the first trigger on the no-detour seeds, 4 of 5 had at least one clear sample (mean 4.4 of 16; at gap 0.5: 2 of 5, mean 0.4). So the proposal's step 2 works **at the plan level** once the gap is 0.7.
+- It fails in **execution**: 3 of those 4 clear plans still end in an obstacle hit (seeds 0, 2, 3). The adopted plan clears the obstacle by 0.20-0.37, but the ball runs 50-120 steps behind it (the plan moves about 0.044 per step and the ball about 0.03). The controller (the original `plan_maze2d.py` one) tracks the plan point of the current time step, so a lagging ball heads straight for a point far ahead and cuts the inside of the turn just before the obstacle cell: 0.4-0.5 off the plan's path at its closest approach. On seed 4, the only success, the lag was 3 steps.
+- This is a different failure from `probe` seed 11 (full blockage), where the ball was 0.19 off the path with no lag.
+- Hence the predicted-collision check tests the plan, not the path the ball will take. Candidates (not tried): also trigger a replan when the ball falls more than a few steps behind its plan, or check the plan with a margin that grows with that lag.
 
 ### Not working (tried, kept out of the method)
 
