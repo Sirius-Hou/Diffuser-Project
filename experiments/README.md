@@ -8,8 +8,8 @@ The upstream Diffuser code (`diffuser/`, `scripts/`, `config/`) is used **frozen
 | Dir | Step | Status | Result |
 |---|---|---|---|
 | [`b0_baseline/`](b0_baseline/README.md) | 1: B0, plan once, no obstacle | ✅ done 2026-11-09 | 28/30 success, 2.0 s/plan, reproducible |
-| `b0_blocked/` (planned) | 2: B0 with a mid-episode corridor blockage | — | — |
-| `b1_*`, `b2_*`, `ours_*` (planned) | 3+: replanning baselines and our method | — | — |
+| [`r3_horizon/`](r3_horizon/README.md) | 2: how short can a planning horizon be (R3), batch timing (R5) | code written, not run yet | — |
+| [`blocked/`](blocked/README.md) | 3: B0 / B1 / B2 / ours / oracle with a mid-episode blockage | code written, not run yet | — |
 
 ## Layout conventions (apply to every new experiment)
 
@@ -17,9 +17,12 @@ The upstream Diffuser code (`diffuser/`, `scripts/`, `config/`) is used **frozen
 experiments/
   common/                 shared, reusable code. Import it; don't copy it
     setup/                wsl_env.sh (runtime paths), run.sh (run in env), check_env.py
-    planner.py            FrozenDiffuserPlanner.plan(obs, goal, n) + original waypoint controller
+    planner.py            FrozenDiffuserPlanner.plan(obs, goal, n, horizon) + original waypoint controller
     maze_utils.py         geometry, BFS (with blocked cells), wall/contact checks, drawing
+    obstacles.py          Obstacle (full / partial cell), collides(trajectory, obstacle), ball_hits
+    maze_graph.py         astar(maze, start, goal, blocked), waypoints(maze, path)
     check_geometry.py     verifies the coordinate convention
+    test_units.py         numpy-only tests for obstacles.py and maze_graph.py (runs without MuJoCo/torch)
   <experiment_name>/
     README.md             background, objectives, implementation, exact commands, results, analysis, limitations
     configs/*.json        every run is driven by a config (seeds, device, output dir, ...)
@@ -47,3 +50,21 @@ bash experiments/b0_baseline/run_all.sh
 ```
 
 See [`b0_baseline/README.md` §5](b0_baseline/README.md#5-reproducing) for setting up a new machine.
+
+## Colab GPU
+
+`experiments/common/setup/colab_setup.sh` builds the same Python 3.8 runtime on Colab, following the team notebook step by step (not yet run there as a script). It also downloads the weights. Set the runtime to T4 GPU, clone the repo, `%cd` into it, then:
+
+```bash
+!bash experiments/common/setup/colab_setup.sh
+```
+
+```bash
+!bash experiments/r3_horizon/run_all.sh
+```
+
+```bash
+!bash experiments/blocked/run_all.sh smoke
+```
+
+Configs under `r3_horizon/` and `blocked/` default to `"device": "cuda"`; pass `--device cpu` to the Python scripts to run on CPU. GPU sampling is not bit-identical to the CPU B0 numbers, so compare methods only within one runtime.

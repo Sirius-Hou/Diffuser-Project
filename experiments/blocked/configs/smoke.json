@@ -1,0 +1,41 @@
+{
+  "name": "blocked_smoke",
+  "description": "Pipeline check: 2 full + 1 partial scenario, every method.",
+  "env": "maze2d-large-v1",
+  "diffusion_loadpath": "diffusion/H384_T256",
+  "diffusion_epoch": "latest",
+  "device": "cuda",
+  "torch_threads": 0,
+  "success_radius": 0.5,
+  "scenarios": {
+    "seed_start": 0,
+    "max_seeds": 60,
+    "n_full": 2,
+    "n_partial": 1,
+    "t_appear": [
+      60,
+      100,
+      140
+    ],
+    "min_ahead_cells": 2,
+    "partial_frac": 0.5
+  },
+  "n_samples": 4,
+  "k": 10,
+  "k_fixed": 100,
+  "max_triggers": 10,
+  "check_margin": 0.05,
+  "replan_horizon": "remaining",
+  "budget_slack_steps": 40,
+  "steps_per_cell": 30,
+  "min_horizon": 32,
+  "max_leg_cells": 8,
+  "waypoint_radius": 0.3,
+  "leg_grace_steps": 20,
+  "replan_seed_offset": 500000,
+  "oracle_kp": 5.0,
+  "oracle_vmax": 3.0,
+  "oracle_kv": 1.0,
+  "save_png": true,
+  "out": "experiments/blocked/results/smoke"
+}
