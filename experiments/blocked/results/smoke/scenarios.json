@@ -1,0 +1,177 @@
+{
+  "config": {
+    "name": "blocked_smoke",
+    "description": "Pipeline check: 2 full + 1 partial scenario, every method.",
+    "env": "maze2d-large-v1",
+    "diffusion_loadpath": "diffusion/H384_T256",
+    "diffusion_epoch": "latest",
+    "device": "cuda",
+    "torch_threads": 0,
+    "success_radius": 0.5,
+    "scenarios": {
+      "seed_start": 0,
+      "max_seeds": 60,
+      "n_full": 2,
+      "n_partial": 1,
+      "t_appear": [
+        60,
+        100,
+        140
+      ],
+      "min_ahead_cells": 2,
+      "partial_frac": 0.5
+    },
+    "n_samples": 4,
+    "k": 10,
+    "k_fixed": 100,
+    "max_triggers": 10,
+    "check_margin": 0.05,
+    "replan_horizon": "remaining",
+    "budget_slack_steps": 40,
+    "steps_per_cell": 32,
+    "min_horizon": 32,
+    "max_leg_cells": 4,
+    "waypoint_radius": 0.5,
+    "leg_grace_steps": 20,
+    "replan_seed_offset": 500000,
+    "oracle_kp": 5.0,
+    "oracle_vmax": 3.0,
+    "oracle_kv": 1.0,
+    "waypoint_mode": "corners",
+    "n_samples_leg": 4,
+    "leg_start_at_rest": true,
+    "save_png": true,
+    "out": "experiments/blocked/results/smoke"
+  },
+  "device": "cpu",
+  "scenarios": [
+    {
+      "seed": 0,
+      "qpos": [
+        3.093078187448464,
+        1.0265381891168206
+      ],
+      "qvel": [
+        -0.057663079698441436,
+        -0.030459791474532066
+      ],
+      "start_cell": [
+        3,
+        1
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 140,
+      "plan0_time_s": 3.614762218998294,
+      "obstacle": {
+        "cell": [
+          5,
+          7
+        ],
+        "rect": [
+          4.3,
+          5.3,
+          6.3,
+          7.3
+        ],
+        "kind": "full",
+        "t_appear": 140
+      },
+      "cell_at_appear": [
+        3,
+        6
+      ],
+      "base_cells": 7,
+      "detour_cells": 15
+    },
+    {
+      "seed": 1,
+      "qpos": [
+        3.0029000143971856,
+        2.9382236302311675
+      ],
+      "qvel": [
+        0.05663744335966008,
+        -0.06507597725434915
+      ],
+      "start_cell": [
+        3,
+        3
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 140,
+      "plan0_time_s": 3.565529190000234,
+      "obstacle": {
+        "cell": [
+          5,
+          7
+        ],
+        "rect": [
+          4.3,
+          5.3,
+          6.3,
+          7.3
+        ],
+        "kind": "full",
+        "t_appear": 140
+      },
+      "cell_at_appear": [
+        3,
+        6
+      ],
+      "base_cells": 7,
+      "detour_cells": 15
+    },
+    {
+      "seed": 2,
+      "qpos": [
+        1.04904392011467,
+        5.915674510036455
+      ],
+      "qvel": [
+        0.24444817954403295,
+        0.000950198342935763
+      ],
+      "start_cell": [
+        1,
+        6
+      ],
+      "goal_cell": [
+        7,
+        9
+      ],
+      "t_appear": 140,
+      "plan0_time_s": 3.60554461799984,
+      "obstacle": {
+        "cell": [
+          6,
+          8
+        ],
+        "rect": [
+          5.3,
+          6.3,
+          7.800000000000001,
+          8.3
+        ],
+        "kind": "partial",
+        "t_appear": 140
+      },
+      "cell_at_appear": [
+        5,
+        6
+      ],
+      "base_cells": 5,
+      "detour_cells": null
+    }
+  ],
+  "excluded": [],
+  "unfilled": {
+    "full": 0,
+    "partial": 0
+  }
+}

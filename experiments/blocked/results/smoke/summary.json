@@ -1,0 +1,299 @@
+{
+  "methods": [
+    "B0",
+    "B1",
+    "B2",
+    "ours",
+    "oracle"
+  ],
+  "n_paired_scenarios": 3,
+  "dropped_seeds": [],
+  "overall": {
+    "B0": {
+      "n": 3,
+      "n_success": 0,
+      "success_rate": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.5615060804490177,
+      "obstacle_collision_rate": 1.0,
+      "steps_to_success_median": null,
+      "path_length_success_mean": null,
+      "replans_mean": 0.0,
+      "samples_mean": 1.0,
+      "planning_time_s_mean": 3.5952786756661226,
+      "wall_contact_events_mean": 2.3333333333333335,
+      "failure_reasons": {
+        "obstacle_collision": 3
+      }
+    },
+    "B1": {
+      "n": 3,
+      "n_success": 0,
+      "success_rate": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.5615060804490177,
+      "obstacle_collision_rate": 0.6666666666666666,
+      "steps_to_success_median": null,
+      "path_length_success_mean": null,
+      "replans_mean": 6.333333333333333,
+      "samples_mean": 23.333333333333332,
+      "planning_time_s_mean": 53.46085890666533,
+      "wall_contact_events_mean": 2.3333333333333335,
+      "failure_reasons": {
+        "obstacle_collision": 2,
+        "timeout_still_moving": 1
+      }
+    },
+    "B2": {
+      "n": 3,
+      "n_success": 0,
+      "success_rate": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.5615060804490177,
+      "obstacle_collision_rate": 0.6666666666666666,
+      "steps_to_success_median": null,
+      "path_length_success_mean": null,
+      "replans_mean": 7.333333333333333,
+      "samples_mean": 30.333333333333332,
+      "planning_time_s_mean": 75.85902371300108,
+      "wall_contact_events_mean": 1.3333333333333333,
+      "failure_reasons": {
+        "obstacle_collision": 2,
+        "stuck_on_wall": 1
+      }
+    },
+    "ours": {
+      "n": 3,
+      "n_success": 1,
+      "success_rate": 0.3333333333333333,
+      "ci_lo": 0.0614903152761605,
+      "ci_hi": 0.7923450448735121,
+      "obstacle_collision_rate": 0.0,
+      "steps_to_success_median": 659.0,
+      "path_length_success_mean": 19.340685388799194,
+      "replans_mean": 8.666666666666666,
+      "samples_mean": 35.666666666666664,
+      "planning_time_s_mean": 62.02378353566686,
+      "wall_contact_events_mean": 2.3333333333333335,
+      "failure_reasons": {
+        "timeout_still_moving": 1,
+        "stuck_on_wall": 1
+      }
+    },
+    "oracle": {
+      "n": 3,
+      "n_success": 3,
+      "success_rate": 1.0,
+      "ci_lo": 0.43849391955098227,
+      "ci_hi": 1.0,
+      "obstacle_collision_rate": 0.0,
+      "steps_to_success_median": 597.0,
+      "path_length_success_mean": 14.120274073811101,
+      "replans_mean": 0.0,
+      "samples_mean": 0.0,
+      "planning_time_s_mean": 0.0,
+      "wall_contact_events_mean": 0.0,
+      "failure_reasons": {}
+    }
+  },
+  "by_obstacle": {
+    "B0": {
+      "full": {
+        "n": 2,
+        "n_success": 0,
+        "success_rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.6576280471103807,
+        "obstacle_collision_rate": 1.0,
+        "steps_to_success_median": null,
+        "path_length_success_mean": null,
+        "replans_mean": 0.0,
+        "samples_mean": 1.0,
+        "planning_time_s_mean": 3.590145704499264,
+        "wall_contact_events_mean": 0.5,
+        "failure_reasons": {
+          "obstacle_collision": 2
+        }
+      },
+      "partial": {
+        "n": 1,
+        "n_success": 0,
+        "success_rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.7934567085261071,
+        "obstacle_collision_rate": 1.0,
+        "steps_to_success_median": null,
+        "path_length_success_mean": null,
+        "replans_mean": 0.0,
+        "samples_mean": 1.0,
+        "planning_time_s_mean": 3.60554461799984,
+        "wall_contact_events_mean": 6.0,
+        "failure_reasons": {
+          "obstacle_collision": 1
+        }
+      }
+    },
+    "B1": {
+      "full": {
+        "n": 2,
+        "n_success": 0,
+        "success_rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.6576280471103807,
+        "obstacle_collision_rate": 1.0,
+        "steps_to_success_median": null,
+        "path_length_success_mean": null,
+        "replans_mean": 6.0,
+        "samples_mean": 22.0,
+        "planning_time_s_mean": 50.53639321349874,
+        "wall_contact_events_mean": 1.5,
+        "failure_reasons": {
+          "obstacle_collision": 2
+        }
+      },
+      "partial": {
+        "n": 1,
+        "n_success": 0,
+        "success_rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.7934567085261071,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": null,
+        "path_length_success_mean": null,
+        "replans_mean": 7.0,
+        "samples_mean": 26.0,
+        "planning_time_s_mean": 59.309790292998514,
+        "wall_contact_events_mean": 4.0,
+        "failure_reasons": {
+          "timeout_still_moving": 1
+        }
+      }
+    },
+    "B2": {
+      "full": {
+        "n": 2,
+        "n_success": 0,
+        "success_rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.6576280471103807,
+        "obstacle_collision_rate": 1.0,
+        "steps_to_success_median": null,
+        "path_length_success_mean": null,
+        "replans_mean": 10.0,
+        "samples_mean": 41.0,
+        "planning_time_s_mean": 102.36588061350085,
+        "wall_contact_events_mean": 1.0,
+        "failure_reasons": {
+          "obstacle_collision": 2
+        }
+      },
+      "partial": {
+        "n": 1,
+        "n_success": 0,
+        "success_rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.7934567085261071,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": null,
+        "path_length_success_mean": null,
+        "replans_mean": 2.0,
+        "samples_mean": 9.0,
+        "planning_time_s_mean": 22.84530991200154,
+        "wall_contact_events_mean": 2.0,
+        "failure_reasons": {
+          "stuck_on_wall": 1
+        }
+      }
+    },
+    "ours": {
+      "full": {
+        "n": 2,
+        "n_success": 1,
+        "success_rate": 0.5,
+        "ci_lo": 0.09452865480086614,
+        "ci_hi": 0.9054713451991339,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 659.0,
+        "path_length_success_mean": 19.340685388799194,
+        "replans_mean": 12.0,
+        "samples_mean": 49.0,
+        "planning_time_s_mean": 81.87183217600068,
+        "wall_contact_events_mean": 2.5,
+        "failure_reasons": {
+          "timeout_still_moving": 1
+        }
+      },
+      "partial": {
+        "n": 1,
+        "n_success": 0,
+        "success_rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.7934567085261071,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": null,
+        "path_length_success_mean": null,
+        "replans_mean": 2.0,
+        "samples_mean": 9.0,
+        "planning_time_s_mean": 22.327686254999207,
+        "wall_contact_events_mean": 2.0,
+        "failure_reasons": {
+          "stuck_on_wall": 1
+        }
+      }
+    },
+    "oracle": {
+      "full": {
+        "n": 2,
+        "n_success": 2,
+        "success_rate": 1.0,
+        "ci_lo": 0.34237195288961925,
+        "ci_hi": 1.0,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 622.0,
+        "path_length_success_mean": 17.376417492480982,
+        "replans_mean": 0.0,
+        "samples_mean": 0.0,
+        "planning_time_s_mean": 0.0,
+        "wall_contact_events_mean": 0.0,
+        "failure_reasons": {}
+      },
+      "partial": {
+        "n": 1,
+        "n_success": 1,
+        "success_rate": 1.0,
+        "ci_lo": 0.20654329147389294,
+        "ci_hi": 1.0,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 272.0,
+        "path_length_success_mean": 7.6079872364713355,
+        "replans_mean": 0.0,
+        "samples_mean": 0.0,
+        "planning_time_s_mean": 0.0,
+        "wall_contact_events_mean": 0.0,
+        "failure_reasons": {}
+      }
+    }
+  },
+  "best_of_n_at_first_trigger": {
+    "B2/full": {
+      "n_triggered": 2,
+      "best_of_n_found_clear_plan": 0.0,
+      "mean_clear_samples": 0.0
+    },
+    "B2/partial": {
+      "n_triggered": 1,
+      "best_of_n_found_clear_plan": 0.0,
+      "mean_clear_samples": 0.0
+    },
+    "ours/full": {
+      "n_triggered": 2,
+      "best_of_n_found_clear_plan": 0.0,
+      "mean_clear_samples": 0.0
+    },
+    "ours/partial": {
+      "n_triggered": 1,
+      "best_of_n_found_clear_plan": 0.0,
+      "mean_clear_samples": 0.0
+    }
+  }
+}

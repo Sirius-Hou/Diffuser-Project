@@ -7,14 +7,32 @@
   "device": "cuda",
   "torch_threads": 0,
   "seed": 0,
-  "distances": [2, 6],
+  "distances": [
+    2,
+    6
+  ],
   "pairs_per_distance": 1,
-  "horizons": [64, 384],
   "n_samples": 2,
-  "slack_steps": 40,
+  "slack_steps": 60,
   "success_radius": 0.5,
-  "waypoint_radius": 0.3,
+  "waypoint_radius": 0.5,
   "min_rate": 0.9,
-  "timing": {"horizons": [64, 384], "batch_sizes": [1, 4], "repeats": 1},
+  "ratios": [
+    24,
+    32
+  ],
+  "extra_horizons": [],
+  "min_horizon": 16,
+  "timing": {
+    "horizons": [
+      64,
+      384
+    ],
+    "batch_sizes": [
+      1,
+      4
+    ],
+    "repeats": 1
+  },
   "out": "experiments/r3_horizon/results/smoke"
 }

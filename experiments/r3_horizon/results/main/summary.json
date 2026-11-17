@@ -1,0 +1,150 @@
+{
+  "config": {
+    "name": "r3_main",
+    "description": "Horizon sweep for short legs (R3) and batch timing (R5).",
+    "env": "maze2d-large-v1",
+    "diffusion_loadpath": "diffusion/H384_T256",
+    "diffusion_epoch": "latest",
+    "device": "cuda",
+    "torch_threads": 0,
+    "seed": 0,
+    "distances": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      10
+    ],
+    "pairs_per_distance": 4,
+    "n_samples": 4,
+    "slack_steps": 60,
+    "success_radius": 0.5,
+    "waypoint_radius": 0.5,
+    "min_rate": 0.9,
+    "ratios": [
+      16,
+      24,
+      32,
+      40,
+      48,
+      64
+    ],
+    "extra_horizons": [
+      384
+    ],
+    "min_horizon": 16,
+    "timing": {
+      "horizons": [
+        64,
+        128,
+        384
+      ],
+      "batch_sizes": [
+        1,
+        4,
+        8,
+        16
+      ],
+      "repeats": 2
+    },
+    "out": "experiments/r3_horizon/results/main"
+  },
+  "recommendation": {
+    "steps_per_cell": 32.0,
+    "good_rate_at_best": 0.7142857142857143,
+    "min_horizon": 24,
+    "good_rate_by_ratio": {
+      "16.0": 0.2767857142857143,
+      "24.0": 0.6339285714285714,
+      "32.0": 0.7142857142857143,
+      "40.0": 0.5178571428571429,
+      "48.0": 0.3958333333333333,
+      "64.0": 0.275
+    },
+    "note": "good = reached the waypoint radius within horizon + slack steps without visiting more cells than a shortest route. Copy steps_per_cell and min_horizon into experiments/blocked/configs."
+  },
+  "timing": [
+    {
+      "horizon": 64,
+      "n": 1,
+      "time_s_median": 1.7599691210001538,
+      "time_s_max": 1.7762386860001698
+    },
+    {
+      "horizon": 64,
+      "n": 4,
+      "time_s_median": 6.087928413500094,
+      "time_s_max": 6.1751906640001835
+    },
+    {
+      "horizon": 64,
+      "n": 8,
+      "time_s_median": 11.310360649999893,
+      "time_s_max": 11.410743325999874
+    },
+    {
+      "horizon": 64,
+      "n": 16,
+      "time_s_median": 23.73987460249998,
+      "time_s_max": 23.806318349999856
+    },
+    {
+      "horizon": 128,
+      "n": 1,
+      "time_s_median": 1.9915637799999786,
+      "time_s_max": 2.0091535849996944
+    },
+    {
+      "horizon": 128,
+      "n": 4,
+      "time_s_median": 8.027261051999858,
+      "time_s_max": 8.588222932999997
+    },
+    {
+      "horizon": 128,
+      "n": 8,
+      "time_s_median": 13.864559783499772,
+      "time_s_max": 13.999507059999814
+    },
+    {
+      "horizon": 128,
+      "n": 16,
+      "time_s_median": 25.818329470499975,
+      "time_s_max": 25.86692747799998
+    },
+    {
+      "horizon": 384,
+      "n": 1,
+      "time_s_median": 3.5768952945002184,
+      "time_s_max": 3.626171863000309
+    },
+    {
+      "horizon": 384,
+      "n": 4,
+      "time_s_median": 9.545069883999986,
+      "time_s_max": 10.027719152999907
+    },
+    {
+      "horizon": 384,
+      "n": 8,
+      "time_s_median": 17.14836225099998,
+      "time_s_max": 17.512601641999936
+    },
+    {
+      "horizon": 384,
+      "n": 16,
+      "time_s_median": 32.93727144750005,
+      "time_s_max": 33.0943264980001
+    }
+  ],
+  "total_time_s": 1628.0693904099999,
+  "diffusion_epoch": 1960000,
+  "horizon": 384,
+  "n_diffusion_steps": 256,
+  "device": "cpu",
+  "torch_threads": 8,
+  "torch_version": "1.9.1+cpu",
+  "load_time_s": 33.619715325000016
+}

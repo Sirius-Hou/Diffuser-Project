@@ -27,7 +27,9 @@ Seeds with no usable cell are listed under `excluded`.
 
 The obstacle is a virtual region: the first step on which the ball overlaps it ends the episode as a failure. An episode stops at the first step within `success_radius` of the goal.
 
-Settings shared by all methods: `n_samples`, `check_margin` (extra clearance in the predicted-collision check), and `replan_horizon`. With `"remaining"`, a plan to the goal is shortened so that it ends before the step limit; with `"full"` it is always 384 steps.
+Settings shared by all methods: `n_samples`, `check_margin` (extra clearance in the predicted-collision check), and `replan_horizon`. With `"remaining"`, a plan to the goal is shortened so that it ends before the step limit; with `"full"` it is always 384 steps; with `"shrink"` it ends when the t = 0 plan would have ended.
+
+Waypoint legs (ours): a waypoint counts as reached when the ball is within `waypoint_radius` of the cell centre (0.5 = inside the cell); the next leg is planned from the moving ball. Among the leg samples that are clear of the obstacle, the loop prefers one that stays on the A* route cells, then one with no point inside a wall.
 
 ## Outputs (`results/<config>/`)
 

@@ -68,7 +68,13 @@ def test_waypoints():
     short = mg.waypoints(MAZE, p, [(5, 7)], max_leg=3)
     assert set(wp) <= set(short) and max(mg.leg_lengths(short)) <= 3
     assert sum(mg.leg_lengths(short)) == len(p) - 1
-    return f'{[p[i] for i in wp]} | max_leg=3 -> {len(short)} waypoints'
+    turn = mg.waypoints(MAZE, p, [(5, 7)], corners=True)
+    assert set(wp) <= set(turn) and all(mg.is_corner(p, i) for i in set(turn[:-1]) - set(wp))
+    prev = 0
+    for i in turn:                                       # every leg is a straight line of cells
+        assert len({(b[0] - a[0], b[1] - a[1]) for a, b in zip(p[prev:i], p[prev + 1:i + 1])}) == 1
+        prev = i
+    return f'{[p[i] for i in wp]} | max_leg=3 -> {len(short)} waypoints | corners -> {len(turn)}'
 
 
 def test_obstacles():

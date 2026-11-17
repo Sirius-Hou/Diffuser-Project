@@ -1,8 +1,9 @@
 """
 R3 / R5 measurements: how short can the frozen Diffuser's planning horizon be, and what does a batch cost?
 
-Part 1 (R3): for start/goal cell pairs d cells apart, sample plans with horizon H and execute them.
-             Tells us how many steps per cell a short leg needs (-> planner.horizon_for).
+Part 1 (R3): for start/goal cell pairs d cells apart, sample plans with horizon H = ratio * d (steps per
+             cell) and execute them. Tells us which ratio a short leg needs (-> planner.horizon_for):
+             too few steps per cell and the plan jumps, too many and it takes a longer route.
 Part 2 (R5): wall-clock time of plan(n, H) for the batch sizes used by best-of-N.
 
     bash experiments/common/setup/run.sh python experiments/r3_horizon/run_r3.py --config experiments/r3_horizon/configs/smoke.json
@@ -54,6 +55,22 @@ def first_within(dists, radius):
     return int(idx[0]) if len(idx) else None
 
 
+def pair_horizons(d, cfg, planner):
+    """[(horizon, nominal steps per cell or None)] for a leg of d cells: one per ratio, plus the extras."""
+    m = planner.horizon_multiple
+    hs = {}
+    for r in sorted(cfg['ratios'], reverse=True):       # if two ratios round to one horizon, keep the smaller
+        hs[int(min(planner.horizon, max(cfg['min_horizon'], m * int(np.ceil(r * d / m)))))] = r
+    for h in cfg.get('extra_horizons', []):
+        hs.setdefault(h, None)
+    return sorted(hs.items())
+
+
+def extra_cells(xys, d):
+    """Distinct cells a trajectory visits beyond the d + 1 of a shortest route (0 = some shortest route)."""
+    return max(0, len(set(mu.cell_sequence(xys))) - (d + 1))
+
+
 def run_horizons(cfg, env, planner, out):
     maze = env.maze_arr
     pairs = pick_pairs(maze, cfg['distances'], cfg['pairs_per_distance'], np.random.RandomState(cfg['seed']))
@@ -62,7 +79,7 @@ def run_horizons(cfg, env, planner, out):
     for pi, (s, g, d) in enumerate(pairs):
         start_xy, goal_xy = mu.cell_center(s), mu.cell_center(g)
         obs = np.concatenate([start_xy, np.zeros(2)])
-        for H in cfg['horizons']:
+        for H, ratio in pair_horizons(d, cfg, planner):
             set_all_seeds(cfg['seed'] + 1000 * pi + H)
             plans, _, dt = planner.plan(obs, goal_xy, n=cfg['n_samples'], horizon=H)
             for k, seq in enumerate(plans):
@@ -71,7 +88,10 @@ def run_horizons(cfg, env, planner, out):
                 dists = np.linalg.norm(xys - goal_xy, axis=1)
                 rows.append(dict(
                     pair=pi, start_cell=f'{s[0]},{s[1]}', goal_cell=f'{g[0]},{g[1]}', cells=d, horizon=H, sample=k,
-                    steps_per_cell=H / d,
+                    ratio=ratio, steps_per_cell=H / d,
+                    plan_extra_cells=extra_cells(plan_xy, d), exec_extra_cells=extra_cells(xys, d),
+                    plan_first_step_jump=float(np.linalg.norm(plan_xy[1] - plan_xy[0])),
+                    plan_last_step_jump=float(np.linalg.norm(plan_xy[-1] - plan_xy[-2])),
                     plan_first_reach_idx=first_within(np.linalg.norm(plan_xy - goal_xy, axis=1), r_goal),
                     plan_wall_points=mu.count_points_in_wall(maze, plan_xy),
                     plan_max_step_jump=float(np.linalg.norm(np.diff(plan_xy, axis=0), axis=1).max()),
@@ -81,34 +101,37 @@ def run_horizons(cfg, env, planner, out):
                     dist_at_plan_end=float(dists[min(H - 1, len(dists) - 1)]), final_dist=float(dists[-1]),
                     wall_contact_events=mu.contact_events(contact),
                     planning_time_s=float(dt)))
-            ok = np.mean([r['reached_wp'] for r in rows[-cfg['n_samples']:]])
-            print(f'[r3] pair {pi:2d} {s}->{g} d={d:2d} H={H:3d} | reached_wp {ok:.2f} | plan {dt:.2f}s', flush=True)
+            last = rows[-cfg['n_samples']:]
+            print(f"[r3] pair {pi:2d} {s}->{g} d={d:2d} H={H:3d} | reached_wp {np.mean([r['reached_wp'] for r in last]):.2f} "
+                  f"| on route {np.mean([r['exec_extra_cells'] == 0 for r in last]):.2f} | plan {dt:.2f}s", flush=True)
     df = pd.DataFrame(rows)
+    df['good'] = df.reached_wp & (df.exec_extra_cells == 0)          # got there, along a shortest route
     for col in ('plan_first_reach_idx', 'reach_step', 'reach_step_wp'):      # None -> NaN even if all missing
         df[col] = pd.to_numeric(df[col])
     df.to_csv(os.path.join(out, 'horizon_runs.csv'), index=False)
 
-    grp = df.groupby(['cells', 'horizon'])
-    table = grp.agg(n=('reached', 'size'), reached=('reached', 'mean'), reached_wp=('reached_wp', 'mean'),
-                    reach_step_wp_median=('reach_step_wp', 'median'),
-                    plan_in_wall=('plan_wall_points', lambda s: float((s > 0).mean())),
-                    max_jump=('plan_max_step_jump', 'max'),
-                    contacts=('wall_contact_events', 'mean')).reset_index()
+    agg = dict(n=('good', 'size'), good=('good', 'mean'), reached=('reached', 'mean'),
+               reached_wp=('reached_wp', 'mean'), on_route=('exec_extra_cells', lambda s: float((s == 0).mean())),
+               plan_on_route=('plan_extra_cells', lambda s: float((s == 0).mean())),
+               reach_step_wp_median=('reach_step_wp', 'median'),
+               plan_in_wall=('plan_wall_points', lambda s: float((s > 0).mean())),
+               first_jump=('plan_first_step_jump', 'median'), last_jump=('plan_last_step_jump', 'median'),
+               contacts=('wall_contact_events', 'mean'))
+    table = df.groupby(['cells', 'horizon']).agg(ratio=('ratio', 'first'), **agg).reset_index()
     table.to_csv(os.path.join(out, 'horizon_table.csv'), index=False)
+    by_ratio = df[df.ratio.notna()].groupby('ratio').agg(**agg).reset_index()
+    by_ratio.to_csv(os.path.join(out, 'ratio_table.csv'), index=False)
 
-    # shortest horizon per distance that reaches the waypoint radius in >= min_rate of the samples
-    need = {}
-    for d in cfg['distances']:
-        okh = table[(table.cells == d) & (table.reached_wp >= cfg['min_rate'])].horizon
-        need[d] = int(okh.min()) if len(okh) else None
-    found = {d: h for d, h in need.items() if h is not None}
+    # steps per cell with the highest "good" rate (ties: fewer steps); shortest horizon that works for a 1-cell leg
+    best = by_ratio.sort_values(['good', 'ratio'], ascending=[False, True]).iloc[0]
+    one = table[(table.cells == min(cfg['distances'])) & (table.good >= cfg['min_rate'])].horizon
     rec = dict(
-        shortest_ok_horizon_by_cells=need,
-        steps_per_cell=float(max(h / d for d, h in found.items())) if found else None,
-        min_horizon=int(min(found.values())) if found else None,
-        note='steps_per_cell = worst case over distances of (shortest ok horizon / cells); '
-             'min_horizon = shortest horizon that worked for any distance. Copy both into experiments/blocked/configs.')
-    return table, rec
+        steps_per_cell=float(best.ratio), good_rate_at_best=float(best.good),
+        min_horizon=int(one.min()) if len(one) else None,
+        good_rate_by_ratio={str(r.ratio): float(r.good) for r in by_ratio.itertuples()},
+        note='good = reached the waypoint radius within horizon + slack steps without visiting more cells than a shortest route. '
+             'Copy steps_per_cell and min_horizon into experiments/blocked/configs.')
+    return table, by_ratio, rec
 
 
 def run_timing(cfg, planner):
@@ -127,7 +150,7 @@ def plot_table(table, path):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    piv = table.pivot(index='cells', columns='horizon', values='reached_wp')
+    piv = table[table.ratio.notna()].pivot(index='cells', columns='ratio', values='good')
     fig, ax = plt.subplots(figsize=(7, 3.5))
     im = ax.imshow(piv.values, vmin=0, vmax=1, cmap='viridis', aspect='auto')
     ax.set_xticks(range(len(piv.columns)))
@@ -137,9 +160,9 @@ def plot_table(table, path):
     for i in range(piv.shape[0]):
         for j in range(piv.shape[1]):
             ax.text(j, i, f'{piv.values[i, j]:.2f}', ha='center', va='center', color='w', fontsize=7)
-    ax.set_xlabel('planning horizon H')
+    ax.set_xlabel('planning horizon / leg length (steps per cell)')
     ax.set_ylabel('leg length (cells)')
-    ax.set_title('Fraction of rollouts that reach the waypoint radius')
+    ax.set_title('Fraction of rollouts that reach the waypoint along the shortest route')
     fig.colorbar(im)
     fig.tight_layout()
     fig.savefig(path, dpi=120)
@@ -166,7 +189,7 @@ def main():
           f'on {planner.device}', flush=True)
 
     t0 = time.perf_counter()
-    table, rec = run_horizons(cfg, env, planner, out)
+    table, by_ratio, rec = run_horizons(cfg, env, planner, out)
     timing = run_timing(cfg, planner)
     timing.to_csv(os.path.join(out, 'timing.csv'), index=False)
     plot_table(table, os.path.join(out, 'horizon_reach.png'))
@@ -174,7 +197,8 @@ def main():
                    total_time_s=time.perf_counter() - t0, **planner.meta())
     with open(os.path.join(out, 'summary.json'), 'w') as f:
         json.dump(summary, f, indent=2)
-    print(table.to_string(index=False))
+    print(table.round(2).to_string(index=False))
+    print(by_ratio.round(2).to_string(index=False))
     print(timing.to_string(index=False))
     print('[r3] recommendation:', json.dumps(rec, indent=2))
 

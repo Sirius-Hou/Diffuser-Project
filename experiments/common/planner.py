@@ -38,6 +38,9 @@ class FrozenDiffuserPlanner:
                  device='cpu', logbase=None, threads=0):
         if threads and threads > 0:
             torch.set_num_threads(threads)
+        if str(device).startswith('cuda') and not torch.cuda.is_available():
+            print(f'[planner] {device} requested but CUDA is not available: using cpu', flush=True)
+            device = 'cpu'
         logbase = logbase or os.path.join(REPO, 'logs')
         t0 = time.perf_counter()
         with contextlib.redirect_stdout(io.StringIO()):

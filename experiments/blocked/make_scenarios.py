@@ -28,7 +28,8 @@ from experiments.common.planner import FrozenDiffuserPlanner, load_env, set_all_
 
 def detour_steps(planner, maze, path, blocked, cfg):
     """Steps subgoal chaining needs for `path`: one plan per leg, each with its scaled horizon."""
-    legs = mg.leg_lengths(mg.waypoints(maze, path, blocked, cfg['max_leg_cells']))
+    legs = mg.leg_lengths(mg.waypoints(maze, path, blocked, cfg['max_leg_cells'],
+                                       corners=cfg['waypoint_mode'] == 'corners'))
     return sum(planner.horizon_for(c, cfg['steps_per_cell'], cfg['min_horizon']) for c in legs)
 
 

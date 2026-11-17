@@ -53,11 +53,13 @@ See [`b0_baseline/README.md` §5](b0_baseline/README.md#5-reproducing) for setti
 
 ## Colab GPU
 
-`experiments/common/setup/colab_setup.sh` builds the same Python 3.8 runtime on Colab, following the team notebook step by step (not yet run there as a script). It also downloads the weights. Set the runtime to T4 GPU, clone the repo, `%cd` into it, then:
+`experiments/common/setup/linux_setup.sh` builds the same Python 3.8 runtime on a fresh Ubuntu machine, following the team notebook step by step, and downloads the weights. On Colab: set the runtime to T4 GPU, clone the repo, `%cd` into it, then:
 
 ```bash
-!bash experiments/common/setup/colab_setup.sh
+!bash experiments/common/setup/linux_setup.sh
 ```
+
+On a CPU-only Linux machine or VM, use `TORCH_SPEC=torch==1.9.1+cpu bash experiments/common/setup/linux_setup.sh`.
 
 ```bash
 !bash experiments/r3_horizon/run_all.sh
@@ -67,4 +69,4 @@ See [`b0_baseline/README.md` §5](b0_baseline/README.md#5-reproducing) for setti
 !bash experiments/blocked/run_all.sh smoke
 ```
 
-Configs under `r3_horizon/` and `blocked/` default to `"device": "cuda"`; pass `--device cpu` to the Python scripts to run on CPU. GPU sampling is not bit-identical to the CPU B0 numbers, so compare methods only within one runtime.
+Configs under `r3_horizon/` and `blocked/` default to `"device": "cuda"`; the planner falls back to CPU when CUDA is not available. GPU sampling is not bit-identical to the CPU B0 numbers, so compare methods only within one runtime.

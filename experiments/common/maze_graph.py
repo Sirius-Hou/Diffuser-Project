@@ -61,15 +61,18 @@ def is_corner(path, i):
     return (b[0] - a[0], b[1] - a[1]) != (c[0] - b[0], c[1] - b[1])
 
 
-def waypoints(maze_arr, path, blocked=(), max_leg=None):
+def waypoints(maze_arr, path, blocked=(), max_leg=None, corners=False):
     """Indices into `path` of the waypoints: every junction cell after the start, then the goal.
 
     A junction is a cell with 3 or more open neighbours: the places where a corridor is chosen.
+    corners=True also makes every cell where the path turns a waypoint, so each leg is a straight
+    line (r3_horizon: the frozen Diffuser cuts through walls on legs that bend back on themselves).
     If max_leg is set, a leg longer than max_leg cells is split at its last corner within reach
     (or at max_leg cells if the leg has no corner there), so every leg fits one short plan."""
     blocked = set(map(tuple, blocked))
     last = len(path) - 1
-    idx = [i for i in range(1, last) if degree(maze_arr, path[i], blocked) >= 3]
+    idx = [i for i in range(1, last)
+           if degree(maze_arr, path[i], blocked) >= 3 or (corners and is_corner(path, i))]
     idx.append(last)
     if not max_leg:
         return idx
@@ -77,8 +80,8 @@ def waypoints(maze_arr, path, blocked=(), max_leg=None):
     for i in idx:
         while i - prev > max_leg:
             reach = prev + max_leg
-            corners = [j for j in range(prev + 1, reach + 1) if is_corner(path, j)]
-            prev = corners[-1] if corners else reach
+            turns = [j for j in range(prev + 1, reach + 1) if is_corner(path, j)]
+            prev = turns[-1] if turns else reach
             out.append(prev)
         out.append(i)
         prev = i

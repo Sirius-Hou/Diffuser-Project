@@ -5,12 +5,16 @@ Aggregate the blocked-corridor runs of every method into one comparison.
 
 Reads <run>/<method>/episodes/seedNNN.json; writes episodes.csv, summary.json, summary.md and comparison.png
 into <run>. Scenarios that were excluded in any method are dropped from every method, so the rates are paired.
+
+Rates are also split by case: a full blockage either forces a longer route ("full, longer detour": the
+blocked cell is on every shortest route) or leaves a route of the same length ("full, same length").
 """
 import glob
 import json
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
@@ -47,6 +51,9 @@ def main(rdir):
             rows.append(r)
     assert rows, f'no episodes under {rdir}'
     df = pd.DataFrame(rows)
+    longer = df.detour_cells.notna() & (df.detour_cells > df.base_cells)
+    df['case'] = np.where(df.obstacle != 'full', df.obstacle,
+                          np.where(longer, 'full, longer detour', 'full, same length'))
     methods = [m for m in ORDER if m in set(df.method)]
     df.to_csv(os.path.join(rdir, 'episodes.csv'), index=False)
 
@@ -58,14 +65,14 @@ def main(rdir):
     for m in methods:
         d = paired[paired.method == m]
         summary['overall'][m] = method_row(d)
-        summary['by_obstacle'][m] = {kind: method_row(d[d.obstacle == kind]) for kind in sorted(set(d.obstacle))}
+        summary['by_obstacle'][m] = {kind: method_row(d[d.case == kind]) for kind in sorted(set(d.case))}
 
     # R2: when the trigger first fired, how many of the N samples were clear of the obstacle?
     probe = {}
     for m in ('B2', 'ours'):
         d = paired[(paired.method == m) & paired.first_replan_n_clear.notna()]
-        for kind in sorted(set(d.obstacle)):
-            dk = d[d.obstacle == kind]
+        for kind in sorted(set(d.case)):
+            dk = d[d.case == kind]
             probe[f'{m}/{kind}'] = dict(n_triggered=len(dk),
                                         best_of_n_found_clear_plan=float((dk.first_replan_n_clear > 0).mean()),
                                         mean_clear_samples=float(dk.first_replan_n_clear.mean()))
@@ -91,7 +98,7 @@ def main(rdir):
     print(json.dumps(probe, indent=2))
 
     fig, axes = plt.subplots(1, 2, figsize=(9, 3.4))
-    kinds = ['all'] + sorted(set(paired.obstacle))
+    kinds = ['all'] + sorted(set(paired.case))
     width = 0.8 / len(kinds)
     for j, kind in enumerate(kinds):
         rs = [summary['overall'][m] if kind == 'all' else summary['by_obstacle'][m].get(kind) for m in methods]

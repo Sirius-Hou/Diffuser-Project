@@ -1,0 +1,84 @@
+{
+  "config": {
+    "name": "r3_smoke",
+    "description": "Tiny run: checks that a short horizon samples and executes at all.",
+    "env": "maze2d-large-v1",
+    "diffusion_loadpath": "diffusion/H384_T256",
+    "diffusion_epoch": "latest",
+    "device": "cuda",
+    "torch_threads": 0,
+    "seed": 0,
+    "distances": [
+      2,
+      6
+    ],
+    "pairs_per_distance": 1,
+    "n_samples": 2,
+    "slack_steps": 60,
+    "success_radius": 0.5,
+    "waypoint_radius": 0.3,
+    "min_rate": 0.9,
+    "ratios": [
+      24,
+      32
+    ],
+    "extra_horizons": [],
+    "min_horizon": 16,
+    "timing": {
+      "horizons": [
+        64,
+        384
+      ],
+      "batch_sizes": [
+        1,
+        4
+      ],
+      "repeats": 1
+    },
+    "out": "experiments/r3_horizon/results/smoke"
+  },
+  "recommendation": {
+    "steps_per_cell": 24.0,
+    "good_rate_at_best": 0.0,
+    "min_horizon": null,
+    "good_rate_by_ratio": {
+      "24": 0.0,
+      "32": 0.0
+    },
+    "note": "good = reached the waypoint radius within horizon + slack steps without leaving the shortest route. Copy steps_per_cell and min_horizon into experiments/blocked/configs."
+  },
+  "timing": [
+    {
+      "horizon": 64,
+      "n": 1,
+      "time_s_median": 2.075658075999968,
+      "time_s_max": 2.075658075999968
+    },
+    {
+      "horizon": 64,
+      "n": 4,
+      "time_s_median": 5.881499996999992,
+      "time_s_max": 5.881499996999992
+    },
+    {
+      "horizon": 384,
+      "n": 1,
+      "time_s_median": 4.317359859000021,
+      "time_s_max": 4.317359859000021
+    },
+    {
+      "horizon": 384,
+      "n": 4,
+      "time_s_median": 9.891932306000058,
+      "time_s_max": 9.891932306000058
+    }
+  ],
+  "total_time_s": 42.08471519,
+  "diffusion_epoch": 1960000,
+  "horizon": 384,
+  "n_diffusion_steps": 256,
+  "device": "cpu",
+  "torch_threads": 8,
+  "torch_version": "1.9.1+cpu",
+  "load_time_s": 34.68218722299997
+}

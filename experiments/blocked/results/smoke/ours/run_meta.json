@@ -1,0 +1,68 @@
+{
+  "config": {
+    "name": "blocked_smoke",
+    "description": "Pipeline check: 2 full + 1 partial scenario, every method.",
+    "env": "maze2d-large-v1",
+    "diffusion_loadpath": "diffusion/H384_T256",
+    "diffusion_epoch": "latest",
+    "device": "cuda",
+    "torch_threads": 0,
+    "success_radius": 0.5,
+    "scenarios": {
+      "seed_start": 0,
+      "max_seeds": 60,
+      "n_full": 2,
+      "n_partial": 1,
+      "t_appear": [
+        60,
+        100,
+        140
+      ],
+      "min_ahead_cells": 2,
+      "partial_frac": 0.5
+    },
+    "n_samples": 4,
+    "k": 10,
+    "k_fixed": 100,
+    "max_triggers": 10,
+    "check_margin": 0.05,
+    "replan_horizon": "remaining",
+    "budget_slack_steps": 40,
+    "steps_per_cell": 32,
+    "min_horizon": 32,
+    "max_leg_cells": 4,
+    "waypoint_radius": 0.5,
+    "leg_grace_steps": 20,
+    "replan_seed_offset": 500000,
+    "oracle_kp": 5.0,
+    "oracle_vmax": 3.0,
+    "oracle_kv": 1.0,
+    "waypoint_mode": "corners",
+    "n_samples_leg": 4,
+    "leg_start_at_rest": true,
+    "save_png": true,
+    "out": "experiments/blocked/results/smoke"
+  },
+  "config_path": "experiments/blocked/configs/smoke.json",
+  "method": "ours",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "git_commit": "unknown",
+  "started": "2026-11-17 03:49:32",
+  "python": "3.8.20",
+  "max_episode_steps": 800,
+  "target": [
+    7.0,
+    9.0
+  ],
+  "diffusion_epoch": 1960000,
+  "horizon": 384,
+  "n_diffusion_steps": 256,
+  "device": "cpu",
+  "torch_threads": 8,
+  "torch_version": "1.9.1+cpu",
+  "load_time_s": 31.05974530399908
+}

@@ -53,15 +53,24 @@ class PlanningLoop:
     # ---- sampling and selection ---------------------------------------------------------------
 
     def goal_horizon(self, t):
-        """Horizon for a plan to the goal. 'remaining' shortens it so the plan ends before the step limit."""
+        """Horizon for a plan to the goal.
+          'full'      : always the trained horizon
+          'remaining' : shortened so that the plan ends before the episode's step limit
+          'shrink'    : shortened so that the plan ends when the t=0 plan would have ended"""
         H, m = self.planner.horizon, self.planner.horizon_multiple
-        if self.cfg['replan_horizon'] == 'full':
+        mode = self.cfg['replan_horizon']
+        if mode == 'full':
             return H
-        left = self.env.max_episode_steps - t - self.cfg['budget_slack_steps']
+        left = (H - t) if mode == 'shrink' else (self.env.max_episode_steps - t - self.cfg['budget_slack_steps'])
         return int(min(H, max(self.cfg['min_horizon'], m * (left // m))))
 
-    def sample(self, t, state, goal_xy, n, horizon, use_obstacle):
-        """Sample n plans and adopt the first one clear of the obstacle (else the one that hits it latest)."""
+    def sample(self, t, state, goal_xy, n, horizon, use_obstacle, route=None):
+        """Sample n plans and adopt the first one clear of the obstacle (else the one that hits it latest).
+
+        route (ours, waypoint legs): cells of the A* route for this leg. Among the clear samples, prefer the
+        one that visits the fewest cells off this route, then the fewest points inside a wall, then the one
+        that ends nearest to where it was told to end (short plans can stop short and jump to the
+        inpainted last point)."""
         plans, _, dt = self.planner.plan(state, goal_xy, n=n, horizon=horizon)
         self.planning_time += dt
         self.n_calls += 1
@@ -69,12 +78,25 @@ class PlanningLoop:
         if use_obstacle:
             hits = [ob.first_collision(p[:, :2], self.obstacle, self.cfg['check_margin']) for p in plans]
             clear = [i for i, h in enumerate(hits) if h is None]
-            best = clear[0] if clear else int(np.argmax(hits))
         else:
-            clear, best = list(range(n)), 0
+            hits, clear = [None] * n, list(range(n))
+        n_on_route = None
+        if not clear:
+            best = int(np.argmax(hits))
+        elif route is None:
+            best = clear[0]
+        else:
+            route = set(route)
+            keys = {}
+            for i in clear:
+                xy = plans[i][:, :2]
+                keys[i] = (len(set(mu.cell_sequence(xy)) - route), mu.count_points_in_wall(self.maze, xy),
+                           float(np.linalg.norm(xy[-1] - xy[-2])))
+            best = min(clear, key=keys.get)
+            n_on_route = sum(k[0] == 0 for k in keys.values())
         self.seq, self.t0 = plans[best], t
         self.plans.append((t, plans[best]))
-        return len(clear)
+        return len(clear), n_on_route
 
     # ---- ours: A* route and waypoint legs ------------------------------------------------------
 
@@ -86,7 +108,8 @@ class PlanningLoop:
         if path is None or len(path) < 2:
             self.log(t, 'no_detour', cell=list(cur))
             return False
-        wp = mg.waypoints(self.maze, path, blocked, self.cfg['max_leg_cells'])
+        wp = mg.waypoints(self.maze, path, blocked, self.cfg['max_leg_cells'],
+                          corners=self.cfg['waypoint_mode'] == 'corners')
         self.legs = [dict(cell=path[i], xy=mu.cell_center(path[i])) for i in wp]
         self.legs[-1]['xy'] = self.target
         self.leg_i = 0
@@ -98,9 +121,14 @@ class PlanningLoop:
         path = mg.astar(self.maze, mu.xy_to_cell(state[:2]), leg['cell'], [self.obstacle.cell])
         cells = max(1, len(path) - 1) if path else 1
         h = self.planner.horizon_for(cells, self.cfg['steps_per_cell'], self.cfg['min_horizon'])
-        n_clear = self.sample(t, state, leg['xy'], self.cfg['n_samples'], h, True)
+        n = self.cfg.get('n_samples_leg') or self.cfg['n_samples']
+        if self.cfg['leg_start_at_rest']:
+            # Condition on the position only. Conditioned on its real velocity, a ball that enters a
+            # corner waypoint at speed gets plans that carry on in the old direction.
+            state = np.concatenate([state[:2], np.zeros(2)])
+        n_clear, n_on_route = self.sample(t, state, leg['xy'], n, h, True, route=path)
         self.log(t, 'leg_plan', why=why, leg=self.leg_i, waypoint=list(leg['cell']), cells=cells, horizon=h,
-                 n_clear=n_clear)
+                 n=n, n_clear=n_clear, n_on_route=n_on_route)
         return n_clear
 
     def advance_legs(self, t, state):
@@ -118,7 +146,7 @@ class PlanningLoop:
 
     def replan_to_goal(self, t, state, use_obstacle):
         n = self.cfg['n_samples'] if use_obstacle else 1
-        n_clear = self.sample(t, state, self.target, n, self.goal_horizon(t), use_obstacle)
+        n_clear, _ = self.sample(t, state, self.target, n, self.goal_horizon(t), use_obstacle)
         self.log(t, 'replan', horizon=len(self.seq), n=n, n_clear=n_clear)
         return n_clear
 
@@ -170,9 +198,13 @@ class PlanningLoop:
             self.log(t, 'no_detour')
             return
         pts = [mu.cell_center(c) for c in path]
-        if visible and not full and self.obstacle.cell in path:
-            pts[path.index(self.obstacle.cell)] = self.obstacle.gap_center()
         pts[-1] = self.target
+        if visible and not full and self.obstacle.cell in path:
+            i = path.index(self.obstacle.cell)
+            gap = self.obstacle.gap_center()
+            w = int(np.argmax(np.abs(gap - mu.cell_center(self.obstacle.cell))))     # axis across the corridor
+            for j in range(max(i - 1, 0), min(i + 1, len(pts) - 2) + 1):             # never moves the goal
+                pts[j][w] = gap[w]
         self.path_xy = np.array(pts)
         self.log(t, 'astar', route_cells=len(path) - 1)
 
@@ -195,8 +227,6 @@ def classify_failure(rec, loop, stalled, late_contact):
         return 'excluded'
     if rec['obstacle_collision']:
         return 'obstacle_collision'
-    if any(e['event'] == 'no_detour' for e in loop.events):
-        return 'no_detour'
     if stalled and late_contact:
         return 'stuck_on_wall'
     if stalled:
@@ -268,6 +298,7 @@ def run_episode(sc, plan0, method, env, planner, cfg):
         n_replans=len(replans), n_triggers=loop.n_triggers, n_astar_calls=loop.n_astar,
         first_replan_n_clear=first['n_clear'] if first else None,
         used_astar=bool(loop.n_astar) and method == 'ours',
+        n_no_detour=sum(e['event'] == 'no_detour' for e in loop.events),
         legs=len(loop.legs) if loop.legs is not None else 0,
         waypoints_reached=sum(e['event'] == 'waypoint_reached' for e in loop.events),
         episode_time_s=float(episode_time),
