@@ -1,6 +1,7 @@
 {
   "methods": [
     "B0",
+    "B1",
     "B2",
     "ours",
     "oracle"
@@ -23,6 +24,24 @@
       "wall_contact_events_mean": 1.25,
       "failure_reasons": {
         "obstacle_collision": 11
+      }
+    },
+    "B1": {
+      "n": 12,
+      "n_success": 3,
+      "success_rate": 0.25,
+      "ci_lo": 0.08894003962896138,
+      "ci_hi": 0.53231033912066,
+      "obstacle_collision_rate": 0.5833333333333334,
+      "steps_to_success_median": 740.0,
+      "path_length_success_mean": 23.435656618214527,
+      "replans_mean": 5.25,
+      "samples_mean": 78.75,
+      "planning_time_s_mean": 159.01151872349874,
+      "wall_contact_events_mean": 2.25,
+      "failure_reasons": {
+        "obstacle_collision": 7,
+        "timeout_still_moving": 2
       }
     },
     "B2": {
@@ -111,6 +130,43 @@
         "wall_contact_events_mean": 2.0,
         "failure_reasons": {
           "obstacle_collision": 2
+        }
+      }
+    },
+    "B1": {
+      "full, longer detour": {
+        "n": 9,
+        "n_success": 1,
+        "success_rate": 0.1111111111111111,
+        "ci_lo": 0.019890371327130535,
+        "ci_hi": 0.4350062147680601,
+        "obstacle_collision_rate": 0.6666666666666666,
+        "steps_to_success_median": 733.0,
+        "path_length_success_mean": 23.344056398676322,
+        "replans_mean": 5.222222222222222,
+        "samples_mean": 77.88888888888889,
+        "planning_time_s_mean": 158.00321531822112,
+        "wall_contact_events_mean": 2.7777777777777777,
+        "failure_reasons": {
+          "obstacle_collision": 6,
+          "timeout_still_moving": 2
+        }
+      },
+      "full, same length": {
+        "n": 3,
+        "n_success": 2,
+        "success_rate": 0.6666666666666666,
+        "ci_lo": 0.2076549551264879,
+        "ci_hi": 0.9385096847238394,
+        "obstacle_collision_rate": 0.3333333333333333,
+        "steps_to_success_median": 740.5,
+        "path_length_success_mean": 23.481456727983627,
+        "replans_mean": 5.333333333333333,
+        "samples_mean": 81.33333333333333,
+        "planning_time_s_mean": 162.0364289393316,
+        "wall_contact_events_mean": 0.6666666666666666,
+        "failure_reasons": {
+          "obstacle_collision": 1
         }
       }
     },

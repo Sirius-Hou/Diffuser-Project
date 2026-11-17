@@ -1,0 +1,142 @@
+{
+  "method": "ours",
+  "env": "maze2d-large-v1",
+  "seed": 5,
+  "obstacle": "partial",
+  "blocked_cell": "3,5",
+  "t_appear": 60,
+  "start_cell": "3,2",
+  "goal_cell": "7,9",
+  "base_cells": 10,
+  "detour_cells": null,
+  "success": false,
+  "first_success_step": null,
+  "obstacle_collision": true,
+  "obstacle_collision_step": 239,
+  "obstacle_collisions": 1,
+  "excluded_reason": "",
+  "final_dist_to_goal": 6.257946634873786,
+  "min_dist_to_goal": 6.257946634873786,
+  "steps": 239,
+  "planning_time_s": 171.99964642899795,
+  "n_plans": 6,
+  "n_samples": 81,
+  "n_replans": 5,
+  "n_triggers": 18,
+  "n_astar_calls": 5,
+  "first_replan_n_clear": 0,
+  "used_astar": true,
+  "n_no_detour": 5,
+  "legs": 0,
+  "waypoints_reached": 0,
+  "episode_time_s": 168.38232894999965,
+  "path_length": 6.62843987212807,
+  "exec_cells_visited": 7,
+  "wall_contact_steps": 0,
+  "wall_contact_events": 0,
+  "adopted_plans_with_wall_points": 0,
+  "stalled_last100": false,
+  "failure_reason": "obstacle_collision",
+  "events": [
+    {
+      "t": 60,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 60,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 60,
+      "event": "no_detour",
+      "cell": [
+        3,
+        3
+      ]
+    },
+    {
+      "t": 70,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 70,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 70,
+      "event": "no_detour",
+      "cell": [
+        3,
+        3
+      ]
+    },
+    {
+      "t": 80,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 80,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 80,
+      "event": "no_detour",
+      "cell": [
+        3,
+        3
+      ]
+    },
+    {
+      "t": 90,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 90,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 90,
+      "event": "no_detour",
+      "cell": [
+        3,
+        4
+      ]
+    },
+    {
+      "t": 100,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 100,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 100,
+      "event": "no_detour",
+      "cell": [
+        3,
+        4
+      ]
+    }
+  ]
+}

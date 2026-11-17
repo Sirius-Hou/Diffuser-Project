@@ -98,7 +98,7 @@
   },
   "by_obstacle": {
     "B0": {
-      "full": {
+      "full, longer detour": {
         "n": 2,
         "n_success": 0,
         "success_rate": 0.0,
@@ -115,7 +115,7 @@
           "obstacle_collision": 2
         }
       },
-      "partial": {
+      "partial, no detour": {
         "n": 1,
         "n_success": 0,
         "success_rate": 0.0,
@@ -134,7 +134,7 @@
       }
     },
     "B1": {
-      "full": {
+      "full, longer detour": {
         "n": 2,
         "n_success": 0,
         "success_rate": 0.0,
@@ -151,7 +151,7 @@
           "obstacle_collision": 2
         }
       },
-      "partial": {
+      "partial, no detour": {
         "n": 1,
         "n_success": 0,
         "success_rate": 0.0,
@@ -170,7 +170,7 @@
       }
     },
     "B2": {
-      "full": {
+      "full, longer detour": {
         "n": 2,
         "n_success": 0,
         "success_rate": 0.0,
@@ -187,7 +187,7 @@
           "obstacle_collision": 2
         }
       },
-      "partial": {
+      "partial, no detour": {
         "n": 1,
         "n_success": 0,
         "success_rate": 0.0,
@@ -206,7 +206,7 @@
       }
     },
     "ours": {
-      "full": {
+      "full, longer detour": {
         "n": 2,
         "n_success": 1,
         "success_rate": 0.5,
@@ -223,7 +223,7 @@
           "timeout_still_moving": 1
         }
       },
-      "partial": {
+      "partial, no detour": {
         "n": 1,
         "n_success": 0,
         "success_rate": 0.0,
@@ -242,7 +242,7 @@
       }
     },
     "oracle": {
-      "full": {
+      "full, longer detour": {
         "n": 2,
         "n_success": 2,
         "success_rate": 1.0,
@@ -257,7 +257,7 @@
         "wall_contact_events_mean": 0.0,
         "failure_reasons": {}
       },
-      "partial": {
+      "partial, no detour": {
         "n": 1,
         "n_success": 1,
         "success_rate": 1.0,
@@ -275,22 +275,22 @@
     }
   },
   "best_of_n_at_first_trigger": {
-    "B2/full": {
+    "B2/full, longer detour": {
       "n_triggered": 2,
       "best_of_n_found_clear_plan": 0.0,
       "mean_clear_samples": 0.0
     },
-    "B2/partial": {
+    "B2/partial, no detour": {
       "n_triggered": 1,
       "best_of_n_found_clear_plan": 0.0,
       "mean_clear_samples": 0.0
     },
-    "ours/full": {
+    "ours/full, longer detour": {
       "n_triggered": 2,
       "best_of_n_found_clear_plan": 0.0,
       "mean_clear_samples": 0.0
     },
-    "ours/partial": {
+    "ours/partial, no detour": {
       "n_triggered": 1,
       "best_of_n_found_clear_plan": 0.0,
       "mean_clear_samples": 0.0

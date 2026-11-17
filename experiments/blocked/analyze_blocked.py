@@ -7,7 +7,9 @@ Reads <run>/<method>/episodes/seedNNN.json; writes episodes.csv, summary.json, s
 into <run>. Scenarios that were excluded in any method are dropped from every method, so the rates are paired.
 
 Rates are also split by case: a full blockage either forces a longer route ("full, longer detour": the
-blocked cell is on every shortest route) or leaves a route of the same length ("full, same length").
+blocked cell is on every shortest route) or leaves a route of the same length ("full, same length"); a
+partial blockage either has a route around the cell ("partial, detour exists") or can only be passed
+through its gap ("partial, no detour").
 """
 import glob
 import json
@@ -52,7 +54,8 @@ def main(rdir):
     assert rows, f'no episodes under {rdir}'
     df = pd.DataFrame(rows)
     longer = df.detour_cells.notna() & (df.detour_cells > df.base_cells)
-    df['case'] = np.where(df.obstacle != 'full', df.obstacle,
+    df['case'] = np.where(df.obstacle != 'full',
+                          np.where(df.detour_cells.notna(), 'partial, detour exists', 'partial, no detour'),
                           np.where(longer, 'full, longer detour', 'full, same length'))
     methods = [m for m in ORDER if m in set(df.method)]
     df.to_csv(os.path.join(rdir, 'episodes.csv'), index=False)
