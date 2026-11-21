@@ -1,0 +1,190 @@
+{
+  "method": "ours",
+  "env": "maze2d-large-v1",
+  "seed": 0,
+  "obstacle": "full",
+  "blocked_cell": "5,7",
+  "t_appear": 140,
+  "start_cell": "3,1",
+  "goal_cell": "7,9",
+  "base_cells": 7,
+  "detour_cells": 15,
+  "success": false,
+  "first_success_step": null,
+  "obstacle_collision": false,
+  "obstacle_collision_step": null,
+  "obstacle_collisions": 0,
+  "excluded_reason": "",
+  "final_dist_to_goal": 1.9509350881271914,
+  "min_dist_to_goal": 1.8015398276697263,
+  "steps": 800,
+  "planning_time_s": 71.66761751098602,
+  "n_plans": 8,
+  "n_samples": 65,
+  "n_replans": 7,
+  "n_triggers": 2,
+  "n_astar_calls": 2,
+  "first_replan_n_clear": 0,
+  "used_astar": true,
+  "n_no_detour": 0,
+  "legs": 2,
+  "waypoints_reached": 1,
+  "episode_time_s": 68.624308915023,
+  "path_length": 21.30402162625131,
+  "exec_cells_visited": 23,
+  "wall_contact_steps": 255,
+  "wall_contact_events": 9,
+  "adopted_plans_with_wall_points": 3,
+  "stalled_last100": false,
+  "failure_reason": "timeout_still_moving",
+  "events": [
+    {
+      "t": 140,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 140,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 140,
+      "event": "astar",
+      "route_cells": 15,
+      "through_gap": false,
+      "waypoints": [
+        [
+          3,
+          9
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "t": 140,
+      "event": "leg_plan",
+      "why": "first_leg",
+      "leg": 0,
+      "waypoint": [
+        3,
+        9
+      ],
+      "cells": 7,
+      "horizon": 224,
+      "n": 8,
+      "n_clear": 0,
+      "n_on_route": null
+    },
+    {
+      "t": 150,
+      "event": "trigger",
+      "leg": 0
+    },
+    {
+      "t": 150,
+      "event": "leg_plan",
+      "why": "leg_hits_obstacle",
+      "leg": 0,
+      "waypoint": [
+        3,
+        9
+      ],
+      "cells": 7,
+      "horizon": 224,
+      "n": 8,
+      "n_clear": 0,
+      "n_on_route": null
+    },
+    {
+      "t": 150,
+      "event": "astar",
+      "route_cells": 15,
+      "through_gap": false,
+      "waypoints": [
+        [
+          3,
+          9
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "t": 150,
+      "event": "leg_plan",
+      "why": "rerouted",
+      "leg": 0,
+      "waypoint": [
+        3,
+        9
+      ],
+      "cells": 7,
+      "horizon": 224,
+      "n": 8,
+      "n_clear": 1,
+      "n_on_route": 0
+    },
+    {
+      "t": 393,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 0,
+      "waypoint": [
+        3,
+        9
+      ],
+      "cells": 4,
+      "horizon": 128,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 488,
+      "event": "waypoint_reached",
+      "leg": 0,
+      "waypoint": [
+        3,
+        9
+      ]
+    },
+    {
+      "t": 488,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 1,
+      "waypoint": [
+        7,
+        9
+      ],
+      "cells": 8,
+      "horizon": 256,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 7
+    },
+    {
+      "t": 763,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 1,
+      "waypoint": [
+        7,
+        9
+      ],
+      "cells": 5,
+      "horizon": 160,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    }
+  ]
+}

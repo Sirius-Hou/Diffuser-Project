@@ -7,6 +7,8 @@ Team interface 3:  astar(maze, start_cell, goal_cell, blocked) -> list of cells
 """
 import heapq
 
+import numpy as np
+
 from . import maze_utils as mu
 
 
@@ -86,6 +88,37 @@ def waypoints(maze_arr, path, blocked=(), max_leg=None, corners=False):
         out.append(i)
         prev = i
     return out
+
+
+def sparse_waypoints(maze_arr, path, blocked, max_leg=None):
+    """Indices into `path` of as few waypoints as possible: from each waypoint, the next one is the farthest
+    route cell whose shortest route in the unblocked maze (the route a plan to it tends to take) avoids
+    `blocked`, at most max_leg cells along the path away. Ends with the goal."""
+    blocked = set(map(tuple, blocked))
+    last = len(path) - 1
+    out, i = [], 0
+    while i < last:
+        j_max = last if not max_leg else min(last, i + max_leg)
+        j = next((j for j in range(j_max, i + 1, -1)
+                  if not set(mu.bfs_path(maze_arr, path[i], path[j]) or [None]) & blocked), i + 1)
+        out.append(j)
+        i = j
+    return out
+
+
+def line_plan(points, horizon, dt):
+    """A plan of `horizon` rows [x, y, vx, vy] that moves at constant speed along the polyline `points`
+    and ends at rest on its last point, in the same layout as the Diffuser's plans. Velocities are the
+    position differences divided by dt (the env step), so the tracking controller gets consistent targets."""
+    pts = np.asarray(points, dtype=np.float64)
+    keep = np.r_[True, np.linalg.norm(np.diff(pts, axis=0), axis=1) > 1e-9]
+    pts = pts[keep]
+    s = np.r_[0.0, np.cumsum(np.linalg.norm(np.diff(pts, axis=0), axis=1))]
+    u = np.linspace(0.0, s[-1], horizon)
+    xy = np.stack([np.interp(u, s, pts[:, 0]), np.interp(u, s, pts[:, 1])], axis=1)
+    vel = np.zeros_like(xy)
+    vel[:-1] = np.diff(xy, axis=0) / dt
+    return np.concatenate([xy, vel], axis=1)
 
 
 def leg_lengths(wp_idx):

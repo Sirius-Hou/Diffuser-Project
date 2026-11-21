@@ -77,6 +77,33 @@ def test_waypoints():
     return f'{[p[i] for i in wp]} | max_leg=3 -> {len(short)} waypoints | corners -> {len(turn)}'
 
 
+def test_sparse_waypoints():
+    blocked = [(5, 7)]
+    p = mg.astar(MAZE, (5, 2), GOAL, blocked)
+    wp = mg.sparse_waypoints(MAZE, p, blocked)
+    assert p[wp[-1]] == GOAL and wp == sorted(set(wp))
+    prev = 0
+    for i in wp:                                         # each leg's natural shortest route avoids the cell
+        assert (5, 7) not in mu.bfs_path(MAZE, p[prev], p[i])
+        prev = i
+    capped = mg.sparse_waypoints(MAZE, p, blocked, max_leg=4)
+    assert max(mg.leg_lengths(capped)) <= 4 and len(capped) >= len(wp)
+    assert mg.sparse_waypoints(MAZE, mu.bfs_path(MAZE, (5, 2), GOAL), []) == [len(mu.bfs_path(MAZE, (5, 2), GOAL)) - 1]
+    return f'{[p[i] for i in wp]} ({len(p) - 1} cells)'
+
+
+def test_line_plan():
+    dt = 0.01
+    p = mg.line_plan([(0.0, 0.0), (0.0, 2.0)], 65, dt)
+    assert p.shape == (65, 4) and np.allclose(p[0, :2], (0, 0)) and np.allclose(p[-1, :2], (0, 2))
+    step = np.linalg.norm(np.diff(p[:, :2], axis=0), axis=1)
+    assert np.allclose(step, 2 / 64)                     # constant speed
+    assert np.allclose(p[:-1, 2:], np.diff(p[:, :2], axis=0) / dt) and np.allclose(p[-1, 2:], 0)
+    bent = mg.line_plan([(0.0, 0.0), (0.0, 1.0), (0.0, 1.0), (1.0, 1.0)], 41, dt)     # repeated point is dropped
+    assert np.allclose(bent[20, :2], (0, 1)) and np.all((bent[:, 0] <= 1e-9) | (np.abs(bent[:, 1] - 1) <= 1e-9))
+    return f'speed {np.linalg.norm(p[0, 2:]):.3f} per s'
+
+
 def test_obstacles():
     cell = (5, 7)                                        # straight corridor running along axis 1
     assert ob.corridor_axis(MAZE, cell) == 1 and ob.corridor_axis(MAZE, (4, 6)) == 0

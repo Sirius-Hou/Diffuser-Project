@@ -26,7 +26,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.insert(0, REPO)
 from experiments.b0_baseline.analyze_b0 import wilson  # noqa: E402
 
-ORDER = ['B0', 'B1', 'B2', 'ours', 'oracle']
+ORDER = ['B0', 'B1', 'B2', 'ours', 'astar_line', 'oracle']
 
 
 def method_row(df):

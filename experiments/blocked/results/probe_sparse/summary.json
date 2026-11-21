@@ -1,0 +1,77 @@
+{
+  "methods": [
+    "ours"
+  ],
+  "n_paired_scenarios": 12,
+  "dropped_seeds": [],
+  "overall": {
+    "ours": {
+      "n": 12,
+      "n_success": 6,
+      "success_rate": 0.5,
+      "ci_lo": 0.2537781703934222,
+      "ci_hi": 0.7462218296065778,
+      "obstacle_collision_rate": 0.08333333333333333,
+      "steps_to_success_median": 576.5,
+      "path_length_success_mean": 18.51980576370354,
+      "replans_mean": 3.4166666666666665,
+      "samples_mean": 36.333333333333336,
+      "planning_time_s_mean": 45.61511624633507,
+      "wall_contact_events_mean": 3.4166666666666665,
+      "failure_reasons": {
+        "timeout_still_moving": 5,
+        "obstacle_collision": 1
+      }
+    }
+  },
+  "by_obstacle": {
+    "ours": {
+      "full, longer detour": {
+        "n": 9,
+        "n_success": 4,
+        "success_rate": 0.4444444444444444,
+        "ci_lo": 0.188775429471914,
+        "ci_hi": 0.7333526542559703,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 590.5,
+        "path_length_success_mean": 20.05034036145473,
+        "replans_mean": 4.222222222222222,
+        "samples_mean": 42.77777777777778,
+        "planning_time_s_mean": 53.044142899667754,
+        "wall_contact_events_mean": 4.444444444444445,
+        "failure_reasons": {
+          "timeout_still_moving": 5
+        }
+      },
+      "full, same length": {
+        "n": 3,
+        "n_success": 2,
+        "success_rate": 0.6666666666666666,
+        "ci_lo": 0.2076549551264879,
+        "ci_hi": 0.9385096847238394,
+        "obstacle_collision_rate": 0.3333333333333333,
+        "steps_to_success_median": 461.5,
+        "path_length_success_mean": 15.45873656820116,
+        "replans_mean": 1.0,
+        "samples_mean": 17.0,
+        "planning_time_s_mean": 23.32803628633701,
+        "wall_contact_events_mean": 0.3333333333333333,
+        "failure_reasons": {
+          "obstacle_collision": 1
+        }
+      }
+    }
+  },
+  "best_of_n_at_first_trigger": {
+    "ours/full, longer detour": {
+      "n_triggered": 9,
+      "best_of_n_found_clear_plan": 0.0,
+      "mean_clear_samples": 0.0
+    },
+    "ours/full, same length": {
+      "n_triggered": 3,
+      "best_of_n_found_clear_plan": 1.0,
+      "mean_clear_samples": 12.0
+    }
+  }
+}

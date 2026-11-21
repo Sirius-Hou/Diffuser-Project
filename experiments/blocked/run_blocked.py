@@ -9,6 +9,8 @@ The obstacle becomes known at t_appear; touching it ends the episode as a failur
   B2     : every `k` steps checks the rest of the plan against the obstacle; replans (best-of-N) only on a hit
   ours   : B2, and when all N samples hit: A* around the blocked cell, then one short plan per waypoint.
            With gap_route, a partial obstacle that no route avoids is passed through its gap on waypoint legs
+  astar_line : ours with every waypoint leg drawn as a constant-speed line instead of sampled from the
+           Diffuser (ablation: is the Diffuser needed once A* has chosen the corridor?)
   oracle : A* on the known map with a PD controller (reference only)
 
     bash experiments/common/setup/run.sh python experiments/blocked/run_blocked.py --config experiments/blocked/configs/smoke.json --method ours
@@ -30,7 +32,7 @@ from experiments.common import obstacles as ob  # noqa: E402
 from experiments.common.planner import FrozenDiffuserPlanner, load_env, set_all_seeds, waypoint_action  # noqa: E402
 from experiments.b0_baseline.run_b0 import git_commit  # noqa: E402
 
-METHODS = ('B0', 'B1', 'B2', 'ours', 'oracle')
+METHODS = ('B0', 'B1', 'B2', 'ours', 'astar_line', 'oracle')
 
 
 class PlanningLoop:
@@ -38,6 +40,7 @@ class PlanningLoop:
 
     def __init__(self, method, env, planner, cfg, obstacle, plan0, target):
         self.method, self.env, self.planner, self.cfg = method, env, planner, cfg
+        self.reroutes = method in ('ours', 'astar_line')    # falls back to A* when every sample hits
         self.maze, self.obstacle, self.target = env.maze_arr, obstacle, target
         self.goal_cell = mu.xy_to_cell(target)
         self.seq, self.t0 = plan0, 0                # current plan and the step it started at
@@ -116,8 +119,11 @@ class PlanningLoop:
         if path is None or len(path) < 2 or (gap and self.obstacle.cell not in path[1:-1]):
             self.log(t, 'no_detour', cell=list(cur))
             return False
-        wp = mg.waypoints(self.maze, path, blocked, self.cfg['max_leg_cells'],
-                          corners=self.cfg['waypoint_mode'] == 'corners')
+        if self.cfg['waypoint_mode'] == 'sparse':
+            wp = mg.sparse_waypoints(self.maze, path, [self.obstacle.cell], self.cfg['max_leg_cells'])
+        else:
+            wp = mg.waypoints(self.maze, path, blocked, self.cfg['max_leg_cells'],
+                              corners=self.cfg['waypoint_mode'] == 'corners')
         self.legs = [dict(cell=path[i], xy=mu.cell_center(path[i]), radius=self.cfg['waypoint_radius'])
                      for i in wp]
         if gap:
@@ -150,6 +156,8 @@ class PlanningLoop:
         path = mg.astar(self.maze, mu.xy_to_cell(state[:2]), leg['cell'], self.route_blocked)
         cells = max(1, len(path) - 1) if path else 1
         h = self.planner.horizon_for(cells, self.cfg['steps_per_cell'], self.cfg['min_horizon'])
+        if self.method == 'astar_line':
+            return self.line_leg(t, state, leg, path, cells, h, why)
         n = self.cfg.get('n_samples_leg') or self.cfg['n_samples']
         if self.cfg['leg_start_at_rest']:
             # Condition on the position only. Conditioned on its real velocity, a ball that enters a
@@ -158,6 +166,18 @@ class PlanningLoop:
         n_clear, n_on_route = self.sample(t, state, leg['xy'], n, h, True, route=path)
         self.log(t, 'leg_plan', why=why, leg=self.leg_i, waypoint=list(leg['cell']), cells=cells, horizon=h,
                  n=n, n_clear=n_clear, n_on_route=n_on_route)
+        return n_clear
+
+    def line_leg(self, t, state, leg, path, cells, h, why):
+        """astar_line: the leg is a constant-speed line from the ball through the turns of its A* route to
+        the waypoint (a single straight line with waypoint_mode corners), with the same horizon as ours."""
+        turns = [mu.cell_center(path[i]) for i in range(1, len(path) - 1) if mg.is_corner(path, i)] if path else []
+        plan = mg.line_plan([state[:2], *turns, leg['xy']], h, self.env.unwrapped.dt)
+        n_clear = int(ob.first_collision(plan[:, :2], self.obstacle, self.cfg['check_margin']) is None)
+        self.seq, self.t0 = plan, t
+        self.plans.append((t, plan))
+        self.log(t, 'leg_plan', why=why, leg=self.leg_i, waypoint=list(leg['cell']), cells=cells, horizon=h,
+                 n=0, n_clear=n_clear, n_on_route=None)
         return n_clear
 
     def advance_legs(self, t, state):
@@ -208,14 +228,14 @@ class PlanningLoop:
             if self.plan_leg(t, state, 'leg_hits_obstacle') == 0 and self.start_route(t, state):
                 self.plan_leg(t, state, 'rerouted')
             return
-        if method == 'ours' and self.needs_gap(state):
+        if self.reroutes and self.needs_gap(state):
             # A rare plan to the goal that clears a narrow gap fails on tracking error (probe_partial)
             if self.start_route(t, state):
                 self.plan_leg(t, state, 'first_leg')
             return
         if self.replan_to_goal(t, state, True) > 0:
             return
-        if method == 'ours' and self.start_route(t, state):
+        if self.reroutes and self.start_route(t, state):
             self.plan_leg(t, state, 'first_leg')
 
     def action(self, t, state):
@@ -331,7 +351,7 @@ def run_episode(sc, plan0, method, env, planner, cfg):
         n_samples=loop.n_samples + (0 if method == 'oracle' else 1),
         n_replans=len(replans), n_triggers=loop.n_triggers, n_astar_calls=loop.n_astar,
         first_replan_n_clear=first['n_clear'] if first else None,
-        used_astar=bool(loop.n_astar) and method == 'ours',
+        used_astar=bool(loop.n_astar) and loop.reroutes,
         n_no_detour=sum(e['event'] == 'no_detour' for e in loop.events),
         legs=len(loop.legs) if loop.legs is not None else 0,
         waypoints_reached=sum(e['event'] == 'waypoint_reached' for e in loop.events),
