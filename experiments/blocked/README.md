@@ -35,6 +35,26 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 
 `<method>/episodes/seedNNN.{json,npz,png}` per episode (the JSON has an `events` log: triggers, replans, A* calls, legs). `analyze_blocked.py` writes `episodes.csv`, `summary.json`, `summary.md`, `comparison.png`, and for B2/ours how many of the N samples were clear at the first trigger (risk R2).
 
+## Figures (`make_figures.py`)
+
+`make_figures.py` draws the report figures from saved results only (no model): `bash experiments/common/setup/run.sh python experiments/blocked/make_figures.py` (`--only <name>...`, `--no_anim`). It writes `figures/<name>.png` and `.pdf`; animations are written as GIFs, with a last-frame `<name>_final.png` and `.pdf`. The MP4s are converted from the GIFs on the host: `ffmpeg -i x.gif -fps_mode cfr -r 20 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -crf 20 x.mp4`. The GIFs (7-11 MB each) are not committed.
+
+| Figure | What it shows |
+|---|---|
+| `fig_pipeline` | the planning loop, coloured by layer (route = A*, motion plan = Diffuser, execution = PD + MuJoCo) |
+| `fig_scenario` | main seed 1042: the t = 0 plan runs into the new obstacle; the A* route with junction and corner waypoints |
+| `fig_primary` | main, 29 longer detours: success and Wilson CI for all 7 methods, and the paired B2 vs ours (junctions) table (exact McNemar) |
+| `fig_by_extra` | the same split by extra detour cells (<= 6 vs >= 8) |
+| `fig_outcomes` | every paired scenario x method, sorted by extra cells, coloured by outcome |
+| `fig_failures` | failure reasons on the longer detours |
+| `fig_cost` | Diffuser planning time per episode (CPU VM) |
+| `fig_samples` | `diag/trigger_sampling`: 64 samples at the trigger state for a short and a long detour, and usable samples vs extra cells for H = 384/512/640 |
+| `anim_methods` | seed 1042 (12 cells longer): B2, ours (junctions), astar_line + lag, oracle |
+| `anim_junction` | seed 1026, (3,3) blocked: junction waypoints hit the obstacle, corner waypoints get through (post-hoc finding 1) |
+| `anim_lag` | seed 1046: B2 falls behind a clear plan and stalls on a wall; B1's periodic replanning recovers (post-hoc finding 2) |
+
+In the animations the blue dot is the plan point the controller tracks at that step (`waypoint_action`), so a ball far behind it is lagging its plan.
+
 ## Configs
 
 | Config | Purpose |
@@ -44,7 +64,7 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 | `probe_partial.json` | 8 partial scenarios (gap 0.5), N = 16 |
 | `probe_partial_gap.json` | the same 8 scenarios, ours with `gap_route` |
 | `probe_partial_wide.json` | 8 partial scenarios with gap 0.7 (`partial_frac` 0.3) |
-| `main.json` | 35 full + 15 partial scenarios |
+| `main.json` | 50 full blockages, random goal per seed, seeds from 1000 (pre-registered); `main_junctions.json` and `main_lag_line.json` reuse its scenarios |
 
 `steps_per_cell` = 32 and `min_horizon` = 32 come from `r3_horizon` (F1, F2).
 
