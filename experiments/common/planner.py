@@ -53,13 +53,14 @@ class FrozenDiffuserPlanner:
         self.epoch = self.experiment.epoch
         self.device = device
 
-    def plan(self, obs, goal_xy, n=1, horizon=None):
+    def plan(self, obs, goal_xy, n=1, horizon=None, allow_longer=False):
         """Sample n plans from `obs` (4-d [x, y, vx, vy]) to goal_xy.
 
         horizon=None (or the trained horizon) uses the original Policy call, unchanged from B0.
         A shorter horizon runs the same sampler on a shorter sequence, with the goal inpainted at
         its last step. The U-Net is fully convolutional and downsamples len(dim_mults)-1 times, so
         the horizon only has to be a multiple of `horizon_multiple`; the model was not trained on it.
+        allow_longer also accepts horizons above the trained one (diagnostics only).
 
         Returns (observations [n, H, 4], actions [n, H, 2], wall-clock seconds)."""
         h = self.horizon if horizon is None else int(horizon)
@@ -71,7 +72,7 @@ class FrozenDiffuserPlanner:
                 _, samples = self.policy(cond, batch_size=n)
             return samples.observations, samples.actions, time.perf_counter() - t0
 
-        assert h % self.horizon_multiple == 0 and 2 * self.horizon_multiple <= h <= self.horizon, \
+        assert h % self.horizon_multiple == 0 and 2 * self.horizon_multiple <= h <= (h if allow_longer else self.horizon), \
             f'horizon {h} must be a multiple of {self.horizon_multiple} in [{2 * self.horizon_multiple}, {self.horizon}]'
         # Same steps as Policy.__call__, which cannot pass `horizon` through to the sampler.
         normalizer, action_dim = self.policy.normalizer, self.policy.action_dim
