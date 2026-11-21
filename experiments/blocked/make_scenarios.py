@@ -9,6 +9,9 @@ is really taking. Seeds with no usable cell are listed under "excluded" with the
   full    : the whole cell; kept only if A* finds a detour that fits in the remaining steps
   partial : `partial_frac` of the corridor width, on the side the plan uses; straight corridor cells only
 
+The goal is the env's fixed target, or with random_goal a free cell at least min_goal_cells (BFS) from
+the start, drawn per seed (the Multi2D setting of the Diffuser paper; the model is the same).
+
     bash experiments/common/setup/run.sh python experiments/blocked/make_scenarios.py --config experiments/blocked/configs/smoke.json
 """
 import argparse
@@ -31,6 +34,13 @@ def detour_steps(planner, maze, path, blocked, cfg):
     legs = mg.leg_lengths(mg.waypoints(maze, path, blocked, cfg['max_leg_cells'],
                                        corners=cfg['waypoint_mode'] == 'corners'))
     return sum(planner.horizon_for(c, cfg['steps_per_cell'], cfg['min_horizon']) for c in legs)
+
+
+def random_goal(maze, start_cell, rng, cfg):
+    """Centre of a free cell drawn uniformly among those at least min_goal_cells (BFS) from the start."""
+    far = [c for c in mu.free_cells(maze)
+           if len(mu.bfs_path(maze, start_cell, c) or []) - 1 >= cfg.get('min_goal_cells', 8)]
+    return np.array(mu.cell_center(far[rng.randint(len(far))]), dtype=np.float64)
 
 
 def candidates(kind, maze, planner, plan_xy, t_appear, goal_cell, max_steps, cfg):
@@ -91,6 +101,8 @@ def main():
         obs = env.reset()
         qpos, qvel = env.sim.data.qpos.copy(), env.sim.data.qvel.copy()
         target = np.array(env._target, dtype=np.float64)
+        if sc_cfg.get('random_goal'):
+            target = random_goal(maze, mu.xy_to_cell(obs[:2]), np.random.RandomState(200003 + seed), sc_cfg)
         goal_cell = mu.xy_to_cell(target)
         plan, _, dt = planner.plan(obs, target, n=1)
         plan = plan[0]
@@ -113,7 +125,8 @@ def main():
             print(f'[scen] seed {seed:3d} | start {start_cell} | excluded', flush=True)
         else:
             scenarios.append(dict(seed=seed, qpos=qpos.tolist(), qvel=qvel.tolist(), start_cell=list(start_cell),
-                                  goal_cell=list(goal_cell), t_appear=t_appear, plan0_time_s=float(dt), **chosen))
+                                  goal_cell=list(goal_cell), target=target.tolist(), t_appear=t_appear,
+                                  plan0_time_s=float(dt), **chosen))
             plans[f'seed{seed:03d}'] = plan
             o = chosen['obstacle']
             print(f"[scen] seed {seed:3d} | start {start_cell} | {o['kind']:7s} at {tuple(o['cell'])} t={t_appear} "

@@ -170,8 +170,10 @@ class PlanningLoop:
 
     def line_leg(self, t, state, leg, path, cells, h, why):
         """astar_line: the leg is a constant-speed line from the ball through the turns of its A* route to
-        the waypoint (a single straight line with waypoint_mode corners), with the same horizon as ours."""
-        turns = [mu.cell_center(path[i]) for i in range(1, len(path) - 1) if mg.is_corner(path, i)] if path else []
+        the waypoint (a single straight line with waypoint_mode corners), with the same horizon as ours.
+        With line_turns false the turns are dropped: one straight line to the waypoint, whatever lies between."""
+        use_turns = path and self.cfg.get('line_turns', True)
+        turns = [mu.cell_center(path[i]) for i in range(1, len(path) - 1) if mg.is_corner(path, i)] if use_turns else []
         plan = mg.line_plan([state[:2], *turns, leg['xy']], h, self.env.unwrapped.dt)
         n_clear = int(ob.first_collision(plan[:, :2], self.obstacle, self.cfg['check_margin']) is None)
         self.seq, self.t0 = plan, t
@@ -295,7 +297,7 @@ def run_episode(sc, plan0, method, env, planner, cfg):
     env.reset()
     env.set_state(np.array(sc['qpos']), np.array(sc['qvel']))
     set_all_seeds(cfg['replan_seed_offset'] + seed)         # same sampling noise for every method's replans
-    target = np.array(env._target, dtype=np.float64)
+    target = np.array(sc.get('target', env._target), dtype=np.float64)     # random_goal scenarios store theirs
     obstacle = ob.Obstacle.from_dict(sc['obstacle'])
     loop = PlanningLoop(method, env, planner, cfg, obstacle, plan0, target)
     radius = cfg['success_radius']
