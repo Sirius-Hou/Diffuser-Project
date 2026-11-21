@@ -1,0 +1,78 @@
+{
+  "methods": [
+    "ours"
+  ],
+  "n_paired_scenarios": 16,
+  "dropped_seeds": [],
+  "overall": {
+    "ours": {
+      "n": 16,
+      "n_success": 13,
+      "success_rate": 0.8125,
+      "ci_lo": 0.5699064013154177,
+      "ci_hi": 0.9340852122641324,
+      "obstacle_collision_rate": 0.0625,
+      "steps_to_success_median": 508.0,
+      "path_length_success_mean": 17.745332545430067,
+      "replans_mean": 4.5,
+      "samples_mean": 45.0,
+      "planning_time_s_mean": 51.12306949232334,
+      "wall_contact_events_mean": 1.6875,
+      "failure_reasons": {
+        "timeout_still_moving": 2,
+        "obstacle_collision": 1
+      }
+    }
+  },
+  "by_obstacle": {
+    "ours": {
+      "full, longer detour": {
+        "n": 13,
+        "n_success": 11,
+        "success_rate": 0.8461538461538461,
+        "ci_lo": 0.5776482949136899,
+        "ci_hi": 0.9567427368172621,
+        "obstacle_collision_rate": 0.07692307692307693,
+        "steps_to_success_median": 573.0,
+        "path_length_success_mean": 18.64250599654422,
+        "replans_mean": 4.384615384615385,
+        "samples_mean": 44.07692307692308,
+        "planning_time_s_mean": 51.35426368623694,
+        "wall_contact_events_mean": 1.6153846153846154,
+        "failure_reasons": {
+          "obstacle_collision": 1,
+          "timeout_still_moving": 1
+        }
+      },
+      "full, same length": {
+        "n": 3,
+        "n_success": 2,
+        "success_rate": 0.6666666666666666,
+        "ci_lo": 0.2076549551264879,
+        "ci_hi": 0.9385096847238394,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 380.5,
+        "path_length_success_mean": 12.810878564302234,
+        "replans_mean": 5.0,
+        "samples_mean": 49.0,
+        "planning_time_s_mean": 50.121227985364385,
+        "wall_contact_events_mean": 2.0,
+        "failure_reasons": {
+          "timeout_still_moving": 1
+        }
+      }
+    }
+  },
+  "best_of_n_at_first_trigger": {
+    "ours/full, longer detour": {
+      "n_triggered": 13,
+      "best_of_n_found_clear_plan": 0.5384615384615384,
+      "mean_clear_samples": 1.7692307692307692
+    },
+    "ours/full, same length": {
+      "n_triggered": 3,
+      "best_of_n_found_clear_plan": 1.0,
+      "mean_clear_samples": 8.333333333333334
+    }
+  }
+}

@@ -125,7 +125,7 @@ def main():
                   f"| {m:12s} | {'ok ' if r['success'] else 'X  '} steps {r['steps']} plans {r['plans']} "
                   f"| final {tuple(r['final_cell'])} {r['final_dist']:.2f}", flush=True)
             with open(os.path.join(out, 'rows.json'), 'w') as f:
-                json.dump(rows, f, indent=1)
+                json.dump(rows, f, indent=1, default=lambda o: o.item())  # numpy ints from the maze helpers
 
 
 if __name__ == '__main__':

@@ -1,0 +1,76 @@
+{
+  "methods": [
+    "ours"
+  ],
+  "n_paired_scenarios": 16,
+  "dropped_seeds": [],
+  "overall": {
+    "ours": {
+      "n": 16,
+      "n_success": 13,
+      "success_rate": 0.8125,
+      "ci_lo": 0.5699064013154177,
+      "ci_hi": 0.9340852122641324,
+      "obstacle_collision_rate": 0.0625,
+      "steps_to_success_median": 508.0,
+      "path_length_success_mean": 17.791159466831918,
+      "replans_mean": 3.75,
+      "samples_mean": 39.0,
+      "planning_time_s_mean": 49.075406368756376,
+      "wall_contact_events_mean": 1.8125,
+      "failure_reasons": {
+        "stuck_on_wall": 2,
+        "obstacle_collision": 1
+      }
+    }
+  },
+  "by_obstacle": {
+    "ours": {
+      "full, longer detour": {
+        "n": 13,
+        "n_success": 10,
+        "success_rate": 0.7692307692307693,
+        "ci_lo": 0.49743126004873084,
+        "ci_hi": 0.918206209075343,
+        "obstacle_collision_rate": 0.07692307692307693,
+        "steps_to_success_median": 567.5,
+        "path_length_success_mean": 18.93127393800328,
+        "replans_mean": 4.384615384615385,
+        "samples_mean": 44.07692307692308,
+        "planning_time_s_mean": 54.26846543008175,
+        "wall_contact_events_mean": 1.8461538461538463,
+        "failure_reasons": {
+          "stuck_on_wall": 2,
+          "obstacle_collision": 1
+        }
+      },
+      "full, same length": {
+        "n": 3,
+        "n_success": 3,
+        "success_rate": 1.0,
+        "ci_lo": 0.43849391955098227,
+        "ci_hi": 1.0,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 424.0,
+        "path_length_success_mean": 13.99077789626071,
+        "replans_mean": 1.0,
+        "samples_mean": 17.0,
+        "planning_time_s_mean": 26.57215043634642,
+        "wall_contact_events_mean": 1.6666666666666667,
+        "failure_reasons": {}
+      }
+    }
+  },
+  "best_of_n_at_first_trigger": {
+    "ours/full, longer detour": {
+      "n_triggered": 13,
+      "best_of_n_found_clear_plan": 0.5384615384615384,
+      "mean_clear_samples": 1.7692307692307692
+    },
+    "ours/full, same length": {
+      "n_triggered": 3,
+      "best_of_n_found_clear_plan": 1.0,
+      "mean_clear_samples": 8.333333333333334
+    }
+  }
+}
