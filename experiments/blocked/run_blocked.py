@@ -8,7 +8,9 @@ The obstacle becomes known at t_appear; touching it ends the episode as a failur
   B1     : replans every `k_fixed` steps, best-of-N against the obstacle once it is known
   B2     : every `k` steps checks the rest of the plan against the obstacle; replans (best-of-N) only on a hit
   ours   : B2, and when all N samples hit: A* around the blocked cell, then one short plan per waypoint.
-           With gap_route, a partial obstacle that no route avoids is passed through its gap on waypoint legs
+           With gap_route, a partial obstacle that no route avoids is passed through its gap on waypoint legs.
+           With lag_trigger, a ball that falls more than lag_trigger behind its plan to the goal (at a check
+           step) is handed to the A* legs as well: the plan is clear of the obstacle but not being followed
   astar_line : ours with every waypoint leg drawn as a constant-speed line instead of sampled from the
            Diffuser (ablation: is the Diffuser needed once A* has chosen the corridor?)
   oracle : A* on the known map with a PD controller (reference only)
@@ -220,6 +222,13 @@ class PlanningLoop:
             self.advance_legs(t, state)
         if not visible or (t - self.obstacle.t_appear) % cfg['k'] != 0:
             return
+        if self.reroutes and self.legs is None and cfg.get('lag_trigger'):
+            lag = float(np.linalg.norm(state[:2] - self.seq[min(t - self.t0, len(self.seq) - 1), :2]))
+            if lag > cfg['lag_trigger']:
+                self.log(t, 'lag_trigger', lag=lag)
+                if self.start_route(t, state):
+                    self.plan_leg(t, state, 'first_leg')
+                return
         if not ob.collides(self.seq[max(t - self.t0, 0):, :2], self.obstacle, cfg['check_margin']):
             return
         self.n_triggers += 1

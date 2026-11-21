@@ -1,0 +1,63 @@
+{
+  "methods": [
+    "astar_line"
+  ],
+  "n_paired_scenarios": 12,
+  "dropped_seeds": [],
+  "overall": {
+    "astar_line": {
+      "n": 12,
+      "n_success": 11,
+      "success_rate": 0.9166666666666666,
+      "ci_lo": 0.6461140782014047,
+      "ci_hi": 0.9851352905492264,
+      "obstacle_collision_rate": 0.08333333333333333,
+      "steps_to_success_median": 536.0,
+      "path_length_success_mean": 17.2382036571508,
+      "replans_mean": 7.916666666666667,
+      "samples_mean": 17.0,
+      "planning_time_s_mean": 24.111370155412562,
+      "wall_contact_events_mean": 0.08333333333333333,
+      "failure_reasons": {
+        "obstacle_collision": 1
+      }
+    }
+  },
+  "by_obstacle": {
+    "astar_line": {
+      "full, longer detour": {
+        "n": 9,
+        "n_success": 9,
+        "success_rate": 1.0,
+        "ci_lo": 0.7008472464490407,
+        "ci_hi": 1.0,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 539.0,
+        "path_length_success_mean": 17.6336407880285,
+        "replans_mean": 10.222222222222221,
+        "samples_mean": 17.0,
+        "planning_time_s_mean": 23.996197355107547,
+        "wall_contact_events_mean": 0.0,
+        "failure_reasons": {}
+      },
+      "full, same length": {
+        "n": 3,
+        "n_success": 2,
+        "success_rate": 0.6666666666666666,
+        "ci_lo": 0.2076549551264879,
+        "ci_hi": 0.9385096847238394,
+        "obstacle_collision_rate": 0.3333333333333333,
+        "steps_to_success_median": 461.5,
+        "path_length_success_mean": 15.45873656820116,
+        "replans_mean": 1.0,
+        "samples_mean": 17.0,
+        "planning_time_s_mean": 24.456888556327613,
+        "wall_contact_events_mean": 0.3333333333333333,
+        "failure_reasons": {
+          "obstacle_collision": 1
+        }
+      }
+    }
+  },
+  "best_of_n_at_first_trigger": {}
+}

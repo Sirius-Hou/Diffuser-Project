@@ -1,0 +1,102 @@
+{
+  "method": "B2",
+  "env": "maze2d-large-v1",
+  "seed": 1,
+  "obstacle": "full",
+  "blocked_cell": "4,6",
+  "t_appear": 140,
+  "start_cell": "3,3",
+  "goal_cell": "6,4",
+  "base_cells": 8,
+  "detour_cells": 18,
+  "success": false,
+  "first_success_step": null,
+  "obstacle_collision": true,
+  "obstacle_collision_step": 187,
+  "obstacle_collisions": 1,
+  "excluded_reason": "",
+  "final_dist_to_goal": 3.2987552744869393,
+  "min_dist_to_goal": 2.888267421875687,
+  "steps": 187,
+  "planning_time_s": 101.20704649802065,
+  "n_plans": 6,
+  "n_samples": 81,
+  "n_replans": 5,
+  "n_triggers": 5,
+  "n_astar_calls": 0,
+  "first_replan_n_clear": 0,
+  "used_astar": false,
+  "n_no_detour": 0,
+  "legs": 0,
+  "waypoints_reached": 0,
+  "episode_time_s": 97.0655302760133,
+  "path_length": 5.600243342864806,
+  "exec_cells_visited": 6,
+  "wall_contact_steps": 2,
+  "wall_contact_events": 1,
+  "adopted_plans_with_wall_points": 0,
+  "stalled_last100": false,
+  "failure_reason": "obstacle_collision",
+  "events": [
+    {
+      "t": 140,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 140,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 150,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 150,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 160,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 160,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 170,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 170,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 180,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 180,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    }
+  ]
+}

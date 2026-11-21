@@ -1,0 +1,230 @@
+{
+  "method": "ours",
+  "env": "maze2d-large-v1",
+  "seed": 15,
+  "obstacle": "full",
+  "blocked_cell": "1,7",
+  "t_appear": 100,
+  "start_cell": "3,3",
+  "goal_cell": "2,8",
+  "base_cells": 5,
+  "detour_cells": 11,
+  "success": false,
+  "first_success_step": null,
+  "obstacle_collision": false,
+  "obstacle_collision_step": null,
+  "obstacle_collisions": 0,
+  "excluded_reason": "",
+  "final_dist_to_goal": 0.8960931027771328,
+  "min_dist_to_goal": 0.8637630926585631,
+  "steps": 800,
+  "planning_time_s": 80.94535045401426,
+  "n_plans": 10,
+  "n_samples": 81,
+  "n_replans": 9,
+  "n_triggers": 1,
+  "n_astar_calls": 1,
+  "first_replan_n_clear": 2,
+  "used_astar": true,
+  "n_no_detour": 0,
+  "legs": 4,
+  "waypoints_reached": 3,
+  "episode_time_s": 77.30346650999854,
+  "path_length": 17.477903637539328,
+  "exec_cells_visited": 15,
+  "wall_contact_steps": 296,
+  "wall_contact_events": 3,
+  "adopted_plans_with_wall_points": 5,
+  "stalled_last100": false,
+  "failure_reason": "timeout_still_moving",
+  "events": [
+    {
+      "t": 100,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 100,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 2
+    },
+    {
+      "t": 230,
+      "event": "lag_trigger",
+      "lag": 1.0486178642683173
+    },
+    {
+      "t": 230,
+      "event": "astar",
+      "route_cells": 10,
+      "through_gap": false,
+      "waypoints": [
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          2,
+          8
+        ]
+      ]
+    },
+    {
+      "t": 230,
+      "event": "leg_plan",
+      "why": "first_leg",
+      "leg": 0,
+      "waypoint": [
+        5,
+        6
+      ],
+      "cells": 1,
+      "horizon": 32,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 281,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 0,
+      "waypoint": [
+        5,
+        6
+      ],
+      "cells": 1,
+      "horizon": 32,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 304,
+      "event": "waypoint_reached",
+      "leg": 0,
+      "waypoint": [
+        5,
+        6
+      ]
+    },
+    {
+      "t": 304,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 1,
+      "waypoint": [
+        5,
+        8
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 8
+    },
+    {
+      "t": 347,
+      "event": "waypoint_reached",
+      "leg": 1,
+      "waypoint": [
+        5,
+        8
+      ]
+    },
+    {
+      "t": 347,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 2,
+      "waypoint": [
+        3,
+        10
+      ],
+      "cells": 4,
+      "horizon": 128,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 8
+    },
+    {
+      "t": 449,
+      "event": "waypoint_reached",
+      "leg": 2,
+      "waypoint": [
+        3,
+        10
+      ]
+    },
+    {
+      "t": 449,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 3,
+      "waypoint": [
+        2,
+        8
+      ],
+      "cells": 3,
+      "horizon": 96,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 564,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 3,
+      "waypoint": [
+        2,
+        8
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 647,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 3,
+      "waypoint": [
+        2,
+        8
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 730,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 3,
+      "waypoint": [
+        2,
+        8
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    }
+  ]
+}
