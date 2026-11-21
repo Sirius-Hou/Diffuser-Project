@@ -47,7 +47,7 @@ def method_row(df):
 def main(rdir):
     rows = []
     for m in ORDER:
-        for f in sorted(glob.glob(os.path.join(rdir, m, 'episodes', 'seed[0-9][0-9][0-9].json'))):
+        for f in sorted(glob.glob(os.path.join(rdir, m, 'episodes', 'seed[0-9]*.json'))):
             r = json.load(open(f))
             r.pop('events', None)
             rows.append(r)
