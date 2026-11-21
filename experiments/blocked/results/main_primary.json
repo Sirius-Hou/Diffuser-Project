@@ -1,0 +1,166 @@
+{
+  "methods": [
+    "B0",
+    "B1",
+    "B2",
+    "ours (corners)",
+    "ours (junctions)",
+    "astar_line + lag",
+    "oracle"
+  ],
+  "n_scenarios": 46,
+  "dropped_seeds": [
+    1005,
+    1007,
+    1013,
+    1039
+  ],
+  "n_longer": 29,
+  "n_same": 17,
+  "primary": {
+    "population": "full, longer detour",
+    "n": 29,
+    "success": {
+      "B2": 10,
+      "ours (junctions)": 23
+    },
+    "only_first": 0,
+    "only_second": 13,
+    "both": 10,
+    "neither": 6,
+    "mcnemar_exact_p": 0.000244140625
+  },
+  "by_case": {
+    "B0": {
+      "longer": 0,
+      "same": 7,
+      "all": 7
+    },
+    "B1": {
+      "longer": 14,
+      "same": 11,
+      "all": 25
+    },
+    "B2": {
+      "longer": 10,
+      "same": 15,
+      "all": 25
+    },
+    "ours (corners)": {
+      "longer": 25,
+      "same": 16,
+      "all": 41
+    },
+    "ours (junctions)": {
+      "longer": 23,
+      "same": 16,
+      "all": 39
+    },
+    "astar_line + lag": {
+      "longer": 29,
+      "same": 17,
+      "all": 46
+    },
+    "oracle": {
+      "longer": 29,
+      "same": 17,
+      "all": 46
+    }
+  },
+  "by_extra": {
+    "B0": {
+      "<= 6": 0,
+      ">= 8": 0
+    },
+    "B1": {
+      "<= 6": 10,
+      ">= 8": 4
+    },
+    "B2": {
+      "<= 6": 8,
+      ">= 8": 2
+    },
+    "ours (corners)": {
+      "<= 6": 17,
+      ">= 8": 8
+    },
+    "ours (junctions)": {
+      "<= 6": 14,
+      ">= 8": 9
+    },
+    "astar_line + lag": {
+      "<= 6": 18,
+      ">= 8": 11
+    },
+    "oracle": {
+      "<= 6": 18,
+      ">= 8": 11
+    }
+  },
+  "by_radius": {
+    "B0": {
+      "0.5": 0,
+      "0.75": 0,
+      "1.0": 0
+    },
+    "B1": {
+      "0.5": 14,
+      "0.75": 16,
+      "1.0": 17
+    },
+    "B2": {
+      "0.5": 10,
+      "0.75": 10,
+      "1.0": 10
+    },
+    "ours (corners)": {
+      "0.5": 25,
+      "0.75": 25,
+      "1.0": 26
+    },
+    "ours (junctions)": {
+      "0.5": 23,
+      "0.75": 24,
+      "1.0": 24
+    },
+    "astar_line + lag": {
+      "0.5": 29,
+      "0.75": 29,
+      "1.0": 29
+    },
+    "oracle": {
+      "0.5": 29,
+      "0.75": 29,
+      "1.0": 29
+    }
+  },
+  "blocked_cells": {
+    "(5, 7)": 4,
+    "(1, 8)": 1,
+    "(4, 6)": 6,
+    "(3, 2)": 3,
+    "(1, 7)": 2,
+    "(3, 3)": 5,
+    "(1, 6)": 2,
+    "(5, 9)": 1,
+    "(3, 6)": 1,
+    "(5, 8)": 1,
+    "(5, 6)": 1,
+    "(1, 4)": 1,
+    "(2, 4)": 1
+  },
+  "astar_used": {
+    "ours (corners)": {
+      "n": 20,
+      "success": 17
+    },
+    "ours (junctions)": {
+      "n": 20,
+      "success": 15
+    },
+    "astar_line + lag": {
+      "n": 23,
+      "success": 23
+    }
+  }
+}

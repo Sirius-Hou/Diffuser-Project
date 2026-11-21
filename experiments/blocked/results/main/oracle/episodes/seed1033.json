@@ -1,0 +1,52 @@
+{
+  "method": "oracle",
+  "env": "maze2d-large-v1",
+  "seed": 1033,
+  "obstacle": "full",
+  "blocked_cell": "4,6",
+  "t_appear": 60,
+  "start_cell": "1,4",
+  "goal_cell": "7,10",
+  "base_cells": 10,
+  "detour_cells": 18,
+  "success": true,
+  "first_success_step": 597,
+  "obstacle_collision": false,
+  "obstacle_collision_step": null,
+  "obstacle_collisions": 0,
+  "excluded_reason": "",
+  "final_dist_to_goal": 0.4902139052342,
+  "min_dist_to_goal": 0.4902139052342,
+  "steps": 597,
+  "planning_time_s": 0.0,
+  "n_plans": 0,
+  "n_samples": 0,
+  "n_replans": 0,
+  "n_triggers": 0,
+  "n_astar_calls": 0,
+  "first_replan_n_clear": null,
+  "used_astar": false,
+  "n_no_detour": 0,
+  "legs": 0,
+  "waypoints_reached": 0,
+  "episode_time_s": 0.0927066010190174,
+  "path_length": 16.881097001112266,
+  "exec_cells_visited": 21,
+  "wall_contact_steps": 0,
+  "wall_contact_events": 0,
+  "adopted_plans_with_wall_points": 0,
+  "stalled_last100": false,
+  "failure_reason": "",
+  "events": [
+    {
+      "t": 0,
+      "event": "astar",
+      "route_cells": 12
+    },
+    {
+      "t": 60,
+      "event": "astar",
+      "route_cells": 18
+    }
+  ]
+}

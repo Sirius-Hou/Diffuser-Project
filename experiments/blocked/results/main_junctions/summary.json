@@ -1,0 +1,80 @@
+{
+  "methods": [
+    "ours"
+  ],
+  "n_paired_scenarios": 50,
+  "dropped_seeds": [],
+  "overall": {
+    "ours": {
+      "n": 50,
+      "n_success": 41,
+      "success_rate": 0.82,
+      "ci_lo": 0.6920368054529739,
+      "ci_hi": 0.902299172675462,
+      "obstacle_collision_rate": 0.1,
+      "steps_to_success_median": 499.0,
+      "path_length_success_mean": 16.218581889101777,
+      "replans_mean": 5.1,
+      "samples_mean": 49.8,
+      "planning_time_s_mean": 60.047331126854985,
+      "wall_contact_events_mean": 2.48,
+      "failure_reasons": {
+        "obstacle_collision": 5,
+        "timeout_still_moving": 2,
+        "stuck_on_wall": 2
+      }
+    }
+  },
+  "by_obstacle": {
+    "ours": {
+      "full, longer detour": {
+        "n": 33,
+        "n_success": 25,
+        "success_rate": 0.7575757575757576,
+        "ci_lo": 0.5897505131450971,
+        "ci_hi": 0.8716843865335271,
+        "obstacle_collision_rate": 0.15151515151515152,
+        "steps_to_success_median": 584.0,
+        "path_length_success_mean": 17.80286955440469,
+        "replans_mean": 6.757575757575758,
+        "samples_mean": 63.06060606060606,
+        "planning_time_s_mean": 74.17458229111578,
+        "wall_contact_events_mean": 2.090909090909091,
+        "failure_reasons": {
+          "obstacle_collision": 5,
+          "timeout_still_moving": 2,
+          "stuck_on_wall": 1
+        }
+      },
+      "full, same length": {
+        "n": 17,
+        "n_success": 16,
+        "success_rate": 0.9411764705882353,
+        "ci_lo": 0.730174547964372,
+        "ci_hi": 0.9895398693548358,
+        "obstacle_collision_rate": 0.0,
+        "steps_to_success_median": 452.5,
+        "path_length_success_mean": 13.743132412065968,
+        "replans_mean": 1.8823529411764706,
+        "samples_mean": 24.058823529411764,
+        "planning_time_s_mean": 32.62384357270168,
+        "wall_contact_events_mean": 3.235294117647059,
+        "failure_reasons": {
+          "stuck_on_wall": 1
+        }
+      }
+    }
+  },
+  "best_of_n_at_first_trigger": {
+    "ours/full, longer detour": {
+      "n_triggered": 33,
+      "best_of_n_found_clear_plan": 0.30303030303030304,
+      "mean_clear_samples": 1.2424242424242424
+    },
+    "ours/full, same length": {
+      "n_triggered": 17,
+      "best_of_n_found_clear_plan": 0.8235294117647058,
+      "mean_clear_samples": 5.823529411764706
+    }
+  }
+}

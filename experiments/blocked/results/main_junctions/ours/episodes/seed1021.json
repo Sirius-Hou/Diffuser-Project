@@ -1,0 +1,251 @@
+{
+  "method": "ours",
+  "env": "maze2d-large-v1",
+  "seed": 1021,
+  "obstacle": "full",
+  "blocked_cell": "1,7",
+  "t_appear": 60,
+  "start_cell": "3,8",
+  "goal_cell": "3,1",
+  "base_cells": 12,
+  "detour_cells": 14,
+  "success": true,
+  "first_success_step": 570,
+  "obstacle_collision": false,
+  "obstacle_collision_step": null,
+  "obstacle_collisions": 0,
+  "excluded_reason": "",
+  "final_dist_to_goal": 0.4755539533015852,
+  "min_dist_to_goal": 0.4755539533015852,
+  "steps": 570,
+  "planning_time_s": 78.93382233101875,
+  "n_plans": 10,
+  "n_samples": 81,
+  "n_replans": 9,
+  "n_triggers": 1,
+  "n_astar_calls": 1,
+  "first_replan_n_clear": 0,
+  "used_astar": true,
+  "n_no_detour": 0,
+  "legs": 6,
+  "waypoints_reached": 5,
+  "episode_time_s": 75.64227762699011,
+  "path_length": 15.071308894627997,
+  "exec_cells_visited": 16,
+  "wall_contact_steps": 3,
+  "wall_contact_events": 1,
+  "adopted_plans_with_wall_points": 1,
+  "stalled_last100": false,
+  "failure_reason": "",
+  "events": [
+    {
+      "t": 60,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 60,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 60,
+      "event": "astar",
+      "route_cells": 14,
+      "through_gap": false,
+      "waypoints": [
+        [
+          3,
+          10
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "t": 60,
+      "event": "leg_plan",
+      "why": "first_leg",
+      "leg": 0,
+      "waypoint": [
+        3,
+        10
+      ],
+      "cells": 1,
+      "horizon": 32,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 8
+    },
+    {
+      "t": 111,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 0,
+      "waypoint": [
+        3,
+        10
+      ],
+      "cells": 1,
+      "horizon": 32,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 8
+    },
+    {
+      "t": 125,
+      "event": "waypoint_reached",
+      "leg": 0,
+      "waypoint": [
+        3,
+        10
+      ]
+    },
+    {
+      "t": 125,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 1,
+      "waypoint": [
+        5,
+        8
+      ],
+      "cells": 4,
+      "horizon": 128,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 8
+    },
+    {
+      "t": 239,
+      "event": "waypoint_reached",
+      "leg": 1,
+      "waypoint": [
+        5,
+        8
+      ]
+    },
+    {
+      "t": 239,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 2,
+      "waypoint": [
+        5,
+        6
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 322,
+      "event": "waypoint_reached",
+      "leg": 2,
+      "waypoint": [
+        5,
+        6
+      ]
+    },
+    {
+      "t": 322,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 3,
+      "waypoint": [
+        3,
+        6
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 405,
+      "event": "leg_plan",
+      "why": "leg_ran_out",
+      "leg": 3,
+      "waypoint": [
+        3,
+        6
+      ],
+      "cells": 1,
+      "horizon": 32,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 0
+    },
+    {
+      "t": 421,
+      "event": "waypoint_reached",
+      "leg": 3,
+      "waypoint": [
+        3,
+        6
+      ]
+    },
+    {
+      "t": 421,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 4,
+      "waypoint": [
+        3,
+        4
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 8
+    },
+    {
+      "t": 483,
+      "event": "waypoint_reached",
+      "leg": 4,
+      "waypoint": [
+        3,
+        4
+      ]
+    },
+    {
+      "t": 483,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 5,
+      "waypoint": [
+        3,
+        1
+      ],
+      "cells": 3,
+      "horizon": 96,
+      "n": 8,
+      "n_clear": 8,
+      "n_on_route": 8
+    }
+  ]
+}

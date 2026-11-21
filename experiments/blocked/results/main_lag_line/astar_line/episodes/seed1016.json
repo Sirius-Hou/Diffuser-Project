@@ -1,0 +1,114 @@
+{
+  "method": "astar_line",
+  "env": "maze2d-large-v1",
+  "seed": 1016,
+  "obstacle": "full",
+  "blocked_cell": "7,8",
+  "t_appear": 60,
+  "start_cell": "3,10",
+  "goal_cell": "7,6",
+  "base_cells": 6,
+  "detour_cells": 6,
+  "success": true,
+  "first_success_step": 350,
+  "obstacle_collision": false,
+  "obstacle_collision_step": null,
+  "obstacle_collisions": 0,
+  "excluded_reason": "",
+  "final_dist_to_goal": 0.4864395641653232,
+  "min_dist_to_goal": 0.4864395641653232,
+  "steps": 350,
+  "planning_time_s": 25.608328097994672,
+  "n_plans": 2,
+  "n_samples": 17,
+  "n_replans": 3,
+  "n_triggers": 1,
+  "n_astar_calls": 1,
+  "first_replan_n_clear": 13,
+  "used_astar": true,
+  "n_no_detour": 0,
+  "legs": 2,
+  "waypoints_reached": 1,
+  "episode_time_s": 21.884024125989527,
+  "path_length": 11.176811779493423,
+  "exec_cells_visited": 11,
+  "wall_contact_steps": 10,
+  "wall_contact_events": 1,
+  "adopted_plans_with_wall_points": 1,
+  "stalled_last100": false,
+  "failure_reason": "",
+  "events": [
+    {
+      "t": 60,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 60,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 13
+    },
+    {
+      "t": 240,
+      "event": "lag_trigger",
+      "lag": 1.0299481511400759
+    },
+    {
+      "t": 240,
+      "event": "astar",
+      "route_cells": 4,
+      "through_gap": false,
+      "waypoints": [
+        [
+          5,
+          6
+        ],
+        [
+          7,
+          6
+        ]
+      ]
+    },
+    {
+      "t": 240,
+      "event": "leg_plan",
+      "why": "first_leg",
+      "leg": 0,
+      "waypoint": [
+        5,
+        6
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 0,
+      "n_clear": 1,
+      "n_on_route": null
+    },
+    {
+      "t": 298,
+      "event": "waypoint_reached",
+      "leg": 0,
+      "waypoint": [
+        5,
+        6
+      ]
+    },
+    {
+      "t": 298,
+      "event": "leg_plan",
+      "why": "next_leg",
+      "leg": 1,
+      "waypoint": [
+        7,
+        6
+      ],
+      "cells": 2,
+      "horizon": 64,
+      "n": 0,
+      "n_clear": 1,
+      "n_on_route": null
+    }
+  ]
+}
