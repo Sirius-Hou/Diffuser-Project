@@ -1,6 +1,6 @@
 {
   "name": "blocked_main",
-  "description": "Main comparison: 35 full + 15 partial scenarios per method.",
+  "description": "Main comparison (pre-registered 2026-11-21, see final_project/實驗進度_2026-11-21.md Part 0.6): 50 full blockages, random goal per seed, seeds from 1000 (no overlap with the probes). Runs B0 B1 B2 ours(corners) oracle; main_junctions and main_lag_line reuse these scenarios.",
   "env": "maze2d-large-v1",
   "diffusion_loadpath": "diffusion/H384_T256",
   "diffusion_epoch": "latest",
@@ -8,17 +8,19 @@
   "torch_threads": 0,
   "success_radius": 0.5,
   "scenarios": {
-    "seed_start": 0,
+    "seed_start": 1000,
     "max_seeds": 400,
-    "n_full": 35,
-    "n_partial": 15,
+    "n_full": 50,
+    "n_partial": 0,
     "t_appear": [
       60,
       100,
       140
     ],
     "min_ahead_cells": 2,
-    "partial_frac": 0.5
+    "partial_frac": 0.5,
+    "random_goal": true,
+    "min_goal_cells": 8
   },
   "n_samples": 16,
   "k": 10,
