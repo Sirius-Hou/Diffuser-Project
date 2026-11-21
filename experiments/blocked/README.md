@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | Run on the real model (CPU, Lima VM): `smoke`, `probe` (12 full), `probe_partial`, `probe_partial_gap`, `probe_partial_wide` (8 partial each). `main` not run yet |
+| **Status** | Run on the real model (CPU, Lima VM): `smoke`, `probe` (12 full), `probe_partial`, `probe_partial_gap`, `probe_partial_wide` (8 partial each), the `probe_*` variants, and `main` (50 full, random goal, seeds 1000+; pre-registered in `PREREGISTRATION_main.md`, results in `results/main_primary.md`) |
 | **Project step** | Main experiment of the proposal |
 | **Run** | `bash experiments/blocked/run_all.sh smoke`, then `probe`, then `main` |
 
