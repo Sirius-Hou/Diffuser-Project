@@ -48,6 +48,7 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 | `fig_outcomes` | every paired scenario x method, sorted by extra cells, coloured by outcome |
 | `fig_failures` | failure reasons on the longer detours |
 | `fig_cost` | Diffuser planning time per episode (CPU VM) |
+| `fig_legs` | `diag/leg_test`: every directed corridor (24) as one waypoint leg from rest, no obstacle; Diffuser 24/24, straight line node to node 18/24, line through the corners 24/24; steps per leg vs corridor length |
 | `fig_samples` | `diag/trigger_sampling`: 64 samples at the trigger state for a short and a long detour, and usable samples vs extra cells for H = 384/512/640 |
 | `anim_methods` | seed 1042 (12 cells longer): B2, ours (junctions), astar_line + lag, oracle |
 | `anim_junction` | seed 1026, (3,3) blocked: junction waypoints hit the obstacle, corner waypoints get through (post-hoc finding 1) |

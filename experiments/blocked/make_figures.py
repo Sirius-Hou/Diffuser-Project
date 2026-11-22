@@ -417,6 +417,93 @@ def fig_samples(_m):
     save(fig, 'fig_samples')
 
 
+def corridor_legs(maze):
+    """Same enumeration as diag/leg_test.py (rows.json has 3 rows per leg, in this order)."""
+    nodes = {c for c in mu.free_cells(maze) if mg.degree(maze, c) != 2}
+    legs = []
+    for a in sorted(nodes):
+        for d in mu.NEIGHBORS4:
+            path = [a, (a[0] + d[0], a[1] + d[1])]
+            if not mu.is_free(maze, path[-1]):
+                continue
+            while path[-1] not in nodes:
+                nxt = [(path[-1][0] + e[0], path[-1][1] + e[1]) for e in mu.NEIGHBORS4]
+                path.append(next(c for c in nxt if mu.is_free(maze, c) and c != path[-2]))
+            legs.append(path)
+    return legs
+
+
+def fig_legs(_m):
+    """diag/leg_test: every directed corridor as one waypoint leg from rest, no obstacle."""
+    rows = json.load(open(os.path.join(RES, 'diag', 'leg_test', 'rows.json')))
+    legs = corridor_legs(MAZE)
+    methods = ('diffuser', 'line', 'line_corners')
+    by = {m: [r for r in rows if r['method'] == m] for m in methods}
+    for m in methods:
+        assert len(by[m]) == len(legs)
+        for r, path in zip(by[m], legs):
+            assert tuple(r['start']) == path[0] and tuple(r['end']) == path[-1] and r['cells'] == len(path) - 1
+    label = {'diffuser': 'Diffuser (best-of-8)', 'line': 'straight line node to node',
+             'line_corners': 'line through the corners'}
+    mcol = {'diffuser': BLUE, 'line': VIOLET, 'line_corners': ORANGE}
+    mmk = {'diffuser': 'o', 'line': 's', 'line_corners': '^'}
+    fig = plt.figure(figsize=(7.6, 5.4))
+    gs = fig.add_gridspec(2, 3, height_ratios=[1, 0.95])
+    for col, m in enumerate(methods):
+        ax = fig.add_subplot(gs[0, col])
+        maze_axes(ax)
+        for r, path in zip(by[m], legs):
+            c = route_xy(path)
+            d = c[-1] - c[0]
+            n = np.array([-d[1], d[0]]) / (np.linalg.norm(d) + 1e-9)
+            c = c + 0.13 * n                                   # the two directions side by side
+            o = 'fail' if not r['success'] else 'one' if r['plans'] == 1 else 'more'
+            colr = {'one': AQUA, 'more': YELLOW, 'fail': RED}[o]
+            ax.plot(*xy(c), c=colr, lw=1.6, solid_capstyle='round')
+            ax.annotate('', xy(c[-1]), xy(c[-2] + 0.45 * (c[-1] - c[-2])),
+                        arrowprops=dict(arrowstyle='-|>', color=colr, lw=1.2, mutation_scale=8))
+            if o == 'fail':
+                ax.plot(*xy(mu.cell_center(r['final_cell'])), 'X', c=RED, ms=7, mec='white', zorder=7)
+        k = sum(r['success'] for r in by[m])
+        ax.set_title(f'({"abc"[col]}) {label[m]}: {k}/{len(legs)}', fontsize=8, loc='left')
+    fig.legend(handles=[Line2D([], [], c=AQUA, lw=1.8, label='reached with the first plan'),
+                        Line2D([], [], c=YELLOW, lw=1.8, label='reached after 2-3 plans'),
+                        Line2D([], [], c=RED, lw=1.8, label='not reached (X: where the ball ended)')],
+               loc='upper center', ncol=3, frameon=False, fontsize=7.5)
+
+    dx = fig.add_subplot(gs[1, :])
+    fail_y = 500
+    rng = np.random.default_rng(1)
+    for j, m in enumerate(methods):
+        cells = np.array([r['cells'] for r in by[m]]) + (j - 1) * 0.22 + rng.uniform(-0.05, 0.05, len(by[m]))
+        steps = np.array([r['steps'] if r['success'] else fail_y for r in by[m]], dtype=float)
+        dx.plot(cells, steps, mmk[m], ls='', c=mcol[m], ms=6, alpha=0.75, mec='white', mew=0.6,
+                label=f'{label[m]} ({sum(r["success"] for r in by[m])}/{len(legs)})')
+        failed = [r['cells'] for r in by[m] if not r['success']]
+        for c in sorted(set(failed)):
+            dx.text(c + (j - 1) * 0.22 + 0.12, fail_y, f'x{failed.count(c)}', va='center', fontsize=7.5, color=INK)
+    dx.axhline(fail_y - 35, c=MUTED, lw=0.8, ls='--')
+    dx.set_ylim(0, fail_y + 30)
+    dx.set_yticks([0, 100, 200, 300, 400, fail_y]), dx.set_yticklabels(['0', '100', '200', '300', '400', 'failed'])
+    dx.set_xticks(sorted({r['cells'] for r in rows}))
+    dx.set_xlabel('corridor length (cells)')
+    dx.set_ylabel('steps to reach the next node')
+    dx.grid(axis='y', color=GRID, lw=0.8)
+    dx.legend(loc='upper left', bbox_to_anchor=(0.0, 0.92), frameon=False, fontsize=7.5)
+    dx.set_title(f'(d) every directed corridor ({len(legs)}), ball starts at rest at a node, no obstacle; '
+                 'up to 3 plans per leg', fontsize=8, loc='left')
+    fig.tight_layout(rect=(0, 0, 1, 0.975), h_pad=1.5)
+    save(fig, 'fig_legs')
+    for m in methods:
+        rr = by[m]
+        print(f"  {m}: success {sum(r['success'] for r in rr)}/{len(rr)}, first plan "
+              f"{sum(r['success'] and r['plans'] == 1 for r in rr)}, 2-3 plans "
+              f"{sum(r['success'] and r['plans'] > 1 for r in rr)}, first plan in wall "
+              f"{[r['first_plan_in_wall'] for r in rr if r['first_plan_in_wall'] > 1]}, steps when reached "
+              f"{min(r['steps'] for r in rr if r['success'])}-{max(r['steps'] for r in rr if r['success'])}, "
+              f"failed {[(tuple(r['start']), tuple(r['end']), tuple(r['final_cell'])) for r in rr if not r['success']]}")
+
+
 # ---------------------------------------------------------------- animations
 
 class Panel:
@@ -543,7 +630,7 @@ def anim_lag(m):
 
 
 FIGURES = dict(pipeline=fig_pipeline, scenario=fig_scenario, primary=fig_primary, by_extra=fig_by_extra,
-               outcomes=fig_outcomes, failures=fig_failures, cost=fig_cost, samples=fig_samples,
+               outcomes=fig_outcomes, failures=fig_failures, cost=fig_cost, samples=fig_samples, legs=fig_legs,
                anim_methods=anim_methods, anim_junction=anim_junction, anim_lag=anim_lag)
 
 
