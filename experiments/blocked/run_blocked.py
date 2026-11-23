@@ -7,6 +7,9 @@ The obstacle becomes known at t_appear; touching it ends the episode as a failur
   B0     : never replans
   B1     : replans every `k_fixed` steps, best-of-N against the obstacle once it is known
   B2     : every `k` steps checks the rest of the plan against the obstacle; replans (best-of-N) only on a hit
+  b2_guided : B2, but its replans after the obstacle appears are sampled with test-time guidance by an
+           analytic obstacle cost (experiments/common/guidance.py, config key `guide`). No map, no A*.
+           With guide scale 0 it draws the same samples as B2.
   ours   : B2, and when all N samples hit: A* around the blocked cell, then one short plan per waypoint.
            With gap_route, a partial obstacle that no route avoids is passed through its gap on waypoint legs.
            With lag_trigger, a ball that falls more than lag_trigger behind its plan to the goal (at a check
@@ -28,13 +31,14 @@ import numpy as np
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.insert(0, REPO)
+from experiments.common import guidance as gd  # noqa: E402
 from experiments.common import maze_graph as mg  # noqa: E402
 from experiments.common import maze_utils as mu  # noqa: E402
 from experiments.common import obstacles as ob  # noqa: E402
 from experiments.common.planner import FrozenDiffuserPlanner, load_env, set_all_seeds, waypoint_action  # noqa: E402
 from experiments.b0_baseline.run_b0 import git_commit  # noqa: E402
 
-METHODS = ('B0', 'B1', 'B2', 'ours', 'astar_line', 'oracle')
+METHODS = ('B0', 'B1', 'B2', 'b2_guided', 'ours', 'astar_line', 'oracle')
 
 
 class PlanningLoop:
@@ -78,7 +82,17 @@ class PlanningLoop:
         one that visits the fewest cells off this route, then the fewest points inside a wall, then the one
         that ends nearest to where it was told to end (short plans can stop short and jump to the
         inpainted last point)."""
-        plans, _, dt = self.planner.plan(state, goal_xy, n=n, horizon=horizon)
+        if self.method == 'b2_guided' and use_obstacle:
+            g = self.cfg['guide']
+            cost = gd.Cost(self.obstacle, g['margin'], self.maze if g.get('walls') else None,
+                           wall_margin=g.get('wall_margin', 0.0), wall_weight=g.get('walls', 0.0),
+                           smooth_weight=g.get('smooth', 0.0))
+            t_start = time.perf_counter()
+            plans, _, _ = gd.guided_sample(self.planner, state, goal_xy, n, cost, g['scale'], g.get('window', 'all'),
+                                           g.get('variant', 'x0'), horizon=horizon)
+            dt = time.perf_counter() - t_start
+        else:
+            plans, _, dt = self.planner.plan(state, goal_xy, n=n, horizon=horizon)
         self.planning_time += dt
         self.n_calls += 1
         self.n_samples += n

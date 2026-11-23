@@ -26,7 +26,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.insert(0, REPO)
 from experiments.b0_baseline.analyze_b0 import wilson  # noqa: E402
 
-ORDER = ['B0', 'B1', 'B2', 'ours', 'astar_line', 'oracle']
+ORDER = ['B0', 'B1', 'B2', 'b2_guided', 'ours', 'astar_line', 'oracle']
 
 
 def method_row(df):
@@ -72,7 +72,7 @@ def main(rdir):
 
     # R2: when the trigger first fired, how many of the N samples were clear of the obstacle?
     probe = {}
-    for m in ('B2', 'ours'):
+    for m in ('B2', 'b2_guided', 'ours'):
         d = paired[(paired.method == m) & paired.first_replan_n_clear.notna()]
         for kind in sorted(set(d.case)):
             dk = d[d.case == kind]

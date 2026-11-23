@@ -1,0 +1,52 @@
+{
+  "name": "probe_partial",
+  "methods": [
+    "B0",
+    "B2",
+    "b2_guided",
+    "oracle"
+  ],
+  "n": 7,
+  "dropped": [
+    4
+  ],
+  "by_group": {
+    "B0": {
+      "all": 1,
+      "another route": 1,
+      "no other route": 0
+    },
+    "B2": {
+      "all": 1,
+      "another route": 1,
+      "no other route": 0
+    },
+    "b2_guided": {
+      "all": 1,
+      "another route": 1,
+      "no other route": 0
+    },
+    "oracle": {
+      "all": 7,
+      "another route": 3,
+      "no other route": 4
+    }
+  },
+  "mcnemar": {
+    "only_B2": 0,
+    "only_b2_guided": 0,
+    "p": 1.0
+  },
+  "collision_layer": {
+    "B2": {
+      "planning": 2,
+      "execution": 2,
+      "no replan": 0
+    },
+    "b2_guided": {
+      "planning": 1,
+      "execution": 4,
+      "no replan": 0
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "method": "B2",
+  "env": "maze2d-large-v1",
+  "seed": 3013,
+  "obstacle": "partial",
+  "blocked_cell": "6,2",
+  "t_appear": 140,
+  "start_cell": "3,6",
+  "goal_cell": "7,2",
+  "base_cells": 5,
+  "detour_cells": null,
+  "success": false,
+  "first_success_step": null,
+  "obstacle_collision": true,
+  "obstacle_collision_step": 523,
+  "obstacle_collisions": 1,
+  "excluded_reason": "",
+  "final_dist_to_goal": 1.605836235035471,
+  "min_dist_to_goal": 1.605836235035471,
+  "steps": 523,
+  "planning_time_s": 253.40927850501612,
+  "n_plans": 6,
+  "n_samples": 81,
+  "n_replans": 5,
+  "n_triggers": 39,
+  "n_astar_calls": 0,
+  "first_replan_n_clear": 0,
+  "used_astar": false,
+  "n_no_detour": 0,
+  "legs": 0,
+  "waypoints_reached": 0,
+  "episode_time_s": 246.2720768880099,
+  "path_length": 16.274221727522836,
+  "exec_cells_visited": 15,
+  "wall_contact_steps": 31,
+  "wall_contact_events": 1,
+  "adopted_plans_with_wall_points": 0,
+  "stalled_last100": false,
+  "failure_reason": "obstacle_collision",
+  "events": [
+    {
+      "t": 140,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 140,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 150,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 150,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 160,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 160,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 170,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 170,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 180,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 180,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    }
+  ]
+}

@@ -22,6 +22,7 @@ Seeds with no usable cell are listed under `excluded`.
 | B0 | never | follows the t = 0 plan |
 | B1 | every `k_fixed` steps | best-of-N against the obstacle once it is known (one sample before that) |
 | B2 | every `k` steps, if the rest of the plan hits the obstacle | best-of-N; if all N hit, takes the one that hits latest |
+| b2_guided | same trigger as B2 | best-of-N, but the samples after the obstacle appears are drawn with test-time guidance by an analytic obstacle cost (`common/guidance.py`, config key `guide`); no A*. With guide scale 0 it draws exactly B2's samples |
 | ours | same trigger as B2 | best-of-N; if all N hit: A* around the blocked cell, junctions and turns become waypoints, one short plan per straight leg. Optional `gap_route` for partial obstacles with no detour (see results) |
 | oracle | at t = 0 and at `t_appear` | A* on the known map + speed-limited PD controller (gains untuned) |
 
@@ -50,6 +51,8 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 | `fig_cost` | Diffuser planning time per episode (CPU VM) |
 | `fig_legs` | `diag/leg_test`: every directed corridor (24) as one waypoint leg from rest, no obstacle; Diffuser 24/24, straight line node to node 18/24, line through the corners 24/24; steps per leg vs corridor length |
 | `fig_samples` | `diag/trigger_sampling`: 64 samples at the trigger state for a short and a long detour, and usable samples vs extra cells for H = 384/512/640 |
+| `fig_guidance` | `diag/guided_sampling`, full blockage: 64 guided samples at the trigger state (probe seed 0, 8 cells longer) without guidance, with the obstacle cost, and with obstacle + walls + smooth; outcome of every plan per guidance setting on the 13 long detours (0 usable in every group), and usable plans on the 9 short detours |
+| `fig_guidance_partial` | the same for partial blockage (gap 0.5): guided samples pass through the gap; usable plans with no other route (1% -> 27-32%); closed loop B2 vs b2_guided, with each obstacle hit split into planning (no clear sample) and execution (the ball left a clear plan) |
 | `anim_methods` | seed 1042 (12 cells longer): B2, ours (junctions), astar_line + lag, oracle |
 | `anim_junction` | seed 1026, (3,3) blocked: junction waypoints hit the obstacle, corner waypoints get through (post-hoc finding 1) |
 | `anim_lag` | seed 1046: B2 falls behind a clear plan and stalls on a wall; B1's periodic replanning recovers (post-hoc finding 2) |
@@ -136,3 +139,27 @@ Same seeds and cells as `probe_partial`; only `partial_frac` changes (0.3 instea
 
 - Interior inpainting (proposal option b, fix a via point mid-plan instead of chaining legs): 0 of 48 samples rerouted; the plans jump about 4.3 units to the via point and back (`.vm/diag/interior_probe`).
 - Conditioning a leg on the ball's actual velocity: 18 of 48 leg samples clean, against 24 of 48 when the start is inpainted at rest (`.vm/diag/leg_velocity_probe`). Hence `leg_start_at_rest`.
+
+## Test-time guidance (2026-11-22, `common/guidance.py`, `diag/guided_sampling.py`)
+
+The Diffuser paper biases each reverse diffusion step with the gradient of a guide J (Sec. 3.2, Alg. 1; learned J, not used for Maze2D). Here J is a hand-written cost, so nothing is trained: a squared hinge on the signed distance from each plan point to the obstacle (margin 0.15 + ball radius), optionally plus the wall cells (weight 5, margin 0.05; this uses the map) and a step-length term (no jumps over 0.15). Two ways to apply it, both re-implementing `p_sample_loop` outside `diffuser/`:
+
+- `x0` (main): predict x0, move its positions down the cost gradient for "time" alpha (steps of at most 0.1, since one big step diverges on the step-length term), then the usual posterior step.
+- `xt`: the original locomotion code's way: push the noisy x_t by alpha * posterior variance * gradient before the model call (2 guide steps, none for t < 2).
+
+With alpha 0 the sampler's output is identical to `planner.plan` (max |diff| = 0), so guided and unguided samples are paired. Plan and decision rules: `final_project/Guidance實驗計畫_2026-11-22.md` (sections 10-11, written before the runs). Offline tables: `results/diag/guided_sampling/summary.md` (`diag/summarize_guided.py`).
+
+**Full blockage (offline, 22 probe scenarios with a longer detour, 64 plans each, H = 384).** No setting produced a single usable plan on the 13 long detours (>= 8 extra cells): 0/832 for alpha 0.3, 1, 3 (obstacle cost), obstacle + walls + smooth, and the x_t version at alpha 300. Plans leave the obstacle the cheapest local way: with the obstacle cost alone they jump over it (alpha >= 1: 826-827/832 `split`, median 9 points in walls); with walls and smoothness they stay pressed against it (827/832 still touch it); the x_t version barely moves them (alpha <= 30) or pushes them into walls (alpha 300: median 25 points in walls). On the 9 short detours guidance does not help either: 85/576 usable without guidance, 85-89 with the obstacle cost, 75 with walls + smooth, 12 with x_t. A local gradient on the plan cannot move it to another corridor; that choice stays with A*.
+
+**Partial blockage, gap 0.5 (offline, `probe_partial`, 8 scenarios).** Here guidance works on the plan: with no other route, usable plans go from 4/320 (1%) to 85/320 (27%, obstacle cost, alpha 1), 92/320 (29%, alpha 3) and 101/320 (32%, + walls + smooth, alpha 1; better than no guidance in 5/5 scenarios), and the usable plans cross the obstacle cell within 0.02 of the gap's centre line (0.05-0.09 without guidance).
+
+**Partial blockage, closed loop (exploratory, decided after the offline result).** `b2_guided` with the + walls + smooth setting, on 16 fresh partial scenarios (`configs/partial_fresh.json`: seeds 3000+, random goal, not used to choose anything; seed 3008 excluded by the usual rule) and on `probe_partial` (in-sample):
+
+| | fresh: all (15) | another route (9) | no other route (6) | obstacle hits: planning / execution | probe_partial (7) |
+|---|---|---|---|---|---|
+| B0 | 0/15 | 0/9 | 0/6 | - | 1/7 |
+| B2 | 5/15 | 5/9 | 0/6 | 9 / 0 | 1/7 (hits 2 / 2) |
+| b2_guided | 6/15 | 4/9 | 2/6 | 2 / 5 | 1/7 (hits 1 / 4) |
+| oracle (A* + PD through the gap) | 8/15 | 6/9 | 2/6 | | 7/7 |
+
+Discordant pairs on the fresh scenarios: only B2 1, only b2_guided 2 (exact McNemar p = 1.0). Success barely moves, but the failures change layer: every B2 obstacle hit followed a replan with no clear sample (planning), while most b2_guided hits followed a replan that did have a clear plan and the ball still touched the obstacle (execution). The gap needs about +-0.12 of tracking accuracy; the original `waypoint_action` controller does not deliver it, and even the A* + PD oracle hits the obstacle in 7 of the 15 fresh scenarios. Results: `results/partial_fresh/guided_loop.md`, `results/probe_partial/guided_loop.md` (`analyze_guided_loop.py`).

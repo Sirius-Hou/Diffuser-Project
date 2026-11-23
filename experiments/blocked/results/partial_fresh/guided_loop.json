@@ -1,0 +1,52 @@
+{
+  "name": "partial_fresh",
+  "methods": [
+    "B0",
+    "B2",
+    "b2_guided",
+    "oracle"
+  ],
+  "n": 15,
+  "dropped": [
+    3008
+  ],
+  "by_group": {
+    "B0": {
+      "all": 0,
+      "another route": 0,
+      "no other route": 0
+    },
+    "B2": {
+      "all": 5,
+      "another route": 5,
+      "no other route": 0
+    },
+    "b2_guided": {
+      "all": 6,
+      "another route": 4,
+      "no other route": 2
+    },
+    "oracle": {
+      "all": 8,
+      "another route": 6,
+      "no other route": 2
+    }
+  },
+  "mcnemar": {
+    "only_B2": 1,
+    "only_b2_guided": 2,
+    "p": 1.0
+  },
+  "collision_layer": {
+    "B2": {
+      "planning": 9,
+      "execution": 0,
+      "no replan": 0
+    },
+    "b2_guided": {
+      "planning": 2,
+      "execution": 5,
+      "no replan": 0
+    }
+  }
+}
