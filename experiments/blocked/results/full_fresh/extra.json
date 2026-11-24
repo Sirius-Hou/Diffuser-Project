@@ -1,0 +1,114 @@
+{
+  "name": "full_fresh",
+  "methods": [
+    "B0",
+    "B1",
+    "B2",
+    "B2_lag",
+    "oracle"
+  ],
+  "n": 30,
+  "dropped": [],
+  "success": {
+    "B0": {
+      "longer detour": 0,
+      "same length": 2,
+      "all": 2
+    },
+    "B1": {
+      "longer detour": 7,
+      "same length": 4,
+      "all": 11
+    },
+    "B2": {
+      "longer detour": 7,
+      "same length": 5,
+      "all": 12
+    },
+    "B2_lag": {
+      "longer detour": 11,
+      "same length": 5,
+      "all": 16
+    },
+    "oracle": {
+      "longer detour": 23,
+      "same length": 7,
+      "all": 30
+    }
+  },
+  "pairs": [
+    {
+      "a": "B2",
+      "b": "B2_lag",
+      "group": "longer detour",
+      "n": 23,
+      "only_a": 0,
+      "only_b": 4,
+      "p": 0.125
+    },
+    {
+      "a": "B1",
+      "b": "B2_lag",
+      "group": "longer detour",
+      "n": 23,
+      "only_a": 2,
+      "only_b": 6,
+      "p": 0.2890625
+    },
+    {
+      "a": "B1",
+      "b": "B2",
+      "group": "longer detour",
+      "n": 23,
+      "only_a": 4,
+      "only_b": 4,
+      "p": 1.0
+    },
+    {
+      "a": "B2",
+      "b": "B2_lag",
+      "group": "all",
+      "n": 30,
+      "only_a": 0,
+      "only_b": 4,
+      "p": 0.125
+    }
+  ],
+  "collision_layer": {
+    "B0": {
+      "no replan": 27
+    },
+    "B1": {
+      "planning": 13,
+      "execution": 1
+    },
+    "B2": {
+      "execution": 6,
+      "planning": 9
+    },
+    "B2_lag": {
+      "execution": 3,
+      "planning": 9
+    },
+    "oracle": {}
+  },
+  "failures": {
+    "B0": {
+      "obstacle_collision": 27,
+      "stuck_on_wall": 1
+    },
+    "B1": {
+      "obstacle_collision": 14,
+      "timeout_still_moving": 5
+    },
+    "B2": {
+      "stuck_on_wall": 3,
+      "obstacle_collision": 15
+    },
+    "B2_lag": {
+      "timeout_still_moving": 2,
+      "obstacle_collision": 12
+    },
+    "oracle": {}
+  }
+}

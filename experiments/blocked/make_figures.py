@@ -800,9 +800,149 @@ def fig_guidance_partial(_m):
     save(fig, 'fig_guidance_partial')
 
 
+INTERIOR = os.path.join(RES, 'diag', 'interior_sampling')
+INTERIOR_GROUPS = [('I1_junctions_h384', 'junctions\nH 384'), ('I2_corners_h384', '+corners\nH 384'),
+                   ('I3_corners_matched', '+corners\nH by length'), ('I4_corners_matched_ws5', '+corners, H by\nlength + guidance')]
+
+
+def fig_interior(_m):
+    """Interior inpainting (proposal option b, diag/interior_sampling.py): the x-y of plan points on the A* detour is
+    fixed, the plan jumps to each fixed point and straight back, and still goes through the obstacle."""
+    fail_color = {k: c for k, _, c in GUIDE_FAIL}
+    fig = plt.figure(figsize=(7.6, 6.0))
+    gs = fig.add_gridspec(2, 3, height_ratios=[1.0, 1.05])
+    name, seed = 'probe', 0
+    sc = next(s for s in json.load(open(os.path.join(RES, name, 'scenarios.json')))['scenarios'] if s['seed'] == seed)
+    obst = ob.Obstacle.from_dict(sc['obstacle'])
+    target = sc.get('target', [7.0, 9.0])
+    detour = mg.astar(MAZE, tuple(sc['cell_at_appear']), tuple(mu.xy_to_cell(target)), blocked=[obst.cell])
+    panels = [('I1_junctions_h384', 'junctions fixed, H 384'), ('I3_corners_matched', '+ corners, H by length'),
+              ('I4_corners_matched_ws5', '+ guidance (walls, smooth)')]
+    order = {'still_hit': 0, 'wall': 1, 'split': 2, 'valid': 3}
+    for col, (tag, title) in enumerate(panels):
+        ax = fig.add_subplot(gs[0, col])
+        maze_axes(ax)
+        plans = np.load(os.path.join(INTERIOR, tag, f'{name}_seed{seed:03d}.npy'))
+        row = next(r for r in json.load(open(os.path.join(INTERIOR, tag, 'rows.json')))['rows']
+                   if r['results'] == name and r['seed'] == seed)
+        labels = [x['fail'] or 'valid' for x in row['samples']]
+        for p, lab in sorted(zip(plans, labels), key=lambda x: order[x[1]]):
+            ax.plot(*xy(p[:, :2]), c=fail_color[lab], lw=0.6, alpha=0.45)
+        ob.draw_obstacle(ax, obst, color=RED)
+        goal_marker(ax, target)
+        ax.plot(*xy(route_xy(detour)), c=AQUA, lw=1.8, ls='--', alpha=0.9)
+        via = np.array(list(row['via'].values()))
+        ax.plot(*xy(via), 'X', c=INK, ms=6, mec='white', zorder=8)
+        ax.plot(*xy(plans[0, 0, :2]), 'o', c=INK, ms=5, mec='white', zorder=7)
+        ax.set_title(f'({"abc"[col]}) {title}', fontsize=8.5, loc='left')
+        ax.text(0.0, -0.04, f"{labels.count('valid')} usable of 64; median largest jump {row['median_max_jump']:.1f}",
+                transform=ax.transAxes, fontsize=6.8, color=INK2, va='top')
+        top_ax = ax
+
+    summ = json.load(open(os.path.join(INTERIOR, 'summary.json')))
+    g0 = json.load(open(os.path.join(GUIDE, 'summary.json')))['full_G0']
+    groups = [('G0', 'none fixed\nH 384')] + [(t, lab) for t, lab in INTERIOR_GROUPS if t in summ]
+    xs = np.arange(len(groups))
+    dx = fig.add_subplot(gs[1, :2])
+    bottom = np.zeros(len(groups))
+    for key, lab, c in GUIDE_FAIL:
+        vals = []
+        for t, _ in groups:
+            if t == 'G0':
+                vals.append(100 * (g0['long']['valid'] if key == 'valid' else g0['long']['fail'][key]) / g0['long']['n'])
+            else:
+                n = 64 * summ[t]['n_long']
+                vals.append(100 * (summ[t]['valid_detour_long'] if key == 'valid' else summ[t]['fail_long'][key]) / n)
+        vals = np.array(vals)
+        dx.bar(xs, vals, bottom=bottom, color=c, width=0.62, edgecolor='white', linewidth=1.0, label=lab)
+        bottom += vals
+    dx.set_xticks(xs)
+    dx.set_xticklabels([lab for _, lab in groups], fontsize=7)
+    dx.set_ylabel('plans (% of 832)')
+    dx.set_ylim(0, 100)
+    dx.grid(axis='y', color=GRID, lw=0.8)
+    dx.set_axisbelow(True)
+    dx.set_title('(d) detour ≥ 8 cells longer: 13 scenarios × 64 plans', fontsize=8.5, loc='left')
+    dx.text(len(groups) / 2 - 0.5, 50, '0 usable plans in every group', ha='center', va='center',
+            fontsize=8, color=INK, bbox=dict(boxstyle='round,pad=0.3', fc='white', ec=GRID))
+
+    ex = fig.add_subplot(gs[1, 2])
+    short = [('G0', 'none fixed')] + [(t, lab.replace('\n', ' ')) for t, lab in INTERIOR_GROUPS[:3] if t in summ]
+    vals = [100 * g0['short']['valid_via'] / g0['short']['n']] + \
+           [100 * summ[t]['valid_detour_short'] / (64 * summ[t]['n_short']) for t, _ in short[1:]]
+    ys = np.arange(len(short))
+    ex.barh(ys, vals, color=[MUTED] + [BLUE] * (len(short) - 1), height=0.62)
+    ex.set_yticks(ys)
+    ex.set_yticklabels([lab for _, lab in short], fontsize=6.5)
+    ex.invert_yaxis()
+    for i, v in enumerate(vals):
+        ex.text(v + 0.5, i, f'{v:.0f}%', va='center', fontsize=6.8, color=INK2)
+    ex.set_xlim(0, max(20, max(vals) * 1.3))
+    ex.set_xlabel('usable detour plans (% of 576)')
+    ex.grid(axis='x', color=GRID, lw=0.8)
+    ex.set_axisbelow(True)
+    ex.set_title('(e) detour ≤ 6 cells longer: 9 scenarios', fontsize=8.5, loc='left')
+    fig.tight_layout(h_pad=3.2)
+    handles = ([Line2D([], [], c=c, lw=1.4, label=lab) for _, lab, c in GUIDE_FAIL] +
+               [Line2D([], [], c=AQUA, lw=1.8, ls='--', label='A* detour'),
+                Line2D([], [], marker='X', ls='', c=INK, label='fixed x-y'), Patch(color=RED, alpha=0.6, label='obstacle')])
+    fig.legend(handles=handles, loc='upper center', bbox_to_anchor=(0.5, top_ax.get_position().y0 - 0.035),
+               ncol=7, frameon=False, fontsize=7)
+    save(fig, 'fig_interior')
+
+
+def _paired(runs):
+    eps = {}
+    for lab, run, m in runs:
+        d = os.path.join(RES, run, m, 'episodes')
+        eps[lab] = {r['seed']: r for r in (json.load(open(os.path.join(d, f))) for f in os.listdir(d) if f.endswith('.json'))}
+    drop = {s for v in eps.values() for s, r in v.items() if r['excluded_reason']}
+    return eps, sorted(set.intersection(*[set(v) for v in eps.values()]) - drop)
+
+
+def fig_followup(_m):
+    """11/23 follow-ups: (a) B2 with lag replanning on 30 fresh full blockages; (b) partial blockage with the
+    path executor (analyze_extra.py)."""
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(7.6, 3.0), gridspec_kw=dict(width_ratios=[1, 1.1]))
+    kinds = ['success', 'obstacle_collision', 'stuck_on_wall', 'timeout_still_moving']
+    eps, seeds = _paired([('B0', 'full_fresh', 'B0'), ('B1', 'full_fresh', 'B1'), ('B2', 'full_fresh', 'B2'),
+                          ('B2 + lag replan', 'full_fresh_lag', 'B2'), ('oracle', 'full_fresh', 'oracle')])
+    longer = [s for s in seeds if eps['oracle'][s]['detour_cells'] > eps['oracle'][s]['base_cells']]
+
+    def stack(axx, eps, names, ss):
+        for i, name in enumerate(names[::-1]):
+            left = 0
+            for k in kinds:
+                v = sum((eps[name][s]['failure_reason'] or 'success') == k for s in ss)
+                if v:
+                    axx.barh(i, v, left=left, height=0.62, color=FAIL_COLOR[k], ec='white', lw=1.2)
+                    axx.text(left + v / 2, i, str(v), ha='center', va='center', fontsize=7, color='white')
+                left += v
+        axx.set_yticks(range(len(names)))
+        axx.set_yticklabels(names[::-1], fontsize=7.5)
+        axx.set_xlim(0, len(ss))
+        axx.grid(axis='x', color=GRID, lw=0.8, zorder=0)
+        axx.set_axisbelow(True)
+    stack(ax, eps, list(eps), longer)
+    ax.set_xlabel('scenarios')
+    ax.set_title(f'(a) full blockage, fresh seeds: {len(longer)} longer detours\nB2 vs + lag replan: 0 vs 4 discordant, p = 0.125',
+                 fontsize=8, loc='left')
+    eps2, seeds2 = _paired([('B2', 'partial_exec', 'B2'), ('b2_guided', 'partial_exec', 'b2_guided'),
+                            ('B2 + path', 'partial_exec_path', 'B2'), ('b2_guided + path', 'partial_exec_path', 'b2_guided'),
+                            ('oracle', 'partial_exec', 'oracle')])
+    stack(bx, eps2, list(eps2), seeds2)
+    bx.set_xlabel('scenarios')
+    bx.set_title(f'(b) partial blockage (gap 0.5), fresh seeds: {len(seeds2)} scenarios\nall pairwise p = 1.0',
+                 fontsize=8, loc='left')
+    fig.legend(handles=[Patch(color=FAIL_COLOR[k], label=FAIL_LABEL[k]) for k in kinds], loc='lower center',
+               ncol=4, frameon=False, fontsize=7.5)
+    fig.tight_layout(rect=(0, 0.08, 1, 1))
+    save(fig, 'fig_followup')
+
+
 FIGURES = dict(pipeline=fig_pipeline, scenario=fig_scenario, primary=fig_primary, by_extra=fig_by_extra,
                outcomes=fig_outcomes, failures=fig_failures, cost=fig_cost, samples=fig_samples, legs=fig_legs,
-               guidance=fig_guidance, guidance_partial=fig_guidance_partial,
+               guidance=fig_guidance, guidance_partial=fig_guidance_partial, interior=fig_interior, followup=fig_followup,
                anim_methods=anim_methods, anim_junction=anim_junction, anim_lag=anim_lag)
 
 

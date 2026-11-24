@@ -1,0 +1,163 @@
+{
+  "method": "B2",
+  "env": "maze2d-large-v1",
+  "seed": 4004,
+  "obstacle": "full",
+  "blocked_cell": "3,3",
+  "t_appear": 60,
+  "start_cell": "7,5",
+  "goal_cell": "7,2",
+  "base_cells": 13,
+  "detour_cells": 17,
+  "success": false,
+  "first_success_step": null,
+  "obstacle_collision": true,
+  "obstacle_collision_step": 298,
+  "obstacle_collisions": 1,
+  "excluded_reason": "",
+  "final_dist_to_goal": 4.292038522337321,
+  "min_dist_to_goal": 3.231062604630561,
+  "steps": 298,
+  "planning_time_s": 414.8998191569699,
+  "n_plans": 11,
+  "n_samples": 161,
+  "n_replans": 10,
+  "n_triggers": 24,
+  "n_astar_calls": 0,
+  "n_lag_replans": 0,
+  "first_replan_n_clear": 0,
+  "used_astar": false,
+  "n_no_detour": 0,
+  "legs": 0,
+  "waypoints_reached": 0,
+  "episode_time_s": 409.94818203296745,
+  "path_length": 9.989264365336926,
+  "exec_cells_visited": 10,
+  "wall_contact_steps": 0,
+  "wall_contact_events": 0,
+  "adopted_plans_with_wall_points": 1,
+  "stalled_last100": false,
+  "failure_reason": "obstacle_collision",
+  "events": [
+    {
+      "t": 60,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 60,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 70,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 70,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 80,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 80,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 90,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 90,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 100,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 100,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 110,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 110,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 120,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 120,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 130,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 130,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 140,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 140,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    },
+    {
+      "t": 150,
+      "event": "trigger",
+      "leg": null
+    },
+    {
+      "t": 150,
+      "event": "replan",
+      "horizon": 384,
+      "n": 16,
+      "n_clear": 0
+    }
+  ]
+}

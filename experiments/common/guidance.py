@@ -15,6 +15,9 @@ sampler, so `guided_sample` re-implements GaussianDiffusion.p_sample_loop step f
 
 With scale 0 the loop draws the same random numbers in the same order as p_sample_loop, so its output
 equals planner.plan (checked by diag/guided_sampling.py --check).
+
+`via` (proposal option b, interior inpainting): {plan index: xy}. Those plan points have their x-y fixed after
+every reverse step, as the start and goal are; their velocity is left to the model. No extra random numbers.
 """
 import numpy as np
 import torch
@@ -101,7 +104,7 @@ def in_window(window, i, n_timesteps):
 
 
 def guided_sample(planner, obs, goal_xy, n, cost=None, scale=0.0, window='all', variant='x0',
-                  horizon=None, n_guide_steps=2, t_stopgrad=2, max_lr=0.1):
+                  horizon=None, n_guide_steps=2, t_stopgrad=2, max_lr=0.1, via=None):
     """Like planner.plan(obs, goal_xy, n, horizon) but with guidance. Returns (observations, actions, info)
     with info = dict(push_mean=mean |push| per guided reverse step in maze units)."""
     diffusion, policy = planner.diffusion, planner.policy
@@ -120,12 +123,21 @@ def guided_sample(planner, obs, goal_xy, n, cost=None, scale=0.0, window='all', 
     h = planner.horizon if horizon is None else int(horizon)
     cond = policy._format_conditions({0: np.asarray(obs, dtype=np.float64),
                                       h - 1: np.array([goal_xy[0], goal_xy[1], 0.0, 0.0])}, n)
+    via = {int(k): to_norm(torch.tensor(np.asarray(xy, dtype=np.float32), device=planner.device))
+           for k, xy in (via or {}).items()}
+
+    def condition(x):
+        x = apply_conditioning(x, cond, action_dim)
+        for k, xy in via.items():
+            x[:, k, sl] = xy
+        return x
+
     T = diffusion.n_timesteps
     guide = cost is not None and scale > 0
     pushes = []
 
     x = torch.randn((n, h, diffusion.transition_dim), device=planner.device)
-    x = apply_conditioning(x, cond, action_dim)
+    x = condition(x)
     for i in reversed(range(T)):
         t = torch.full((n,), i, device=planner.device, dtype=torch.long)
         on = guide and in_window(window, i, T)
@@ -138,7 +150,7 @@ def guided_sample(planner, obs, goal_xy, n, cost=None, scale=0.0, window='all', 
                 step = scale * var[..., :1] * g
                 x = x.clone()
                 x[..., sl] = x[..., sl] - step
-                x = apply_conditioning(x, cond, action_dim)
+                x = condition(x)
                 pushes.append(float((step * span / 2).norm(dim=-1).mean()))
         with torch.no_grad():
             x0 = diffusion.predict_start_from_noise(x, t=t, noise=diffusion.model(x, cond, t))
@@ -161,7 +173,7 @@ def guided_sample(planner, obs, goal_xy, n, cost=None, scale=0.0, window='all', 
             noise = torch.randn_like(x)
             nonzero = (1 - (t == 0).float()).reshape(n, 1, 1)
             x = mean + nonzero * (0.5 * logvar).exp() * noise
-            x = apply_conditioning(x, cond, action_dim)
+            x = condition(x)
 
     sample = x.detach().cpu().numpy()
     actions = policy.normalizer.unnormalize(sample[:, :, :action_dim], 'actions')

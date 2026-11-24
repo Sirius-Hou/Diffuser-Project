@@ -26,6 +26,9 @@ Seeds with no usable cell are listed under `excluded`.
 | ours | same trigger as B2 | best-of-N; if all N hit: A* around the blocked cell, junctions and turns become waypoints, one short plan per straight leg. Optional `gap_route` for partial obstacles with no detour (see results) |
 | oracle | at t = 0 and at `t_appear` | A* on the known map + speed-limited PD controller (gains untuned) |
 
+Config options that change a method without renaming it (default: the old behaviour, checked identical on main seeds 1000, 1001, 1004):
+`executor: "path"` follows the adopted plan as a path (the oracle's PD controller aimed `path_lookahead` points past the plan point nearest the ball) instead of in time, and the predicted-collision check starts at that nearest point; `lag_replan` (B2, b2_guided) gives a new plan to the goal when the ball is more than `lag_replan` from its plan point at a check step (at most `max_lag_replans`).
+
 The obstacle is a virtual region: the first step on which the ball overlaps it ends the episode as a failure. An episode stops at the first step within `success_radius` of the goal.
 
 Settings shared by all methods: `n_samples`, `check_margin` (extra clearance in the predicted-collision check), and `replan_horizon`. With `"remaining"`, a plan to the goal is shortened so that it ends before the step limit; with `"full"` it is always 384 steps; with `"shrink"` it ends when the t = 0 plan would have ended.
@@ -53,6 +56,8 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 | `fig_samples` | `diag/trigger_sampling`: 64 samples at the trigger state for a short and a long detour, and usable samples vs extra cells for H = 384/512/640 |
 | `fig_guidance` | `diag/guided_sampling`, full blockage: 64 guided samples at the trigger state (probe seed 0, 8 cells longer) without guidance, with the obstacle cost, and with obstacle + walls + smooth; outcome of every plan per guidance setting on the 13 long detours (0 usable in every group), and usable plans on the 9 short detours |
 | `fig_guidance_partial` | the same for partial blockage (gap 0.5): guided samples pass through the gap; usable plans with no other route (1% -> 27-32%); closed loop B2 vs b2_guided, with each obstacle hit split into planning (no clear sample) and execution (the ball left a clear plan) |
+| `fig_interior` | `diag/interior_sampling`: interior inpainting (proposal option b). Plans with x-y fixed on the A* detour (probe seed 0) jump to each fixed point and back; outcome per group on the 13 long detours (0 usable everywhere) and usable plans on the 9 short ones |
+| `fig_followup` | 11/23 follow-ups on fresh seeds: (a) B0 B1 B2, B2 + lag replan, oracle on 23 longer full-blockage detours; (b) partial blockage, B2 / b2_guided with the original and the path executor, oracle |
 | `anim_methods` | seed 1042 (12 cells longer): B2, ours (junctions), astar_line + lag, oracle |
 | `anim_junction` | seed 1026, (3,3) blocked: junction waypoints hit the obstacle, corner waypoints get through (post-hoc finding 1) |
 | `anim_lag` | seed 1046: B2 falls behind a clear plan and stalls on a wall; B1's periodic replanning recovers (post-hoc finding 2) |
@@ -69,6 +74,9 @@ In the animations the blue dot is the plan point the controller tracks at that s
 | `probe_partial_gap.json` | the same 8 scenarios, ours with `gap_route` |
 | `probe_partial_wide.json` | 8 partial scenarios with gap 0.7 (`partial_frac` 0.3) |
 | `main.json` | 50 full blockages, random goal per seed, seeds from 1000 (pre-registered); `main_junctions.json` and `main_lag_line.json` reuse its scenarios |
+| `partial_fresh.json` | 16 fresh partial blockages (seeds 3000+) for the b2_guided closed loop |
+| `full_fresh.json`, `full_fresh_lag.json` | 11/23 follow-up: 30 fresh full blockages (seeds 4000+); B2 with `lag_replan` 1.0 |
+| `partial_exec.json`, `partial_exec_path.json` | 11/23 follow-up: 16 fresh partial blockages (seeds 5000+); B2 / b2_guided with `executor: "path"` |
 
 `steps_per_cell` = 32 and `min_horizon` = 32 come from `r3_horizon` (F1, F2).
 
@@ -163,3 +171,24 @@ With alpha 0 the sampler's output is identical to `planner.plan` (max |diff| = 0
 | oracle (A* + PD through the gap) | 8/15 | 6/9 | 2/6 | | 7/7 |
 
 Discordant pairs on the fresh scenarios: only B2 1, only b2_guided 2 (exact McNemar p = 1.0). Success barely moves, but the failures change layer: every B2 obstacle hit followed a replan with no clear sample (planning), while most b2_guided hits followed a replan that did have a clear plan and the ball still touched the obstacle (execution). The gap needs about +-0.12 of tracking accuracy; the original `waypoint_action` controller does not deliver it, and even the A* + PD oracle hits the obstacle in 7 of the 15 fresh scenarios. Results: `results/partial_fresh/guided_loop.md`, `results/probe_partial/guided_loop.md` (`analyze_guided_loop.py`).
+
+## Follow-up experiments (2026-11-23, exploratory)
+
+Plan and decision rules written before the runs: `final_project/補強實驗計畫_2026-11-23.md`. All on fresh seeds; none changes the pre-registered main comparison. Figures: `fig_interior`, `fig_followup`.
+
+**1. Interior inpainting (proposal option b), offline** (`diag/interior_sampling.py`, `diag/summarize_interior.py` -> `results/diag/interior_sampling/summary.md`). One plan to the goal with the x-y of plan points on the A* detour fixed (`guidance.guided_sample(..., via=)`; with no via points the output equals `planner.plan`, max |diff| 0), at indices in proportion to the A* distance. Same 22 probe states and seeds as the guidance E1.
+
+| Group | Detour >= 8 cells longer | <= 6 longer |
+|---|---|---|
+| none fixed (G0) | 0/832 | 84/576 |
+| I1 junctions, H 384 | 0/832 | 30/576 |
+| I2 junctions + corners, H 384 | 0/832 | 30/576 |
+| I3 junctions + corners, H by route length (384-628) | 0/832 | 31/576 |
+| I4 = I3 + guidance (obstacle, walls, smooth) | 0/832 | not run |
+
+No group passes the decision rule. The plan jumps to each fixed point and straight back (median largest step 4.3-4.4 maze units) and otherwise follows its old route through the obstacle; a longer horizon does not help, and the smooth term cannot pull the rest of the plan to the fixed points. On short detours fixing points makes things worse (84 -> 30).
+
+**2. Partial blockage with a path-following executor** (`partial_exec`, 16 scenarios, seeds 5000+; `analyze_extra.py` -> `results/partial_exec/extra.md`): oracle 13/16, B2 5/16, b2_guided 4/16, B2 + path 5/16, b2_guided + path 4/16; every pairwise p = 1.0. As on `partial_fresh`, guidance moves the obstacle hits from the planning layer (B2: 8 of 9) to the execution layer (b2_guided: 9 of 12). The path executor (lookahead 10 points, about 0.35) is not more accurate: it deviates 0.12-0.16 from the plan, about the gap's tolerance, and is slower (4 timeouts). Whether a better executor closes the gap to the oracle stays open.
+
+**3. B2 with lag replanning** (`full_fresh`, 30 full blockages, seeds 4000+, 23 with a longer detour; `results/full_fresh/extra.md`): longer detours B0 0/23, B1 7/23, B2 7/23, **B2 + lag replan 11/23**, oracle 23/23. B2 vs B2 + lag: discordant 0 vs 4, exact McNemar p = 0.125. All four rescues are a ball falling behind a clear plan: one stuck behind a wall, three cutting into the obstacle (B2's execution-layer hits 6 -> 3). Unlike main, B1 does not beat B2 here (7 vs 7).
+

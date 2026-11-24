@@ -18,6 +18,13 @@ The obstacle becomes known at t_appear; touching it ends the episode as a failur
            Diffuser (ablation: is the Diffuser needed once A* has chosen the corridor?)
   oracle : A* on the known map with a PD controller (reference only)
 
+Config options that change a method without renaming it (the default keeps the old behaviour):
+  executor "path"  : follow the adopted plan as a path instead of in time: aim path_lookahead points past the
+           plan point nearest the ball (searched forward only) with the oracle's PD controller; the
+           predicted-collision check then starts at that nearest point instead of at step t - t0
+  lag_replan       : B2 / b2_guided: at a check step, a ball more than lag_replan from its plan point is
+           given a new plan to the goal (best-of-N against the obstacle), at most max_lag_replans times
+
     bash experiments/common/setup/run.sh python experiments/blocked/run_blocked.py --config experiments/blocked/configs/smoke.json --method ours
 Options: --seeds 3 4   --device cpu   --no_png
 """
@@ -50,13 +57,15 @@ class PlanningLoop:
         self.maze, self.obstacle, self.target = env.maze_arr, obstacle, target
         self.goal_cell = mu.xy_to_cell(target)
         self.seq, self.t0 = plan0, 0                # current plan and the step it started at
+        self.path_exec = method != 'oracle' and cfg.get('executor', 'time') == 'path'
+        self.prog = 0                               # executor "path": plan point nearest the ball
         self.legs, self.leg_i = None, 0             # ours: waypoint legs once A* has been used
         self.route_blocked = [obstacle.cell]        # ours: cells the legs' A* avoids ([] through a gap)
         self.path_xy = None                         # oracle: route as a list of points
         self.plans = [] if method == 'oracle' else [(0, plan0)]     # every adopted plan, for plotting
         self.events = []
         self.planning_time = 0.0
-        self.n_calls = self.n_samples = self.n_triggers = self.n_astar = 0
+        self.n_calls = self.n_samples = self.n_triggers = self.n_astar = self.n_lag = 0
 
     def log(self, t, event, **info):
         self.events.append(dict(t=int(t), event=event, **info))
@@ -115,7 +124,7 @@ class PlanningLoop:
                            float(np.linalg.norm(xy[-1] - xy[-2])))
             best = min(clear, key=keys.get)
             n_on_route = sum(k[0] == 0 for k in keys.values())
-        self.seq, self.t0 = plans[best], t
+        self.seq, self.t0, self.prog = plans[best], t, 0
         self.plans.append((t, plans[best]))
         return len(clear), n_on_route
 
@@ -192,7 +201,7 @@ class PlanningLoop:
         turns = [mu.cell_center(path[i]) for i in range(1, len(path) - 1) if mg.is_corner(path, i)] if use_turns else []
         plan = mg.line_plan([state[:2], *turns, leg['xy']], h, self.env.unwrapped.dt)
         n_clear = int(ob.first_collision(plan[:, :2], self.obstacle, self.cfg['check_margin']) is None)
-        self.seq, self.t0 = plan, t
+        self.seq, self.t0, self.prog = plan, t, 0
         self.plans.append((t, plan))
         self.log(t, 'leg_plan', why=why, leg=self.leg_i, waypoint=list(leg['cell']), cells=cells, horizon=h,
                  n=0, n_clear=n_clear, n_on_route=None)
@@ -243,7 +252,15 @@ class PlanningLoop:
                 if self.start_route(t, state):
                     self.plan_leg(t, state, 'first_leg')
                 return
-        if not ob.collides(self.seq[max(t - self.t0, 0):, :2], self.obstacle, cfg['check_margin']):
+        if (not self.reroutes and cfg.get('lag_replan') and self.n_lag < cfg.get('max_lag_replans', 10)):
+            lag = float(np.linalg.norm(state[:2] - self.seq[min(t - self.t0, len(self.seq) - 1), :2]))
+            if lag > cfg['lag_replan']:
+                self.n_lag += 1
+                self.log(t, 'lag_replan', lag=lag)
+                self.replan_to_goal(t, state, True)
+                return
+        rest = self.prog if self.path_exec else max(t - self.t0, 0)
+        if not ob.collides(self.seq[rest:, :2], self.obstacle, cfg['check_margin']):
             return
         self.n_triggers += 1
         if self.n_triggers > cfg['max_triggers']:
@@ -266,7 +283,23 @@ class PlanningLoop:
     def action(self, t, state):
         if self.method == 'oracle':
             return self.oracle_action(state)
+        if self.path_exec:
+            return self.path_action(state)
         return waypoint_action(self.seq, t - self.t0, state)
+
+    def path_action(self, state):
+        """executor "path": the oracle's controller on the adopted plan, aiming path_lookahead points ahead."""
+        xy = self.seq[:, :2]
+        end = min(len(xy), self.prog + self.cfg.get('path_window', 50))
+        self.prog += int(np.argmin(np.linalg.norm(xy[self.prog:end] - state[:2], axis=1)))
+        return self.pd_to(xy[min(self.prog + self.cfg['path_lookahead'], len(xy) - 1)], state)
+
+    def pd_to(self, aim, state):
+        v_des = self.cfg['oracle_kp'] * (aim - state[:2])
+        speed = np.linalg.norm(v_des)
+        if speed > self.cfg['oracle_vmax']:
+            v_des *= self.cfg['oracle_vmax'] / speed
+        return self.cfg['oracle_kv'] * (v_des - state[2:])
 
     # ---- oracle --------------------------------------------------------------------------------
 
@@ -290,12 +323,7 @@ class PlanningLoop:
     def oracle_action(self, state):
         """Chase the route point after the nearest one with a speed-limited PD controller."""
         i = int(np.argmin(np.linalg.norm(self.path_xy - state[:2], axis=1)))
-        aim = self.path_xy[min(i + 1, len(self.path_xy) - 1)]
-        v_des = self.cfg['oracle_kp'] * (aim - state[:2])
-        speed = np.linalg.norm(v_des)
-        if speed > self.cfg['oracle_vmax']:
-            v_des *= self.cfg['oracle_vmax'] / speed
-        return self.cfg['oracle_kv'] * (v_des - state[2:])
+        return self.pd_to(self.path_xy[min(i + 1, len(self.path_xy) - 1)], state)
 
 
 def classify_failure(rec, loop, stalled, late_contact):
@@ -374,7 +402,7 @@ def run_episode(sc, plan0, method, env, planner, cfg):
         planning_time_s=float(loop.planning_time + (0.0 if method == 'oracle' else sc['plan0_time_s'])),
         n_plans=loop.n_calls + (0 if method == 'oracle' else 1),
         n_samples=loop.n_samples + (0 if method == 'oracle' else 1),
-        n_replans=len(replans), n_triggers=loop.n_triggers, n_astar_calls=loop.n_astar,
+        n_replans=len(replans), n_triggers=loop.n_triggers, n_astar_calls=loop.n_astar, n_lag_replans=loop.n_lag,
         first_replan_n_clear=first['n_clear'] if first else None,
         used_astar=bool(loop.n_astar) and loop.reroutes,
         n_no_detour=sum(e['event'] == 'no_detour' for e in loop.events),

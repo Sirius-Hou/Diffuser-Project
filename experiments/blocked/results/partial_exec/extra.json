@@ -1,0 +1,119 @@
+{
+  "name": "partial_exec",
+  "methods": [
+    "oracle",
+    "B2",
+    "b2_guided",
+    "B2 + path",
+    "b2_guided + path"
+  ],
+  "n": 16,
+  "dropped": [],
+  "success": {
+    "oracle": {
+      "another route": 10,
+      "no other route": 3,
+      "all": 13
+    },
+    "B2": {
+      "another route": 4,
+      "no other route": 1,
+      "all": 5
+    },
+    "b2_guided": {
+      "another route": 4,
+      "no other route": 0,
+      "all": 4
+    },
+    "B2 + path": {
+      "another route": 4,
+      "no other route": 1,
+      "all": 5
+    },
+    "b2_guided + path": {
+      "another route": 3,
+      "no other route": 1,
+      "all": 4
+    }
+  },
+  "pairs": [
+    {
+      "a": "b2_guided",
+      "b": "b2_guided + path",
+      "group": "all",
+      "n": 16,
+      "only_a": 1,
+      "only_b": 1,
+      "p": 1.0
+    },
+    {
+      "a": "B2",
+      "b": "B2 + path",
+      "group": "all",
+      "n": 16,
+      "only_a": 1,
+      "only_b": 1,
+      "p": 1.0
+    },
+    {
+      "a": "B2 + path",
+      "b": "b2_guided + path",
+      "group": "all",
+      "n": 16,
+      "only_a": 1,
+      "only_b": 0,
+      "p": 1.0
+    },
+    {
+      "a": "B2",
+      "b": "b2_guided",
+      "group": "all",
+      "n": 16,
+      "only_a": 2,
+      "only_b": 1,
+      "p": 1.0
+    }
+  ],
+  "collision_layer": {
+    "oracle": {
+      "no replan": 3
+    },
+    "B2": {
+      "planning": 8,
+      "execution": 1
+    },
+    "b2_guided": {
+      "execution": 9,
+      "planning": 3
+    },
+    "B2 + path": {
+      "planning": 7,
+      "execution": 1
+    },
+    "b2_guided + path": {
+      "execution": 5,
+      "planning": 3
+    }
+  },
+  "failures": {
+    "oracle": {
+      "obstacle_collision": 3
+    },
+    "B2": {
+      "obstacle_collision": 9,
+      "stuck_on_wall": 2
+    },
+    "b2_guided": {
+      "obstacle_collision": 12
+    },
+    "B2 + path": {
+      "stuck_on_wall": 1,
+      "obstacle_collision": 8,
+      "timeout_still_moving": 2
+    },
+    "b2_guided + path": {
+      "obstacle_collision": 8,
+      "timeout_still_moving": 4
+    }
+  }
+}
