@@ -1,0 +1,289 @@
+{
+ "method": "Ours",
+ "seed": 62,
+ "scenario_id": "full_s062",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 90,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 90,
+ "start_cell": "1,3",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": true,
+ "collision_step": 547,
+ "final_dist_to_goal": 2.6534892075533674,
+ "min_dist_to_goal": 2.1409230641828594,
+ "steps": 547,
+ "stop_reason": "obstacle_collision",
+ "failure_reason": "obstacle_collision",
+ "planning_time_s": 28.742456615000037,
+ "n_plan_calls": 7,
+ "n_plans": 97,
+ "planning_time_per_call_max_s": 4.554256425000176,
+ "episode_time_s": 30.412457905999872,
+ "first_replan_after_obstacle": 0,
+ "n_checks": 44,
+ "n_triggers": 1,
+ "n_all_collide": 1,
+ "n_astar": 1,
+ "n_astar_fail": 0,
+ "n_waypoints": 4,
+ "n_segments": 5,
+ "n_replans": 6,
+ "path_length": 18.43292891139687,
+ "wall_contact_steps": 20,
+ "wall_contact_events": 3,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 90,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 90,
+   "event": "trigger"
+  },
+  {
+   "t": 90,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 90,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 90,
+   "event": "astar",
+   "here": [
+    3,
+    4
+   ],
+   "waypoints": [
+    [
+     3,
+     6
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 17
+  },
+  {
+   "t": 90,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 92
+  },
+  {
+   "t": 90,
+   "event": "segment",
+   "target": [
+    3,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 16,
+   "n_ok": 16
+  },
+  {
+   "t": 142,
+   "event": "waypoint_reached",
+   "cell": [
+    3,
+    6
+   ]
+  },
+  {
+   "t": 142,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 142,
+   "event": "segment",
+   "target": [
+    1,
+    8
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 13,
+   "n_ok": 6
+  },
+  {
+   "t": 260,
+   "event": "waypoint_reached",
+   "cell": [
+    1,
+    8
+   ]
+  },
+  {
+   "t": 260,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 260,
+   "event": "segment",
+   "target": [
+    3,
+    10
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 16,
+   "n_ok": 10
+  },
+  {
+   "t": 387,
+   "event": "waypoint_reached",
+   "cell": [
+    3,
+    10
+   ]
+  },
+  {
+   "t": 387,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 387,
+   "event": "segment",
+   "target": [
+    5,
+    8
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 16,
+   "n_ok": 16
+  },
+  {
+   "t": 520,
+   "event": "waypoint_reached",
+   "cell": [
+    5,
+    8
+   ]
+  },
+  {
+   "t": 520,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 124
+  },
+  {
+   "t": 520,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 124,
+   "n_cells": 3,
+   "n_clear": 16,
+   "n_ok": 16
+  },
+  {
+   "t": 547,
+   "event": "obstacle_collision"
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 4.554256425000176,
+   "purpose": "initial"
+  },
+  {
+   "t": 90,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.84509208999998,
+   "purpose": "trigger"
+  },
+  {
+   "t": 90,
+   "n": 16,
+   "H": 92,
+   "seconds": 4.222207921000063,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 142,
+   "n": 16,
+   "H": 152,
+   "seconds": 4.314352457000041,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 260,
+   "n": 16,
+   "H": 152,
+   "seconds": 4.1652019799998925,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 387,
+   "n": 16,
+   "H": 152,
+   "seconds": 3.688963240000021,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 520,
+   "n": 16,
+   "H": 124,
+   "seconds": 3.952382501999864,
+   "purpose": "next_segment"
+  }
+ ]
+}

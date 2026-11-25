@@ -1,0 +1,265 @@
+{
+ "method": "B2",
+ "seed": 107,
+ "scenario_id": "partial50_s107",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 68,
+   "kind": "partial",
+   "frac": 0.5,
+   "side": "lo",
+   "axis": 0
+  }
+ ],
+ "appear_t": 68,
+ "start_cell": "5,7",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 2.801531277862651,
+ "min_dist_to_goal": 2.7528705212198163,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "stuck_on_wall",
+ "planning_time_s": 31.644974780002485,
+ "n_plan_calls": 9,
+ "n_plans": 129,
+ "planning_time_per_call_max_s": 4.071298372000456,
+ "episode_time_s": 36.058503457999905,
+ "first_replan_after_obstacle": 2,
+ "n_checks": 73,
+ "n_triggers": 8,
+ "n_all_collide": 8,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 8,
+ "path_length": 13.906006278896811,
+ "wall_contact_steps": 431,
+ "wall_contact_events": 2,
+ "visited_blocked_cell": true,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 68,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "partial"
+  },
+  {
+   "t": 70,
+   "event": "trigger"
+  },
+  {
+   "t": 70,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 70,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 80,
+   "event": "trigger"
+  },
+  {
+   "t": 80,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 80,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 90,
+   "event": "trigger"
+  },
+  {
+   "t": 90,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 90,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 100,
+   "event": "trigger"
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 110,
+   "event": "trigger"
+  },
+  {
+   "t": 110,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 110,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 120,
+   "event": "trigger"
+  },
+  {
+   "t": 120,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 120,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 130,
+   "event": "trigger"
+  },
+  {
+   "t": 130,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 130,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 140,
+   "event": "trigger"
+  },
+  {
+   "t": 140,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 140,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 1,
+   "n_ok": 0
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.364988340999844,
+   "purpose": "initial"
+  },
+  {
+   "t": 70,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.334703114000149,
+   "purpose": "trigger"
+  },
+  {
+   "t": 80,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.022541082000316,
+   "purpose": "trigger"
+  },
+  {
+   "t": 90,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3018478419999155,
+   "purpose": "trigger"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.341606753000633,
+   "purpose": "trigger"
+  },
+  {
+   "t": 110,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.071298372000456,
+   "purpose": "trigger"
+  },
+  {
+   "t": 120,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3772831930000393,
+   "purpose": "trigger"
+  },
+  {
+   "t": 130,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.258861679000802,
+   "purpose": "trigger"
+  },
+  {
+   "t": 140,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.5718444040003305,
+   "purpose": "trigger"
+  }
+ ]
+}

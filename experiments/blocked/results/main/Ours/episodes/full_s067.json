@@ -1,0 +1,247 @@
+{
+ "method": "Ours",
+ "seed": 67,
+ "scenario_id": "full_s067",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 138,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 138,
+ "start_cell": "6,6",
+ "success": true,
+ "first_success_step": 756,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 0.47162954633637305,
+ "min_dist_to_goal": 0.47162954633637305,
+ "steps": 756,
+ "stop_reason": "success",
+ "failure_reason": "",
+ "planning_time_s": 21.65074684300089,
+ "n_plan_calls": 6,
+ "n_plans": 81,
+ "planning_time_per_call_max_s": 4.207984340000621,
+ "episode_time_s": 23.763982886999656,
+ "first_replan_after_obstacle": 2,
+ "n_checks": 62,
+ "n_triggers": 2,
+ "n_all_collide": 3,
+ "n_astar": 2,
+ "n_astar_fail": 0,
+ "n_waypoints": 2,
+ "n_segments": 4,
+ "n_replans": 5,
+ "path_length": 24.94480024595243,
+ "wall_contact_steps": 9,
+ "wall_contact_events": 2,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 138,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 140,
+   "event": "trigger"
+  },
+  {
+   "t": 140,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 140,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 140,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 140,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 304
+  },
+  {
+   "t": 140,
+   "event": "segment",
+   "target": [
+    2,
+    8
+   ],
+   "H": 304,
+   "n_cells": 9,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 150,
+   "event": "trigger"
+  },
+  {
+   "t": 150,
+   "event": "adopt_plan",
+   "why": "trigger_in_chain",
+   "H": 304
+  },
+  {
+   "t": 150,
+   "event": "segment",
+   "target": [
+    2,
+    8
+   ],
+   "H": 304,
+   "n_cells": 9,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 150,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 150,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 304
+  },
+  {
+   "t": 150,
+   "event": "segment",
+   "target": [
+    2,
+    8
+   ],
+   "H": 304,
+   "n_cells": 9,
+   "n_clear": 2,
+   "n_ok": 2
+  },
+  {
+   "t": 445,
+   "event": "waypoint_reached",
+   "cell": [
+    2,
+    8
+   ]
+  },
+  {
+   "t": 445,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 332
+  },
+  {
+   "t": 445,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 332,
+   "n_cells": 10,
+   "n_clear": 14,
+   "n_ok": 12
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.2936644370001886,
+   "purpose": "initial"
+  },
+  {
+   "t": 140,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.207984340000621,
+   "purpose": "trigger"
+  },
+  {
+   "t": 140,
+   "n": 16,
+   "H": 304,
+   "seconds": 3.3478980969994154,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 150,
+   "n": 16,
+   "H": 304,
+   "seconds": 3.2532961100005195,
+   "purpose": "trigger_in_chain"
+  },
+  {
+   "t": 150,
+   "n": 16,
+   "H": 304,
+   "seconds": 3.664313413000855,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 445,
+   "n": 16,
+   "H": 332,
+   "seconds": 3.883590445999289,
+   "purpose": "next_segment"
+  }
+ ]
+}

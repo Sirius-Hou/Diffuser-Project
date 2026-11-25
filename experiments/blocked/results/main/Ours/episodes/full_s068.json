@@ -1,0 +1,309 @@
+{
+ "method": "Ours",
+ "seed": 68,
+ "scenario_id": "full_s068",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 92,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 92,
+ "start_cell": "5,8",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 2.131134180603344,
+ "min_dist_to_goal": 1.8791890743797006,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "timeout_still_moving",
+ "planning_time_s": 28.504803000998436,
+ "n_plan_calls": 8,
+ "n_plans": 113,
+ "planning_time_per_call_max_s": 4.39348850800161,
+ "episode_time_s": 31.055233047,
+ "first_replan_after_obstacle": 8,
+ "n_checks": 70,
+ "n_triggers": 3,
+ "n_all_collide": 4,
+ "n_astar": 2,
+ "n_astar_fail": 0,
+ "n_waypoints": 2,
+ "n_segments": 6,
+ "n_replans": 7,
+ "path_length": 23.93506428761819,
+ "wall_contact_steps": 90,
+ "wall_contact_events": 5,
+ "visited_blocked_cell": true,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 92,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 100,
+   "event": "trigger"
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 100,
+   "event": "astar",
+   "here": [
+    6,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 18
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 272
+  },
+  {
+   "t": 100,
+   "event": "segment",
+   "target": [
+    2,
+    8
+   ],
+   "H": 272,
+   "n_cells": 8,
+   "n_clear": 2,
+   "n_ok": 2
+  },
+  {
+   "t": 391,
+   "event": "segment_exhausted",
+   "cell": [
+    2,
+    8
+   ]
+  },
+  {
+   "t": 391,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 384
+  },
+  {
+   "t": 391,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 384,
+   "n_cells": 14,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 400,
+   "event": "trigger"
+  },
+  {
+   "t": 400,
+   "event": "adopt_plan",
+   "why": "trigger_in_chain",
+   "H": 384
+  },
+  {
+   "t": 400,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 384,
+   "n_cells": 14,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 400,
+   "event": "astar",
+   "here": [
+    2,
+    6
+   ],
+   "waypoints": [
+    [
+     3,
+     10
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 14
+  },
+  {
+   "t": 400,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 244
+  },
+  {
+   "t": 400,
+   "event": "segment",
+   "target": [
+    3,
+    10
+   ],
+   "H": 244,
+   "n_cells": 7,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 410,
+   "event": "trigger"
+  },
+  {
+   "t": 410,
+   "event": "adopt_plan",
+   "why": "trigger_in_chain",
+   "H": 244
+  },
+  {
+   "t": 410,
+   "event": "segment",
+   "target": [
+    3,
+    10
+   ],
+   "H": 244,
+   "n_cells": 7,
+   "n_clear": 1,
+   "n_ok": 1
+  },
+  {
+   "t": 637,
+   "event": "waypoint_reached",
+   "cell": [
+    3,
+    10
+   ]
+  },
+  {
+   "t": 637,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 244
+  },
+  {
+   "t": 637,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 244,
+   "n_cells": 7,
+   "n_clear": 16,
+   "n_ok": 16
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.26695091900001,
+   "purpose": "initial"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.2639527269984683,
+   "purpose": "trigger"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 272,
+   "seconds": 4.39348850800161,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 391,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.244401764999566,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 400,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.241645015999893,
+   "purpose": "trigger_in_chain"
+  },
+  {
+   "t": 400,
+   "n": 16,
+   "H": 244,
+   "seconds": 3.884287396000218,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 410,
+   "n": 16,
+   "H": 244,
+   "seconds": 3.8075694749986724,
+   "purpose": "trigger_in_chain"
+  },
+  {
+   "t": 637,
+   "n": 16,
+   "H": 244,
+   "seconds": 3.4025071949999983,
+   "purpose": "next_segment"
+  }
+ ]
+}

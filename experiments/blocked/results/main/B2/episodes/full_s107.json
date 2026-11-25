@@ -1,0 +1,361 @@
+{
+ "method": "B2",
+ "seed": 107,
+ "scenario_id": "full_s107",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 68,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 68,
+ "start_cell": "5,7",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 3.80158348948487,
+ "min_dist_to_goal": 2.7528705212198163,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "timeout_still_moving",
+ "planning_time_s": 46.023259554003744,
+ "n_plan_calls": 13,
+ "n_plans": 193,
+ "planning_time_per_call_max_s": 4.219494114999179,
+ "episode_time_s": 51.14054166200003,
+ "first_replan_after_obstacle": 2,
+ "n_checks": 73,
+ "n_triggers": 12,
+ "n_all_collide": 12,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 12,
+ "path_length": 21.794558408328335,
+ "wall_contact_steps": 225,
+ "wall_contact_events": 6,
+ "visited_blocked_cell": true,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 68,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 70,
+   "event": "trigger"
+  },
+  {
+   "t": 70,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 70,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 80,
+   "event": "trigger"
+  },
+  {
+   "t": 80,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 80,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 90,
+   "event": "trigger"
+  },
+  {
+   "t": 90,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 90,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 100,
+   "event": "trigger"
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 110,
+   "event": "trigger"
+  },
+  {
+   "t": 110,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 110,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 120,
+   "event": "trigger"
+  },
+  {
+   "t": 120,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 120,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 130,
+   "event": "trigger"
+  },
+  {
+   "t": 130,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 130,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 140,
+   "event": "trigger"
+  },
+  {
+   "t": 140,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 140,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 1,
+   "n_ok": 0
+  },
+  {
+   "t": 420,
+   "event": "trigger"
+  },
+  {
+   "t": 420,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 340
+  },
+  {
+   "t": 420,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 430,
+   "event": "trigger"
+  },
+  {
+   "t": 430,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 328
+  },
+  {
+   "t": 430,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 440,
+   "event": "trigger"
+  },
+  {
+   "t": 440,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 320
+  },
+  {
+   "t": 440,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 450,
+   "event": "trigger"
+  },
+  {
+   "t": 450,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 308
+  },
+  {
+   "t": 450,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 1,
+   "n_ok": 0
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.910809592000078,
+   "purpose": "initial"
+  },
+  {
+   "t": 70,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.6028620960005355,
+   "purpose": "trigger"
+  },
+  {
+   "t": 80,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.2588719409995974,
+   "purpose": "trigger"
+  },
+  {
+   "t": 90,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.241155562000131,
+   "purpose": "trigger"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.219494114999179,
+   "purpose": "trigger"
+  },
+  {
+   "t": 110,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.235576603001391,
+   "purpose": "trigger"
+  },
+  {
+   "t": 120,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.257854554000005,
+   "purpose": "trigger"
+  },
+  {
+   "t": 130,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.8065032119993703,
+   "purpose": "trigger"
+  },
+  {
+   "t": 140,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.548311824000848,
+   "purpose": "trigger"
+  },
+  {
+   "t": 420,
+   "n": 16,
+   "H": 340,
+   "seconds": 3.2986666030010383,
+   "purpose": "trigger"
+  },
+  {
+   "t": 430,
+   "n": 16,
+   "H": 328,
+   "seconds": 3.2715448110011494,
+   "purpose": "trigger"
+  },
+  {
+   "t": 440,
+   "n": 16,
+   "H": 320,
+   "seconds": 4.131386699998984,
+   "purpose": "trigger"
+  },
+  {
+   "t": 450,
+   "n": 16,
+   "H": 308,
+   "seconds": 3.240221941001437,
+   "purpose": "trigger"
+  }
+ ]
+}

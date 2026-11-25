@@ -1,0 +1,313 @@
+{
+ "method": "B2",
+ "seed": 82,
+ "scenario_id": "full_s082",
+ "obstacles": [
+  {
+   "cell": [
+    4,
+    6
+   ],
+   "appear_t": 106,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 106,
+ "start_cell": "5,1",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 1.8023641747897248,
+ "min_dist_to_goal": 1.801501190608422,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "timeout_still_moving",
+ "planning_time_s": 38.323421836001216,
+ "n_plan_calls": 11,
+ "n_plans": 161,
+ "planning_time_per_call_max_s": 4.052701171000081,
+ "episode_time_s": 43.25215381899943,
+ "first_replan_after_obstacle": 4,
+ "n_checks": 69,
+ "n_triggers": 10,
+ "n_all_collide": 9,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 10,
+ "path_length": 19.537141641916545,
+ "wall_contact_steps": 334,
+ "wall_contact_events": 3,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 106,
+   "event": "obstacle_appears",
+   "cell": [
+    4,
+    6
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 110,
+   "event": "trigger"
+  },
+  {
+   "t": 110,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 110,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 120,
+   "event": "trigger"
+  },
+  {
+   "t": 120,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 120,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 130,
+   "event": "trigger"
+  },
+  {
+   "t": 130,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 130,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 140,
+   "event": "trigger"
+  },
+  {
+   "t": 140,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 140,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 150,
+   "event": "trigger"
+  },
+  {
+   "t": 150,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 150,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 160,
+   "event": "trigger"
+  },
+  {
+   "t": 160,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 160,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 170,
+   "event": "trigger"
+  },
+  {
+   "t": 170,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 170,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 180,
+   "event": "trigger"
+  },
+  {
+   "t": 180,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 180,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 190,
+   "event": "trigger"
+  },
+  {
+   "t": 190,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 190,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 200,
+   "event": "trigger"
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 1,
+   "n_ok": 1
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.2899506539997674,
+   "purpose": "initial"
+  },
+  {
+   "t": 110,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.847678903999622,
+   "purpose": "trigger"
+  },
+  {
+   "t": 120,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.46358265300114,
+   "purpose": "trigger"
+  },
+  {
+   "t": 130,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.2617583139999624,
+   "purpose": "trigger"
+  },
+  {
+   "t": 140,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3426240110002254,
+   "purpose": "trigger"
+  },
+  {
+   "t": 150,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.052701171000081,
+   "purpose": "trigger"
+  },
+  {
+   "t": 160,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.2606699200005096,
+   "purpose": "trigger"
+  },
+  {
+   "t": 170,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.2488412330003484,
+   "purpose": "trigger"
+  },
+  {
+   "t": 180,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.9456749749988376,
+   "purpose": "trigger"
+  },
+  {
+   "t": 190,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.363196506999884,
+   "purpose": "trigger"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.246743494000839,
+   "purpose": "trigger"
+  }
+ ]
+}

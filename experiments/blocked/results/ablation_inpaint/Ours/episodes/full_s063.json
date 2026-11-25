@@ -1,0 +1,863 @@
+{
+ "method": "Ours",
+ "seed": 63,
+ "scenario_id": "full_s063",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 159,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 159,
+ "start_cell": "2,6",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 2.8015700161255213,
+ "min_dist_to_goal": 2.7972798641663497,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "stuck_on_wall",
+ "planning_time_s": 58.474367390002044,
+ "n_plan_calls": 16,
+ "n_plans": 241,
+ "planning_time_per_call_max_s": 4.450435575000483,
+ "episode_time_s": 65.90060985899981,
+ "first_replan_after_obstacle": 1,
+ "n_checks": 64,
+ "n_triggers": 14,
+ "n_all_collide": 15,
+ "n_astar": 14,
+ "n_astar_fail": 0,
+ "n_waypoints": 14,
+ "n_segments": 14,
+ "n_replans": 15,
+ "path_length": 18.638150729115736,
+ "wall_contact_steps": 255,
+ "wall_contact_events": 3,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 159,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 160,
+   "event": "trigger"
+  },
+  {
+   "t": 160,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 160,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 160,
+   "event": "astar",
+   "here": [
+    4,
+    6
+   ],
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 16
+  },
+  {
+   "t": 160,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 160,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    158
+   ],
+   "waypoints": [
+    [
+     2.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 13,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 170,
+   "event": "trigger"
+  },
+  {
+   "t": 170,
+   "event": "astar",
+   "here": [
+    5,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 17
+  },
+  {
+   "t": 170,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 170,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    148
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 14,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 180,
+   "event": "trigger"
+  },
+  {
+   "t": 180,
+   "event": "astar",
+   "here": [
+    5,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 17
+  },
+  {
+   "t": 180,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 180,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    148
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 16,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 190,
+   "event": "trigger"
+  },
+  {
+   "t": 190,
+   "event": "astar",
+   "here": [
+    5,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 17
+  },
+  {
+   "t": 190,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 190,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    148
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 14,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 200,
+   "event": "trigger"
+  },
+  {
+   "t": 200,
+   "event": "astar",
+   "here": [
+    6,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 18
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    160
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 15,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 210,
+   "event": "trigger"
+  },
+  {
+   "t": 210,
+   "event": "astar",
+   "here": [
+    6,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 18
+  },
+  {
+   "t": 210,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 210,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    160
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 16,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 220,
+   "event": "trigger"
+  },
+  {
+   "t": 220,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 220,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 220,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 15,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 230,
+   "event": "trigger"
+  },
+  {
+   "t": 230,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 230,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 230,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 15,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 240,
+   "event": "trigger"
+  },
+  {
+   "t": 240,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 240,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 240,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 15,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 250,
+   "event": "trigger"
+  },
+  {
+   "t": 250,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 250,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 250,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 14,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 260,
+   "event": "trigger"
+  },
+  {
+   "t": 260,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 260,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 260,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 12,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 270,
+   "event": "trigger"
+  },
+  {
+   "t": 270,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 270,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 270,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 14,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 280,
+   "event": "trigger"
+  },
+  {
+   "t": 280,
+   "event": "astar",
+   "here": [
+    6,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 18
+  },
+  {
+   "t": 280,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 280,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    160
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 13,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 290,
+   "event": "trigger"
+  },
+  {
+   "t": 290,
+   "event": "astar",
+   "here": [
+    6,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 18
+  },
+  {
+   "t": 290,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 290,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    160
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 1,
+   "n_wall_ok": 15,
+   "n_ok": 0,
+   "n_kink": 16
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.4470988459997898,
+   "purpose": "initial"
+  },
+  {
+   "t": 160,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.348476601000584,
+   "purpose": "trigger"
+  },
+  {
+   "t": 160,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.4864202140006455,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 170,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.232848616999945,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 180,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.4085320089998277,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 190,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.427308522000203,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.397804195999925,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 210,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.399744371000452,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 220,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.371832361000088,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 230,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.955626480999854,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 240,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.8708376529993984,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 250,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.4456998489995385,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 260,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.559868801000448,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 270,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.450435575000483,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 280,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3313203920006345,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 290,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3405129020002278,
+   "purpose": "inpaint"
+  }
+ ]
+}

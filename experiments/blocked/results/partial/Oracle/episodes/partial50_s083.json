@@ -1,0 +1,88 @@
+{
+ "method": "Oracle",
+ "seed": 83,
+ "scenario_id": "partial50_s083",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 171,
+   "kind": "partial",
+   "frac": 0.5,
+   "side": "hi",
+   "axis": 0
+  }
+ ],
+ "appear_t": 171,
+ "start_cell": "3,1",
+ "success": true,
+ "first_success_step": 559,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 0.4526971368125389,
+ "min_dist_to_goal": 0.4526971368125389,
+ "steps": 559,
+ "stop_reason": "success",
+ "failure_reason": "",
+ "planning_time_s": 3.3564412850000735,
+ "n_plan_calls": 1,
+ "n_plans": 1,
+ "planning_time_per_call_max_s": 3.3564412850000735,
+ "episode_time_s": 3.421898204000172,
+ "first_replan_after_obstacle": 0,
+ "n_checks": 0,
+ "n_triggers": 0,
+ "n_all_collide": 0,
+ "n_astar": 1,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 1,
+ "path_length": 21.363584727536846,
+ "wall_contact_steps": 13,
+ "wall_contact_events": 1,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 171,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "partial"
+  },
+  {
+   "t": 171,
+   "event": "adopt_plan",
+   "why": "oracle_route",
+   "H": 17
+  },
+  {
+   "t": 171,
+   "event": "astar",
+   "here": [
+    4,
+    6
+   ],
+   "route_len": 16
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.3564412850000735,
+   "purpose": "initial"
+  }
+ ]
+}

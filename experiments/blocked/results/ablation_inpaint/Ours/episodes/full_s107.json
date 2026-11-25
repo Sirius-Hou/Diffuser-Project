@@ -1,0 +1,423 @@
+{
+ "method": "Ours",
+ "seed": 107,
+ "scenario_id": "full_s107",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 68,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 68,
+ "start_cell": "5,7",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 2.801508008879477,
+ "min_dist_to_goal": 2.7528705212198163,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "stuck_on_wall",
+ "planning_time_s": 28.91078551099963,
+ "n_plan_calls": 8,
+ "n_plans": 113,
+ "planning_time_per_call_max_s": 4.223955517999457,
+ "episode_time_s": 32.64058082700012,
+ "first_replan_after_obstacle": 2,
+ "n_checks": 73,
+ "n_triggers": 6,
+ "n_all_collide": 7,
+ "n_astar": 6,
+ "n_astar_fail": 0,
+ "n_waypoints": 6,
+ "n_segments": 6,
+ "n_replans": 7,
+ "path_length": 14.763507457231844,
+ "wall_contact_steps": 374,
+ "wall_contact_events": 3,
+ "visited_blocked_cell": true,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 68,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 70,
+   "event": "trigger"
+  },
+  {
+   "t": 70,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 70,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 70,
+   "event": "astar",
+   "here": [
+    6,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 18
+  },
+  {
+   "t": 70,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 70,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    160
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 16,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 80,
+   "event": "trigger"
+  },
+  {
+   "t": 80,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 80,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 80,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 16,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 90,
+   "event": "trigger"
+  },
+  {
+   "t": 90,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 90,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 90,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 14,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 100,
+   "event": "trigger"
+  },
+  {
+   "t": 100,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 15,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 110,
+   "event": "trigger"
+  },
+  {
+   "t": 110,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 110,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 110,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 14,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 120,
+   "event": "trigger"
+  },
+  {
+   "t": 120,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 120,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 120,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    171
+   ],
+   "waypoints": [
+    [
+     1.8,
+     7.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 1,
+   "n_wall_ok": 11,
+   "n_ok": 0,
+   "n_kink": 16
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.367085572999713,
+   "purpose": "initial"
+  },
+  {
+   "t": 70,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.223955517999457,
+   "purpose": "trigger"
+  },
+  {
+   "t": 70,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.368503420999332,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 80,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3064511970005697,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 90,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.7325491920000786,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.102221754999846,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 110,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.433982902000025,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 120,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.37603595300061,
+   "purpose": "inpaint"
+  }
+ ]
+}

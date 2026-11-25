@@ -1,0 +1,177 @@
+{
+ "method": "B1",
+ "seed": 67,
+ "scenario_id": "full_s067",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 138,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 138,
+ "start_cell": "6,6",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": true,
+ "collision_step": 600,
+ "final_dist_to_goal": 2.4986813968996344,
+ "min_dist_to_goal": 1.9815243396943165,
+ "steps": 600,
+ "stop_reason": "obstacle_collision",
+ "failure_reason": "obstacle_collision",
+ "planning_time_s": 22.17369506700379,
+ "n_plan_calls": 6,
+ "n_plans": 81,
+ "planning_time_per_call_max_s": 4.1978105190009956,
+ "episode_time_s": 24.383416313999987,
+ "first_replan_after_obstacle": 62,
+ "n_checks": 0,
+ "n_triggers": 0,
+ "n_all_collide": 2,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 5,
+ "path_length": 20.604320493326185,
+ "wall_contact_steps": 0,
+ "wall_contact_events": 0,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 16,
+   "n_ok": 16
+  },
+  {
+   "t": 138,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 1,
+   "n_ok": 0
+  },
+  {
+   "t": 300,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 300,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 15,
+   "n_ok": 15
+  },
+  {
+   "t": 400,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 360
+  },
+  {
+   "t": 400,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 11,
+   "n_ok": 10
+  },
+  {
+   "t": 500,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 260
+  },
+  {
+   "t": 500,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 600,
+   "event": "obstacle_collision"
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.423898781000389,
+   "purpose": "initial"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.165951345001304,
+   "purpose": "periodic"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.244501961999049,
+   "purpose": "periodic"
+  },
+  {
+   "t": 300,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.394064290001552,
+   "purpose": "periodic"
+  },
+  {
+   "t": 400,
+   "n": 16,
+   "H": 360,
+   "seconds": 4.1978105190009956,
+   "purpose": "periodic"
+  },
+  {
+   "t": 500,
+   "n": 16,
+   "H": 260,
+   "seconds": 3.747468170000502,
+   "purpose": "periodic"
+  }
+ ]
+}

@@ -1,0 +1,117 @@
+{
+ "method": "B1",
+ "seed": 82,
+ "scenario_id": "full_s082",
+ "obstacles": [
+  {
+   "cell": [
+    4,
+    6
+   ],
+   "appear_t": 106,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 106,
+ "start_cell": "5,1",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": true,
+ "collision_step": 208,
+ "final_dist_to_goal": 4.739644847915667,
+ "min_dist_to_goal": 4.739644847915667,
+ "steps": 208,
+ "stop_reason": "obstacle_collision",
+ "failure_reason": "obstacle_collision",
+ "planning_time_s": 10.889326303999042,
+ "n_plan_calls": 3,
+ "n_plans": 33,
+ "planning_time_per_call_max_s": 4.1016398439987825,
+ "episode_time_s": 12.015247823999744,
+ "first_replan_after_obstacle": 94,
+ "n_checks": 0,
+ "n_triggers": 0,
+ "n_all_collide": 1,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 2,
+ "path_length": 7.286081145599294,
+ "wall_contact_steps": 0,
+ "wall_contact_events": 0,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 16,
+   "n_ok": 15
+  },
+  {
+   "t": 106,
+   "event": "obstacle_appears",
+   "cell": [
+    4,
+    6
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 208,
+   "event": "obstacle_collision"
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.2444584400000167,
+   "purpose": "initial"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.1016398439987825,
+   "purpose": "periodic"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.5432280200002424,
+   "purpose": "periodic"
+  }
+ ]
+}

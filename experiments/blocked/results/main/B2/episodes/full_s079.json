@@ -1,0 +1,149 @@
+{
+ "method": "B2",
+ "seed": 79,
+ "scenario_id": "full_s079",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    9
+   ],
+   "appear_t": 174,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 174,
+ "start_cell": "3,9",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": true,
+ "collision_step": 210,
+ "final_dist_to_goal": 1.989750063463743,
+ "min_dist_to_goal": 1.989750063463743,
+ "steps": 210,
+ "stop_reason": "obstacle_collision",
+ "failure_reason": "obstacle_collision",
+ "planning_time_s": 13.906962909002687,
+ "n_plan_calls": 4,
+ "n_plans": 49,
+ "planning_time_per_call_max_s": 4.132617090001077,
+ "episode_time_s": 15.36085827900024,
+ "first_replan_after_obstacle": 6,
+ "n_checks": 3,
+ "n_triggers": 3,
+ "n_all_collide": 3,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 3,
+ "path_length": 5.14013609892721,
+ "wall_contact_steps": 36,
+ "wall_contact_events": 3,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 174,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    9
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 180,
+   "event": "trigger"
+  },
+  {
+   "t": 180,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 180,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 190,
+   "event": "trigger"
+  },
+  {
+   "t": 190,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 190,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 200,
+   "event": "trigger"
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 210,
+   "event": "obstacle_collision"
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.273635326000658,
+   "purpose": "initial"
+  },
+  {
+   "t": 180,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.236262580001494,
+   "purpose": "trigger"
+  },
+  {
+   "t": 190,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.132617090001077,
+   "purpose": "trigger"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.264447912999458,
+   "purpose": "trigger"
+  }
+ ]
+}

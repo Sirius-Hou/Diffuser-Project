@@ -1,0 +1,54 @@
+{
+  "name": "blocked_main",
+  "description": "Main comparison: all full-blockage scenarios (about 50) x 4 methods.",
+  "env": "maze2d-large-v1",
+  "diffusion_loadpath": "diffusion/H384_T256",
+  "diffusion_epoch": "latest",
+  "device": "cuda",
+  "torch_threads": 8,
+  "success_radius": 0.5,
+  "max_steps": 800,
+  "collision_margin": 0.05,
+  "scenarios": "experiments/blocked/scenarios/scenarios_v1.json",
+  "kinds": [
+    "full"
+  ],
+  "methods": [
+    "B0",
+    "B1",
+    "B2",
+    "Ours",
+    "Oracle"
+  ],
+  "method_params": {
+    "common": {
+      "n": 16,
+      "replan_horizon": "deadline",
+      "steps_per_cell": 30,
+      "h_margin": 32,
+      "h_min": 64,
+      "deadline_slack": 40
+    },
+    "B1": {
+      "k_periodic": 100
+    },
+    "B2": {
+      "k": 10
+    },
+    "Ours": {
+      "k": 10,
+      "waypoint_mode": "greedy",
+      "waypoint_radius": 0.5,
+      "exhaust_slack": 20
+    },
+    "Oracle": {
+      "p_gain": 10.0,
+      "d_gain": -1.0,
+      "switch_radius": 0.25
+    }
+  },
+  "save_png": true,
+  "out": "experiments/blocked/results/main",
+  "limit": null,
+  "max_wall_depth": 0.2
+}

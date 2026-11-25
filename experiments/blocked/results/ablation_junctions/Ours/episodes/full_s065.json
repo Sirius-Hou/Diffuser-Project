@@ -1,0 +1,285 @@
+{
+ "method": "Ours",
+ "seed": 65,
+ "scenario_id": "full_s065",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 194,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 194,
+ "start_cell": "2,1",
+ "success": true,
+ "first_success_step": 800,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 0.4791142632469839,
+ "min_dist_to_goal": 0.4791142632469839,
+ "steps": 800,
+ "stop_reason": "success",
+ "failure_reason": "",
+ "planning_time_s": 27.879429544000004,
+ "n_plan_calls": 7,
+ "n_plans": 97,
+ "planning_time_per_call_max_s": 4.665147230999992,
+ "episode_time_s": 29.799189600999853,
+ "first_replan_after_obstacle": 6,
+ "n_checks": 59,
+ "n_triggers": 1,
+ "n_all_collide": 1,
+ "n_astar": 1,
+ "n_astar_fail": 0,
+ "n_waypoints": 4,
+ "n_segments": 5,
+ "n_replans": 6,
+ "path_length": 26.29002331267957,
+ "wall_contact_steps": 8,
+ "wall_contact_events": 2,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 194,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 200,
+   "event": "trigger"
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 200,
+   "event": "astar",
+   "here": [
+    4,
+    6
+   ],
+   "waypoints": [
+    [
+     3,
+     6
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 16
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 64
+  },
+  {
+   "t": 200,
+   "event": "segment",
+   "target": [
+    3,
+    6
+   ],
+   "H": 64,
+   "n_cells": 1,
+   "n_clear": 3,
+   "n_ok": 3
+  },
+  {
+   "t": 283,
+   "event": "segment_exhausted",
+   "cell": [
+    3,
+    6
+   ]
+  },
+  {
+   "t": 283,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 184
+  },
+  {
+   "t": 283,
+   "event": "segment",
+   "target": [
+    1,
+    8
+   ],
+   "H": 184,
+   "n_cells": 5,
+   "n_clear": 16,
+   "n_ok": 15
+  },
+  {
+   "t": 440,
+   "event": "waypoint_reached",
+   "cell": [
+    1,
+    8
+   ]
+  },
+  {
+   "t": 440,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 440,
+   "event": "segment",
+   "target": [
+    3,
+    10
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 16,
+   "n_ok": 6
+  },
+  {
+   "t": 559,
+   "event": "waypoint_reached",
+   "cell": [
+    3,
+    10
+   ]
+  },
+  {
+   "t": 559,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 559,
+   "event": "segment",
+   "target": [
+    5,
+    8
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 16,
+   "n_ok": 16
+  },
+  {
+   "t": 695,
+   "event": "waypoint_reached",
+   "cell": [
+    5,
+    8
+   ]
+  },
+  {
+   "t": 695,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 124
+  },
+  {
+   "t": 695,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 124,
+   "n_cells": 3,
+   "n_clear": 16,
+   "n_ok": 16
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.5921451180001895,
+   "purpose": "initial"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.749227332999908,
+   "purpose": "trigger"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 64,
+   "seconds": 4.432676205000007,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 283,
+   "n": 16,
+   "H": 184,
+   "seconds": 3.9113863039999615,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 440,
+   "n": 16,
+   "H": 152,
+   "seconds": 3.66047143600008,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 559,
+   "n": 16,
+   "H": 152,
+   "seconds": 4.665147230999992,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 695,
+   "n": 16,
+   "H": 124,
+   "seconds": 3.8683759169998666,
+   "purpose": "next_segment"
+  }
+ ]
+}

@@ -1,0 +1,313 @@
+{
+ "method": "Ours",
+ "seed": 113,
+ "scenario_id": "full_s113",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 159,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 159,
+ "start_cell": "5,9",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 1.8017556619177637,
+ "min_dist_to_goal": 1.8014992930398608,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "stuck_on_wall",
+ "planning_time_s": 22.199606298001527,
+ "n_plan_calls": 6,
+ "n_plans": 81,
+ "planning_time_per_call_max_s": 4.328038913000455,
+ "episode_time_s": 24.652482492999297,
+ "first_replan_after_obstacle": 1,
+ "n_checks": 64,
+ "n_triggers": 4,
+ "n_all_collide": 4,
+ "n_astar": 4,
+ "n_astar_fail": 0,
+ "n_waypoints": 4,
+ "n_segments": 4,
+ "n_replans": 5,
+ "path_length": 18.28076130208715,
+ "wall_contact_steps": 325,
+ "wall_contact_events": 2,
+ "visited_blocked_cell": true,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 159,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 160,
+   "event": "trigger"
+  },
+  {
+   "t": 160,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 160,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 160,
+   "event": "astar",
+   "here": [
+    3,
+    6
+   ],
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 15
+  },
+  {
+   "t": 160,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 160,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    168
+   ],
+   "waypoints": [
+    [
+     2.8,
+     8.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 14,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 170,
+   "event": "trigger"
+  },
+  {
+   "t": 170,
+   "event": "astar",
+   "here": [
+    3,
+    6
+   ],
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 15
+  },
+  {
+   "t": 170,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 170,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    168
+   ],
+   "waypoints": [
+    [
+     2.8,
+     8.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 16,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 180,
+   "event": "trigger"
+  },
+  {
+   "t": 180,
+   "event": "astar",
+   "here": [
+    3,
+    6
+   ],
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 15
+  },
+  {
+   "t": 180,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 180,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    168
+   ],
+   "waypoints": [
+    [
+     2.8,
+     8.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 0,
+   "n_wall_ok": 15,
+   "n_ok": 0,
+   "n_kink": 16
+  },
+  {
+   "t": 190,
+   "event": "trigger"
+  },
+  {
+   "t": 190,
+   "event": "astar",
+   "here": [
+    3,
+    6
+   ],
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 15
+  },
+  {
+   "t": 190,
+   "event": "adopt_plan",
+   "why": "inpaint",
+   "H": 384
+  },
+  {
+   "t": 190,
+   "event": "inpaint",
+   "H": 384,
+   "ks": [
+    168
+   ],
+   "waypoints": [
+    [
+     2.8,
+     8.8
+    ]
+   ],
+   "n": 16,
+   "n_clear": 10,
+   "n_wall_ok": 12,
+   "n_ok": 8,
+   "n_kink": 16
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.3889617220002037,
+   "purpose": "initial"
+  },
+  {
+   "t": 160,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.328038913000455,
+   "purpose": "trigger"
+  },
+  {
+   "t": 160,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.426012245000493,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 170,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.402589774000262,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 180,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.939914131000478,
+   "purpose": "inpaint"
+  },
+  {
+   "t": 190,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.714089512999635,
+   "purpose": "inpaint"
+  }
+ ]
+}

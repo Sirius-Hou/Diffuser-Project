@@ -1,0 +1,174 @@
+{
+ "method": "Ours",
+ "seed": 79,
+ "scenario_id": "partial50_s079",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    9
+   ],
+   "appear_t": 174,
+   "kind": "partial",
+   "frac": 0.5,
+   "side": "lo",
+   "axis": 0
+  }
+ ],
+ "appear_t": 174,
+ "start_cell": "3,9",
+ "success": true,
+ "first_success_step": 710,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 0.484895704875216,
+ "min_dist_to_goal": 0.484895704875216,
+ "steps": 710,
+ "stop_reason": "success",
+ "failure_reason": "",
+ "planning_time_s": 14.372833893999086,
+ "n_plan_calls": 4,
+ "n_plans": 49,
+ "planning_time_per_call_max_s": 4.1590298659994005,
+ "episode_time_s": 15.720776537999882,
+ "first_replan_after_obstacle": 6,
+ "n_checks": 53,
+ "n_triggers": 1,
+ "n_all_collide": 1,
+ "n_astar": 1,
+ "n_astar_fail": 0,
+ "n_waypoints": 1,
+ "n_segments": 2,
+ "n_replans": 3,
+ "path_length": 22.415103120699968,
+ "wall_contact_steps": 36,
+ "wall_contact_events": 3,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 174,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    9
+   ],
+   "kind": "partial"
+  },
+  {
+   "t": 180,
+   "event": "trigger"
+  },
+  {
+   "t": 180,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 180,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 180,
+   "event": "astar",
+   "here": [
+    5,
+    10
+   ],
+   "waypoints": [
+    [
+     1,
+     7
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 17
+  },
+  {
+   "t": 180,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 244
+  },
+  {
+   "t": 180,
+   "event": "segment",
+   "target": [
+    1,
+    7
+   ],
+   "H": 244,
+   "n_cells": 7,
+   "n_clear": 7,
+   "n_ok": 6
+  },
+  {
+   "t": 401,
+   "event": "waypoint_reached",
+   "cell": [
+    1,
+    7
+   ]
+  },
+  {
+   "t": 401,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 332
+  },
+  {
+   "t": 401,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 332,
+   "n_cells": 10,
+   "n_clear": 12,
+   "n_ok": 12
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.4028075879996322,
+   "purpose": "initial"
+  },
+  {
+   "t": 180,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.1590298659994005,
+   "purpose": "trigger"
+  },
+  {
+   "t": 180,
+   "n": 16,
+   "H": 244,
+   "seconds": 3.4397090729999036,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 401,
+   "n": 16,
+   "H": 332,
+   "seconds": 3.37128736700015,
+   "purpose": "next_segment"
+  }
+ ]
+}

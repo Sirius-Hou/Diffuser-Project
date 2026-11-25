@@ -1,0 +1,213 @@
+{
+ "method": "B1",
+ "seed": 39,
+ "scenario_id": "partial50_s039",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    9
+   ],
+   "appear_t": 75,
+   "kind": "partial",
+   "frac": 0.5,
+   "side": "hi",
+   "axis": 0
+  }
+ ],
+ "appear_t": 75,
+ "start_cell": "1,10",
+ "success": true,
+ "first_success_step": 742,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 0.4683143813276598,
+ "min_dist_to_goal": 0.4683143813276598,
+ "steps": 742,
+ "stop_reason": "success",
+ "failure_reason": "",
+ "planning_time_s": 28.651876404001086,
+ "n_plan_calls": 8,
+ "n_plans": 113,
+ "planning_time_per_call_max_s": 4.29552955500003,
+ "episode_time_s": 31.07073974100058,
+ "first_replan_after_obstacle": 25,
+ "n_checks": 0,
+ "n_triggers": 0,
+ "n_all_collide": 3,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 7,
+ "path_length": 22.922492947961715,
+ "wall_contact_steps": 13,
+ "wall_contact_events": 2,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 75,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    9
+   ],
+   "kind": "partial"
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 300,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 300,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 4,
+   "n_ok": 2
+  },
+  {
+   "t": 400,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 360
+  },
+  {
+   "t": 400,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 9,
+   "n_ok": 9
+  },
+  {
+   "t": 500,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 260
+  },
+  {
+   "t": 500,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 6,
+   "n_ok": 2
+  },
+  {
+   "t": 600,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 160
+  },
+  {
+   "t": 600,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 13,
+   "n_ok": 13
+  },
+  {
+   "t": 700,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 64
+  },
+  {
+   "t": 700,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 16,
+   "n_ok": 0
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.3200449050000316,
+   "purpose": "initial"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.376628955000342,
+   "purpose": "periodic"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.29552955500003,
+   "purpose": "periodic"
+  },
+  {
+   "t": 300,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3377565740001955,
+   "purpose": "periodic"
+  },
+  {
+   "t": 400,
+   "n": 16,
+   "H": 360,
+   "seconds": 3.4573757899997872,
+   "purpose": "periodic"
+  },
+  {
+   "t": 500,
+   "n": 16,
+   "H": 260,
+   "seconds": 3.9487430750004933,
+   "purpose": "periodic"
+  },
+  {
+   "t": 600,
+   "n": 16,
+   "H": 160,
+   "seconds": 3.7588369089999105,
+   "purpose": "periodic"
+  },
+  {
+   "t": 700,
+   "n": 16,
+   "H": 64,
+   "seconds": 3.156960641000296,
+   "purpose": "periodic"
+  }
+ ]
+}

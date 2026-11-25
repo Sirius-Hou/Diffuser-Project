@@ -1,0 +1,32 @@
+{
+  "name": "scenarios_v1",
+  "description": "Frozen blocked-corridor scenario list for maze2d-large-v1 (fixed goal). Run once with the real model and commit the output.",
+  "env": "maze2d-large-v1",
+  "diffusion_loadpath": "diffusion/H384_T256",
+  "diffusion_epoch": "latest",
+  "device": "cuda",
+  "torch_threads": 8,
+  "success_radius": 0.5,
+  "max_steps": 800,
+  "scenario": {
+    "seed_start": 0,
+    "max_seeds": 150,
+    "n_scenarios": 50,
+    "appear_t_range": [
+      50,
+      250
+    ],
+    "lead_min": 30,
+    "lead_max": 200,
+    "min_clearance_at_appear": 0.3,
+    "min_detour_extra": 2,
+    "check_period": 10,
+    "steps_per_cell": 30,
+    "time_margin": 80,
+    "max_steps": 800,
+    "partial_fracs": [
+      0.5
+    ]
+  },
+  "out": "experiments/blocked/scenarios/scenarios_v1.json"
+}
