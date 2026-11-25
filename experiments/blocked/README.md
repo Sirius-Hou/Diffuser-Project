@@ -1,10 +1,51 @@
-# Blocked corridor — B0 / B1 / B2 / Ours on a frozen scenario list
+# Blocked corridor: training-free rerouting of a frozen Diffuser
 
 | | |
 |---|---|
-| **Status** | Done. All runs on Colab T4 GPU (configs use `device: cuda`). Results in `results/` (json/csv/overview only; per-episode plots kept on Google Drive). |
-| **Project steps** | 2 (obstacle, B0 blocked, B2 probe) and 3 (predictive trigger + best-of-N + A* chaining, B1, scenario list) |
-| **Needs** | the same runtime as `b0_baseline` (Linux/WSL/Colab). Shared code tests run anywhere |
+| **Status** | Done (2026-11-11 main results; 2026-11-22 Oracle, partial blockage, 2 ablations) |
+| **Hardware** | Colab T4 GPU for everything, including the scenario list (configs use `device: cuda`) |
+| **Results** | `results/` (json/csv/overview per run); figures in `figures/`; per-episode plots kept on Google Drive |
+| **Notebook** | `experiments/common/setup/ECE780_diffuser_colab.ipynb` (A: view results, B: set up Colab, C: log of every run) |
+
+## Summary
+
+### What was done
+
+1. **Obstacle and collision checks.** A one-cell obstacle (full, or half the corridor) appears mid-episode at a fixed step and stays; its position is known from then on. The ball touching it ends the episode as a failure. Plans are checked against known obstacles (`obstacles.py`).
+2. **Corridor choice.** A* on the maze grid without the blocked cell, plus a **greedy waypoint rule**: keep the fewest waypoints such that every shortest path of the *unblocked* maze between consecutive waypoints avoids the obstacle (`waypoints.py`). The frozen Diffuser imitates near-shortest routes of the unblocked maze, so it then has no reason to go back into the blocked corridor.
+3. **Planning loops** sharing one episode loop (`rollout.py`, `methods.py`), each adding one component:
+   - **B0** plans once (original Diffuser)
+   - **B1** replans every 100 steps with best-of-16
+   - **B2** checks every 10 steps whether the rest of the plan hits a known obstacle; only then best-of-16 (no map)
+   - **Ours** = B2 + when no sampled plan is OK: A* → waypoints → one Diffuser plan per segment (subgoal chaining)
+   - **Oracle** (reference): same first plan, then known-map A* + D4RL's PD controller once the obstacle appears
+4. **Frozen scenario list**: 50 full-blockage + 50 partial-blockage scenarios, each on the ball's actual B0 route, with a detour that exists and fits in 800 steps (`make_scenarios.py`). Every method runs on the same list.
+5. **Experiments**: B2 probe (risk R2), main comparison, partial blockage, and two ablations of Ours. Three issues found in smoke tests were fixed before the final runs (accepting plans that tunnel through walls; false collisions when the ball is inside the safety margin; a replan horizon that handicapped B1/B2).
+
+The model weights and the upstream Diffuser code are unchanged. `planner.plan()` gained two optional arguments (`horizon`, `via`); with the defaults it is the original call, so B0 is unaffected.
+
+### Results (50 scenarios each)
+
+| method | full blockage | partial blockage | obstacle collision (full) | Diffuser samples / episode (full) |
+|---|---|---|---|---|
+| B0 | 0 % | 46 % | 100 % | 1 |
+| B1 | 34 % | 40 % | 34 % | 101 |
+| B2 | 20 % | 36 % | 12 % | 194 |
+| **Ours** | **76 %** | **70 %** | **0 %** | **54** |
+| Oracle | 100 % | 100 % | 0 % | 1 |
+
+- **Ours vs B2, paired (full blockage):** only Ours succeeds in 28 scenarios, only B2 in 0 (McNemar exact p ≈ 7e-9). Ours has 3.8x B2's success rate with 28 % of its samples.
+- **Risk R2 did not materialise:** at B2's first trigger, 16 samples contain a usable detour in only 20–30 % of scenarios.
+- **Partial blockage:** replanning with the Diffuser alone (B1, B2) is *worse* than not replanning (B0); only the map-based reroute improves on it.
+- **Ablation 1, which waypoints:** a waypoint at every junction (proposal wording) gives 62 % with 30 % collisions, all at a waypoint next to the obstacle.
+- **Ablation 2, how waypoints are used (proposal contribution 3):** pinning the waypoint at a middle step of one plan (middle inpainting) gives 20 %; 98.8 % of 9,728 plans show a spike at that step. The frozen Diffuser cannot pass through a middle waypoint; chaining (pin only segment ends, as in training) is needed.
+- **Ours' 12 failures** all switched corridor and none hit the obstacle: 5 stuck at the wall above the goal (Diffuser's own end-of-plan issue, also in B0), 3 stuck after the waypoint, 4 out of time on long detours.
+
+**Limitations:** one maze with a fixed goal; obstacles concentrate on a few cells; perfect sensing, static obstacle; the predictive trigger raises false alarms under partial blockage.
+
+![success](figures/fig1_success.png)
+
+---
 
 ## 1. What is new
 
