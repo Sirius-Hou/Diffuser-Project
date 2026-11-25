@@ -1,0 +1,51 @@
+{
+  "name": "ablation_inpaint",
+  "description": "Ablation: Ours with middle inpainting (one plan, waypoint x-y pinned at a middle step) instead of subgoal chaining.",
+  "env": "maze2d-large-v1",
+  "diffusion_loadpath": "diffusion/H384_T256",
+  "diffusion_epoch": "latest",
+  "device": "cuda",
+  "torch_threads": 8,
+  "success_radius": 0.5,
+  "max_steps": 800,
+  "collision_margin": 0.05,
+  "scenarios": "experiments/blocked/scenarios/scenarios_v1.json",
+  "kinds": [
+    "full"
+  ],
+  "methods": [
+    "Ours"
+  ],
+  "method_params": {
+    "common": {
+      "n": 16,
+      "replan_horizon": "deadline",
+      "steps_per_cell": 30,
+      "h_margin": 32,
+      "h_min": 64,
+      "deadline_slack": 40
+    },
+    "B1": {
+      "k_periodic": 100
+    },
+    "B2": {
+      "k": 10
+    },
+    "Ours": {
+      "k": 10,
+      "waypoint_mode": "greedy",
+      "waypoint_radius": 0.5,
+      "exhaust_slack": 20,
+      "guidance": "inpaint"
+    },
+    "Oracle": {
+      "p_gain": 10.0,
+      "d_gain": -1.0,
+      "switch_radius": 0.25
+    }
+  },
+  "save_png": true,
+  "out": "experiments/blocked/results/ablation_inpaint",
+  "limit": null,
+  "max_wall_depth": 0.2
+}

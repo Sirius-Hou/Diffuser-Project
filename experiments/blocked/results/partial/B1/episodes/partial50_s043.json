@@ -1,0 +1,137 @@
+{
+ "method": "B1",
+ "seed": 43,
+ "scenario_id": "partial50_s043",
+ "obstacles": [
+  {
+   "cell": [
+    4,
+    10
+   ],
+   "appear_t": 83,
+   "kind": "partial",
+   "frac": 0.5,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 83,
+ "start_cell": "1,7",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": true,
+ "collision_step": 327,
+ "final_dist_to_goal": 3.8182879069876203,
+ "min_dist_to_goal": 3.8182879069876203,
+ "steps": 327,
+ "stop_reason": "obstacle_collision",
+ "failure_reason": "obstacle_collision",
+ "planning_time_s": 14.372288324999317,
+ "n_plan_calls": 4,
+ "n_plans": 49,
+ "planning_time_per_call_max_s": 4.313362091999807,
+ "episode_time_s": 15.732702685000731,
+ "first_replan_after_obstacle": 17,
+ "n_checks": 0,
+ "n_triggers": 0,
+ "n_all_collide": 1,
+ "n_astar": 0,
+ "n_astar_fail": 0,
+ "n_waypoints": 0,
+ "n_segments": 0,
+ "n_replans": 3,
+ "path_length": 10.109014297719048,
+ "wall_contact_steps": 7,
+ "wall_contact_events": 2,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 83,
+   "event": "obstacle_appears",
+   "cell": [
+    4,
+    10
+   ],
+   "kind": "partial"
+  },
+  {
+   "t": 100,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 100,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 200,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 200,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 5,
+   "n_ok": 4
+  },
+  {
+   "t": 300,
+   "event": "adopt_plan",
+   "why": "periodic",
+   "H": 384
+  },
+  {
+   "t": 300,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 1,
+   "n_ok": 1
+  },
+  {
+   "t": 327,
+   "event": "obstacle_collision"
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.3251261770001292,
+   "purpose": "initial"
+  },
+  {
+   "t": 100,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.313362091999807,
+   "purpose": "periodic"
+  },
+  {
+   "t": 200,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.371178905999841,
+   "purpose": "periodic"
+  },
+  {
+   "t": 300,
+   "n": 16,
+   "H": 384,
+   "seconds": 3.3626211499995406,
+   "purpose": "periodic"
+  }
+ ]
+}

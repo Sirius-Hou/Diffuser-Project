@@ -1,0 +1,256 @@
+{
+ "run_dir": "/content/drive/MyDrive/ece780_diffuser_cache/results/ablation_junctions",
+ "methods": [
+  "Ours"
+ ],
+ "n_common_scenarios": 50,
+ "by_method": {
+  "Ours": {
+   "n": 50,
+   "n_success": 31,
+   "success_rate": 0.62,
+   "success_95ci": [
+    0.4815019502239357,
+    0.7413740415742278
+   ],
+   "obstacle_collision_rate": 0.3,
+   "failure_reasons": {
+    "obstacle_collision": 15,
+    "timeout_still_moving": 1,
+    "stuck_on_wall": 3
+   },
+   "steps_to_success": {
+    "n": 31,
+    "mean": 642.7741935483871,
+    "median": 641.0,
+    "std": 86.26243142853406,
+    "min": 441.0,
+    "max": 800.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 30.297709940519898,
+    "median": 28.353826783999693,
+    "std": 13.990483589699743,
+    "min": 7.070746556000131,
+    "max": 71.86628894199976
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 106.6,
+    "median": 97.0,
+    "std": 55.240564805222625,
+    "min": 17.0,
+    "max": 289.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 6.6,
+    "median": 6.0,
+    "std": 3.452535300326414,
+    "min": 1.0,
+    "max": 18.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 1.54,
+    "median": 1.0,
+    "std": 1.2523577763562617,
+    "min": 1.0,
+    "max": 7.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 2.1,
+    "median": 1.0,
+    "std": 2.8301943396169813,
+    "min": 0.0,
+    "max": 13.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 1.38,
+    "median": 1.0,
+    "std": 1.2631706139710503,
+    "min": 0.0,
+    "max": 6.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 4.18,
+    "median": 4.0,
+    "std": 2.854400112107621,
+    "min": 0.0,
+    "max": 9.0
+   },
+   "path_length_success": {
+    "n": 31,
+    "mean": 21.51621537146808,
+    "median": 21.848491754847498,
+    "std": 2.809672782786439,
+    "min": 15.07814074906683,
+    "max": 26.29002331267957
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 2.24,
+    "median": 2.0,
+    "std": 1.6560193235587561,
+    "min": 0.0,
+    "max": 8.0
+   }
+  }
+ },
+ "paired_success": {
+  "full_s001": {
+   "Ours": true
+  },
+  "full_s003": {
+   "Ours": false
+  },
+  "full_s004": {
+   "Ours": true
+  },
+  "full_s006": {
+   "Ours": true
+  },
+  "full_s011": {
+   "Ours": false
+  },
+  "full_s012": {
+   "Ours": true
+  },
+  "full_s014": {
+   "Ours": true
+  },
+  "full_s015": {
+   "Ours": false
+  },
+  "full_s017": {
+   "Ours": true
+  },
+  "full_s018": {
+   "Ours": true
+  },
+  "full_s019": {
+   "Ours": false
+  },
+  "full_s021": {
+   "Ours": false
+  },
+  "full_s022": {
+   "Ours": false
+  },
+  "full_s024": {
+   "Ours": true
+  },
+  "full_s027": {
+   "Ours": true
+  },
+  "full_s033": {
+   "Ours": true
+  },
+  "full_s039": {
+   "Ours": true
+  },
+  "full_s043": {
+   "Ours": true
+  },
+  "full_s044": {
+   "Ours": false
+  },
+  "full_s045": {
+   "Ours": false
+  },
+  "full_s046": {
+   "Ours": true
+  },
+  "full_s047": {
+   "Ours": true
+  },
+  "full_s050": {
+   "Ours": true
+  },
+  "full_s052": {
+   "Ours": true
+  },
+  "full_s057": {
+   "Ours": true
+  },
+  "full_s062": {
+   "Ours": false
+  },
+  "full_s063": {
+   "Ours": true
+  },
+  "full_s065": {
+   "Ours": true
+  },
+  "full_s066": {
+   "Ours": true
+  },
+  "full_s067": {
+   "Ours": false
+  },
+  "full_s068": {
+   "Ours": true
+  },
+  "full_s072": {
+   "Ours": true
+  },
+  "full_s078": {
+   "Ours": false
+  },
+  "full_s079": {
+   "Ours": false
+  },
+  "full_s082": {
+   "Ours": true
+  },
+  "full_s083": {
+   "Ours": true
+  },
+  "full_s085": {
+   "Ours": true
+  },
+  "full_s088": {
+   "Ours": true
+  },
+  "full_s089": {
+   "Ours": false
+  },
+  "full_s090": {
+   "Ours": false
+  },
+  "full_s094": {
+   "Ours": true
+  },
+  "full_s096": {
+   "Ours": false
+  },
+  "full_s098": {
+   "Ours": true
+  },
+  "full_s101": {
+   "Ours": false
+  },
+  "full_s102": {
+   "Ours": false
+  },
+  "full_s103": {
+   "Ours": false
+  },
+  "full_s105": {
+   "Ours": true
+  },
+  "full_s107": {
+   "Ours": true
+  },
+  "full_s112": {
+   "Ours": false
+  },
+  "full_s113": {
+   "Ours": true
+  }
+ }
+}

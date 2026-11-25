@@ -1,0 +1,255 @@
+{
+ "run_dir": "/content/drive/MyDrive/ece780_diffuser_cache/results/ablation_inpaint",
+ "methods": [
+  "Ours"
+ ],
+ "n_common_scenarios": 50,
+ "by_method": {
+  "Ours": {
+   "n": 50,
+   "n_success": 10,
+   "success_rate": 0.2,
+   "success_95ci": [
+    0.11243629945973886,
+    0.3303737210448524
+   ],
+   "obstacle_collision_rate": 0.0,
+   "failure_reasons": {
+    "timeout_still_moving": 20,
+    "stuck_on_wall": 20
+   },
+   "steps_to_success": {
+    "n": 10,
+    "mean": 589.2,
+    "median": 590.5,
+    "std": 106.13557367819708,
+    "min": 441.0,
+    "max": 719.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 52.90849081502035,
+    "median": 33.65684346850094,
+    "std": 55.60106209447628,
+    "min": 6.799774541000261,
+    "max": 239.1799852030017
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 211.56,
+    "median": 129.0,
+    "std": 238.81006343954604,
+    "min": 17.0,
+    "max": 1009.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 13.16,
+    "median": 8.0,
+    "std": 14.925628964971628,
+    "min": 1.0,
+    "max": 63.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 12.28,
+    "median": 7.0,
+    "std": 14.831102453964775,
+    "min": 1.0,
+    "max": 62.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 12.42,
+    "median": 7.0,
+    "std": 15.036076615926108,
+    "min": 0.0,
+    "max": 63.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 12.16,
+    "median": 7.0,
+    "std": 14.925628964971628,
+    "min": 0.0,
+    "max": 62.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 4.18,
+    "median": 4.0,
+    "std": 2.854400112107621,
+    "min": 0.0,
+    "max": 9.0
+   },
+   "path_length_success": {
+    "n": 10,
+    "mean": 19.825362984188775,
+    "median": 19.826409248184557,
+    "std": 3.7588606619510108,
+    "min": 15.07814074906683,
+    "max": 25.18999574166405
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 3.98,
+    "median": 3.0,
+    "std": 2.2846443924602355,
+    "min": 0.0,
+    "max": 12.0
+   }
+  }
+ },
+ "paired_success": {
+  "full_s001": {
+   "Ours": true
+  },
+  "full_s003": {
+   "Ours": false
+  },
+  "full_s004": {
+   "Ours": false
+  },
+  "full_s006": {
+   "Ours": false
+  },
+  "full_s011": {
+   "Ours": false
+  },
+  "full_s012": {
+   "Ours": false
+  },
+  "full_s014": {
+   "Ours": false
+  },
+  "full_s015": {
+   "Ours": false
+  },
+  "full_s017": {
+   "Ours": true
+  },
+  "full_s018": {
+   "Ours": false
+  },
+  "full_s019": {
+   "Ours": false
+  },
+  "full_s021": {
+   "Ours": true
+  },
+  "full_s022": {
+   "Ours": false
+  },
+  "full_s024": {
+   "Ours": true
+  },
+  "full_s027": {
+   "Ours": false
+  },
+  "full_s033": {
+   "Ours": false
+  },
+  "full_s039": {
+   "Ours": true
+  },
+  "full_s043": {
+   "Ours": true
+  },
+  "full_s044": {
+   "Ours": false
+  },
+  "full_s045": {
+   "Ours": false
+  },
+  "full_s046": {
+   "Ours": false
+  },
+  "full_s047": {
+   "Ours": false
+  },
+  "full_s050": {
+   "Ours": false
+  },
+  "full_s052": {
+   "Ours": false
+  },
+  "full_s057": {
+   "Ours": false
+  },
+  "full_s062": {
+   "Ours": false
+  },
+  "full_s063": {
+   "Ours": false
+  },
+  "full_s065": {
+   "Ours": false
+  },
+  "full_s066": {
+   "Ours": false
+  },
+  "full_s067": {
+   "Ours": true
+  },
+  "full_s068": {
+   "Ours": false
+  },
+  "full_s072": {
+   "Ours": false
+  },
+  "full_s078": {
+   "Ours": false
+  },
+  "full_s079": {
+   "Ours": false
+  },
+  "full_s082": {
+   "Ours": false
+  },
+  "full_s083": {
+   "Ours": false
+  },
+  "full_s085": {
+   "Ours": false
+  },
+  "full_s088": {
+   "Ours": false
+  },
+  "full_s089": {
+   "Ours": false
+  },
+  "full_s090": {
+   "Ours": false
+  },
+  "full_s094": {
+   "Ours": false
+  },
+  "full_s096": {
+   "Ours": false
+  },
+  "full_s098": {
+   "Ours": false
+  },
+  "full_s101": {
+   "Ours": true
+  },
+  "full_s102": {
+   "Ours": false
+  },
+  "full_s103": {
+   "Ours": false
+  },
+  "full_s105": {
+   "Ours": true
+  },
+  "full_s107": {
+   "Ours": false
+  },
+  "full_s112": {
+   "Ours": true
+  },
+  "full_s113": {
+   "Ours": false
+  }
+ }
+}

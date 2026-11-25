@@ -1,0 +1,832 @@
+{
+ "run_dir": "/content/drive/MyDrive/ece780_diffuser_cache/results/partial",
+ "methods": [
+  "B0",
+  "B1",
+  "B2",
+  "Ours",
+  "Oracle"
+ ],
+ "n_common_scenarios": 50,
+ "by_method": {
+  "B0": {
+   "n": 50,
+   "n_success": 23,
+   "success_rate": 0.46,
+   "success_95ci": [
+    0.3296943460178263,
+    0.5960136567161192
+   ],
+   "obstacle_collision_rate": 0.54,
+   "failure_reasons": {
+    "obstacle_collision": 27
+   },
+   "steps_to_success": {
+    "n": 23,
+    "mean": 376.04347826086956,
+    "median": 363.0,
+    "std": 44.974851195702854,
+    "min": 357.0,
+    "max": 526.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 3.5958951682999807,
+    "median": 3.4144400715001666,
+    "std": 0.34478892449320253,
+    "min": 3.260182461000113,
+    "max": 4.4581283249999615
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "first_replan_after_obstacle": null,
+   "path_length_success": {
+    "n": 23,
+    "mean": 11.956825382717854,
+    "median": 11.916814223187398,
+    "std": 0.7997124979754296,
+    "min": 10.86913838725081,
+    "max": 13.914039762694237
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 1.04,
+    "median": 1.0,
+    "std": 1.5869467539901898,
+    "min": 0.0,
+    "max": 7.0
+   }
+  },
+  "B1": {
+   "n": 50,
+   "n_success": 20,
+   "success_rate": 0.4,
+   "success_95ci": [
+    0.2760818978624575,
+    0.5381881089724063
+   ],
+   "obstacle_collision_rate": 0.32,
+   "failure_reasons": {
+    "timeout_still_moving": 14,
+    "obstacle_collision": 16
+   },
+   "steps_to_success": {
+    "n": 20,
+    "mean": 747.3,
+    "median": 742.0,
+    "std": 14.59828757080775,
+    "min": 734.0,
+    "max": 795.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 26.497808754880044,
+    "median": 28.733752129500772,
+    "std": 5.601490927561115,
+    "min": 3.329597681999985,
+    "max": 30.034000435000053
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 101.8,
+    "median": 113.0,
+    "std": 24.422940035957996,
+    "min": 1.0,
+    "max": 113.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 6.3,
+    "median": 7.0,
+    "std": 1.5264337522473748,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 2.66,
+    "median": 2.0,
+    "std": 1.914262259984248,
+    "min": 0.0,
+    "max": 6.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 48,
+    "mean": 43.0,
+    "median": 33.0,
+    "std": 28.53068523537421,
+    "min": 3.0,
+    "max": 95.0
+   },
+   "path_length_success": {
+    "n": 20,
+    "mean": 23.814428939621088,
+    "median": 24.02766391581281,
+    "std": 0.9644118863144543,
+    "min": 21.63634129970457,
+    "max": 25.58205061198693
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 2.68,
+    "median": 2.0,
+    "std": 2.1949031869310316,
+    "min": 0.0,
+    "max": 9.0
+   }
+  },
+  "B2": {
+   "n": 50,
+   "n_success": 18,
+   "success_rate": 0.36,
+   "success_95ci": [
+    0.24138562967182875,
+    0.49859237989698046
+   ],
+   "obstacle_collision_rate": 0.08,
+   "failure_reasons": {
+    "stuck_on_wall": 24,
+    "timeout_still_moving": 4,
+    "obstacle_collision": 4
+   },
+   "steps_to_success": {
+    "n": 18,
+    "mean": 541.7777777777778,
+    "median": 523.0,
+    "std": 89.33927564537058,
+    "min": 429.0,
+    "max": 735.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 22.856630661159997,
+    "median": 14.051097289500149,
+    "std": 24.908239693161732,
+    "min": 6.573677409000084,
+    "max": 148.3705126210025
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 87.4,
+    "median": 49.0,
+    "std": 110.9435892695022,
+    "min": 17.0,
+    "max": 641.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 5.4,
+    "median": 3.0,
+    "std": 6.933974329343887,
+    "min": 1.0,
+    "max": 40.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 5.4,
+    "median": 3.0,
+    "std": 6.933974329343887,
+    "min": 1.0,
+    "max": 40.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 4.66,
+    "median": 3.0,
+    "std": 7.137534588357523,
+    "min": 0.0,
+    "max": 40.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 4.18,
+    "median": 4.0,
+    "std": 2.854400112107621,
+    "min": 0.0,
+    "max": 9.0
+   },
+   "path_length_success": {
+    "n": 18,
+    "mean": 17.32484474540862,
+    "median": 16.54293556595287,
+    "std": 3.825978697392866,
+    "min": 10.619406844021476,
+    "max": 25.297172302792998
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 3.12,
+    "median": 3.0,
+    "std": 2.2417850030723283,
+    "min": 0.0,
+    "max": 12.0
+   }
+  },
+  "Ours": {
+   "n": 50,
+   "n_success": 35,
+   "success_rate": 0.7,
+   "success_95ci": [
+    0.562493877226366,
+    0.8089661091039063
+   ],
+   "obstacle_collision_rate": 0.02,
+   "failure_reasons": {
+    "stuck_on_wall": 7,
+    "timeout_still_moving": 7,
+    "obstacle_collision": 1
+   },
+   "steps_to_success": {
+    "n": 35,
+    "mean": 619.5142857142857,
+    "median": 639.0,
+    "std": 99.23892422649821,
+    "min": 429.0,
+    "max": 756.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 12.961825987500065,
+    "median": 14.26119929900051,
+    "std": 4.9625755091927095,
+    "min": 6.512590583999554,
+    "max": 28.65242934899925
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 42.6,
+    "median": 49.0,
+    "std": 21.70345594600086,
+    "min": 17.0,
+    "max": 113.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 2.6,
+    "median": 3.0,
+    "std": 1.3564659966250538,
+    "min": 1.0,
+    "max": 7.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 1.18,
+    "median": 1.0,
+    "std": 0.43312815655415426,
+    "min": 1.0,
+    "max": 3.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 0.94,
+    "median": 1.0,
+    "std": 0.9676776322722356,
+    "min": 0.0,
+    "max": 4.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 0.74,
+    "median": 1.0,
+    "std": 0.5936328831862332,
+    "min": 0.0,
+    "max": 2.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 4.18,
+    "median": 4.0,
+    "std": 2.854400112107621,
+    "min": 0.0,
+    "max": 9.0
+   },
+   "path_length_success": {
+    "n": 35,
+    "mean": 20.418005358580707,
+    "median": 21.760278861770146,
+    "std": 3.722976627054212,
+    "min": 10.619406844021476,
+    "max": 26.394002811680796
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 2.92,
+    "median": 3.0,
+    "std": 1.8421726303471126,
+    "min": 0.0,
+    "max": 8.0
+   }
+  },
+  "Oracle": {
+   "n": 50,
+   "n_success": 50,
+   "success_rate": 1.0,
+   "success_95ci": [
+    0.9286499658256813,
+    1.0
+   ],
+   "obstacle_collision_rate": 0.0,
+   "failure_reasons": {},
+   "steps_to_success": {
+    "n": 50,
+    "mean": 509.76,
+    "median": 510.0,
+    "std": 50.96648310409499,
+    "min": 392.0,
+    "max": 608.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 3.5627274893199274,
+    "median": 3.3788948030005486,
+    "std": 0.33441148480517907,
+    "min": 3.2561025200002405,
+    "max": 4.230490949999876
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "path_length_success": {
+    "n": 50,
+    "mean": 19.908371603164653,
+    "median": 20.040163759745113,
+    "std": 1.894583717479054,
+    "min": 15.081343813176659,
+    "max": 23.552736014060244
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 0.22,
+    "median": 0.0,
+    "std": 0.6415605972938175,
+    "min": 0.0,
+    "max": 3.0
+   }
+  }
+ },
+ "paired_success": {
+  "partial50_s001": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s003": {
+   "B0": true,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s004": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s006": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s011": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s012": {
+   "B0": true,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s014": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s015": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s017": {
+   "B0": true,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s018": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s019": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s021": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s022": {
+   "B0": true,
+   "B1": false,
+   "B2": true,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s024": {
+   "B0": true,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s027": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s033": {
+   "B0": true,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s039": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s043": {
+   "B0": false,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s044": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s045": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s046": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s047": {
+   "B0": true,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s050": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s052": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s057": {
+   "B0": true,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s062": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s063": {
+   "B0": true,
+   "B1": true,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s065": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s066": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s067": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s068": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s072": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s078": {
+   "B0": true,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s079": {
+   "B0": true,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s082": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s083": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s085": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s088": {
+   "B0": true,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s089": {
+   "B0": true,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s090": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s094": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s096": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s098": {
+   "B0": true,
+   "B1": true,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "partial50_s101": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s102": {
+   "B0": true,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s103": {
+   "B0": true,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s105": {
+   "B0": false,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s107": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s112": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "partial50_s113": {
+   "B0": false,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  }
+ },
+ "ours_vs_b2": {
+  "both": 17,
+  "only_ours": 18,
+  "only_b2": 1,
+  "neither": 14
+ }
+}

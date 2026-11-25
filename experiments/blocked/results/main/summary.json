@@ -1,0 +1,817 @@
+{
+ "run_dir": "/content/drive/MyDrive/ece780_diffuser_cache/results/main",
+ "methods": [
+  "B0",
+  "B1",
+  "B2",
+  "Ours",
+  "Oracle"
+ ],
+ "n_common_scenarios": 50,
+ "by_method": {
+  "B0": {
+   "n": 50,
+   "n_success": 0,
+   "success_rate": 0.0,
+   "success_95ci": [
+    0.0,
+    0.07135003417431873
+   ],
+   "obstacle_collision_rate": 1.0,
+   "failure_reasons": {
+    "obstacle_collision": 50
+   },
+   "steps_to_success": null,
+   "planning_time_s": {
+    "n": 50,
+    "mean": 3.651020110919926,
+    "median": 3.4855958634989292,
+    "std": 0.3481582760966185,
+    "min": 3.289074015001461,
+    "max": 4.494486720999703
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "first_replan_after_obstacle": null,
+   "path_length_success": null,
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 0.54,
+    "median": 0.0,
+    "std": 0.78,
+    "min": 0.0,
+    "max": 4.0
+   }
+  },
+  "B1": {
+   "n": 50,
+   "n_success": 17,
+   "success_rate": 0.34,
+   "success_95ci": [
+    0.2243676963506106,
+    0.47846431458517147
+   ],
+   "obstacle_collision_rate": 0.34,
+   "failure_reasons": {
+    "timeout_still_moving": 16,
+    "obstacle_collision": 17
+   },
+   "steps_to_success": {
+    "n": 17,
+    "mean": 746.5294117647059,
+    "median": 741.0,
+    "std": 16.110346135175238,
+    "min": 729.0,
+    "max": 795.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 26.05657976086026,
+    "median": 28.424271918002887,
+    "std": 6.016735951544003,
+    "min": 3.2319694550005806,
+    "max": 30.005909017001613
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 100.52,
+    "median": 113.0,
+    "std": 26.24975428456426,
+    "min": 1.0,
+    "max": 113.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 6.22,
+    "median": 7.0,
+    "std": 1.6406096427852663,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 3.14,
+    "median": 3.0,
+    "std": 1.9799999999999998,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 47,
+    "mean": 43.297872340425535,
+    "median": 34.0,
+    "std": 28.758654492848276,
+    "min": 3.0,
+    "max": 95.0
+   },
+   "path_length_success": {
+    "n": 17,
+    "mean": 23.965865317296856,
+    "median": 24.102295753966253,
+    "std": 1.0515570886721155,
+    "min": 22.076888056513724,
+    "max": 25.624172568225976
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 3.16,
+    "median": 3.0,
+    "std": 1.9632625906892842,
+    "min": 0.0,
+    "max": 9.0
+   }
+  },
+  "B2": {
+   "n": 50,
+   "n_success": 10,
+   "success_rate": 0.2,
+   "success_95ci": [
+    0.11243629945973886,
+    0.3303737210448524
+   ],
+   "obstacle_collision_rate": 0.12,
+   "failure_reasons": {
+    "stuck_on_wall": 22,
+    "timeout_still_moving": 12,
+    "obstacle_collision": 6
+   },
+   "steps_to_success": {
+    "n": 10,
+    "mean": 601.8,
+    "median": 587.5,
+    "std": 120.40249166856972,
+    "min": 441.0,
+    "max": 770.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 46.1688044463404,
+    "median": 28.732385727999826,
+    "std": 50.008097118612234,
+    "min": 6.526818940999874,
+    "max": 192.81972197300092
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 194.28,
+    "median": 113.0,
+    "std": 224.84048034106317,
+    "min": 17.0,
+    "max": 849.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 12.08,
+    "median": 7.0,
+    "std": 14.052530021316448,
+    "min": 1.0,
+    "max": 53.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 12.08,
+    "median": 7.0,
+    "std": 14.052530021316448,
+    "min": 1.0,
+    "max": 53.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 11.52,
+    "median": 7.0,
+    "std": 14.267781887875914,
+    "min": 0.0,
+    "max": 53.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 4.18,
+    "median": 4.0,
+    "std": 2.854400112107621,
+    "min": 0.0,
+    "max": 9.0
+   },
+   "path_length_success": {
+    "n": 10,
+    "mean": 19.44502824017108,
+    "median": 19.01838051806009,
+    "std": 3.5339501197306964,
+    "min": 15.07814074906683,
+    "max": 25.37143024927901
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 3.86,
+    "median": 3.0,
+    "std": 2.1072256642324763,
+    "min": 0.0,
+    "max": 9.0
+   }
+  },
+  "Ours": {
+   "n": 50,
+   "n_success": 38,
+   "success_rate": 0.76,
+   "success_95ci": [
+    0.6258705062480763,
+    0.8570274759812779
+   ],
+   "obstacle_collision_rate": 0.0,
+   "failure_reasons": {
+    "timeout_still_moving": 9,
+    "stuck_on_wall": 3
+   },
+   "steps_to_success": {
+    "n": 38,
+    "mean": 653.3421052631579,
+    "median": 650.0,
+    "std": 77.06124574368017,
+    "min": 441.0,
+    "max": 756.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 15.38753368772017,
+    "median": 14.24780376650051,
+    "std": 5.2040821179144015,
+    "min": 6.417985439999029,
+    "max": 36.316056700001354
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 53.8,
+    "median": 49.0,
+    "std": 22.683915006012523,
+    "min": 17.0,
+    "max": 145.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 3.3,
+    "median": 3.0,
+    "std": 1.4177446878757827,
+    "min": 1.0,
+    "max": 9.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 1.32,
+    "median": 1.0,
+    "std": 0.6144916598294886,
+    "min": 1.0,
+    "max": 4.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 1.42,
+    "median": 1.0,
+    "std": 1.234341929936758,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 1.08,
+    "median": 1.0,
+    "std": 0.658483105326173,
+    "min": 0.0,
+    "max": 4.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 4.18,
+    "median": 4.0,
+    "std": 2.854400112107621,
+    "min": 0.0,
+    "max": 9.0
+   },
+   "path_length_success": {
+    "n": 38,
+    "mean": 21.583278418052497,
+    "median": 22.27212207879313,
+    "std": 2.5964895124637746,
+    "min": 15.07814074906683,
+    "max": 26.394002811680796
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 2.94,
+    "median": 3.0,
+    "std": 1.7367786272291583,
+    "min": 0.0,
+    "max": 8.0
+   }
+  },
+  "Oracle": {
+   "n": 50,
+   "n_success": 50,
+   "success_rate": 1.0,
+   "success_95ci": [
+    0.9286499658256813,
+    1.0
+   ],
+   "obstacle_collision_rate": 0.0,
+   "failure_reasons": {},
+   "steps_to_success": {
+    "n": 50,
+    "mean": 509.76,
+    "median": 510.0,
+    "std": 50.96648310409499,
+    "min": 392.0,
+    "max": 608.0
+   },
+   "planning_time_s": {
+    "n": 50,
+    "mean": 3.6181832784799917,
+    "median": 3.4060517069999605,
+    "std": 0.3479471810089293,
+    "min": 3.263347556999861,
+    "max": 4.442841617000113
+   },
+   "n_plans": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "n_replans": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "n_triggers": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_all_collide": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "n_astar": {
+    "n": 50,
+    "mean": 1.0,
+    "median": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0
+   },
+   "first_replan_after_obstacle": {
+    "n": 50,
+    "mean": 0.0,
+    "median": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "path_length_success": {
+    "n": 50,
+    "mean": 19.908371603164653,
+    "median": 20.040163759745113,
+    "std": 1.894583717479054,
+    "min": 15.081343813176659,
+    "max": 23.552736014060244
+   },
+   "wall_contact_events": {
+    "n": 50,
+    "mean": 0.22,
+    "median": 0.0,
+    "std": 0.6415605972938175,
+    "min": 0.0,
+    "max": 3.0
+   }
+  }
+ },
+ "paired_success": {
+  "full_s001": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s003": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s004": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s006": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s011": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s012": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s014": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s015": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s017": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s018": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s019": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s021": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s022": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s024": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s027": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s033": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s039": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s043": {
+   "B0": false,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s044": {
+   "B0": false,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s045": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s046": {
+   "B0": false,
+   "B1": true,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s047": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s050": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s052": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s057": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s062": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s063": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s065": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s066": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s067": {
+   "B0": false,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s068": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s072": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s078": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s079": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s082": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s083": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s085": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s088": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s089": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s090": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s094": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s096": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s098": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s101": {
+   "B0": false,
+   "B1": true,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s102": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s103": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": false,
+   "Oracle": true
+  },
+  "full_s105": {
+   "B0": false,
+   "B1": false,
+   "B2": true,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s107": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s112": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  },
+  "full_s113": {
+   "B0": false,
+   "B1": false,
+   "B2": false,
+   "Ours": true,
+   "Oracle": true
+  }
+ },
+ "ours_vs_b2": {
+  "both": 10,
+  "only_ours": 28,
+  "only_b2": 0,
+  "neither": 12
+ }
+}

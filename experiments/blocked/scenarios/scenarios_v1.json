@@ -1,0 +1,4147 @@
+{
+ "meta": {
+  "config": {
+   "name": "scenarios_v1",
+   "description": "Frozen blocked-corridor scenario list for maze2d-large-v1 (fixed goal). Run once with the real model and commit the output.",
+   "env": "maze2d-large-v1",
+   "diffusion_loadpath": "diffusion/H384_T256",
+   "diffusion_epoch": "latest",
+   "device": "cuda",
+   "torch_threads": 8,
+   "success_radius": 0.5,
+   "max_steps": 800,
+   "scenario": {
+    "seed_start": 0,
+    "max_seeds": 150,
+    "n_scenarios": 50,
+    "appear_t_range": [
+     50,
+     250
+    ],
+    "lead_min": 30,
+    "lead_max": 200,
+    "min_clearance_at_appear": 0.3,
+    "min_detour_extra": 2,
+    "check_period": 10,
+    "steps_per_cell": 30,
+    "time_margin": 80,
+    "max_steps": 800,
+    "partial_fracs": [
+     0.5
+    ]
+   },
+   "out": "experiments/blocked/scenarios/scenarios_v1.json"
+  },
+  "fake": false,
+  "git_commit": "ea1b336+dirty",
+  "created": "2026-11-11 23:52:27",
+  "n_scenarios": 100,
+  "skipped": {
+   "no_valid_cell": 50,
+   "b0_fails_without_obstacle": 14
+  },
+  "seconds": 423.6632618329968
+ },
+ "scenarios": [
+  {
+   "id": "full_s001",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 97,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 1,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 368,
+   "appear_t": 97,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 195,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 637
+  },
+  {
+   "id": "partial50_s001",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 97,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 1,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 368,
+   "appear_t": 97,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 195,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 637
+  },
+  {
+   "id": "full_s003",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 131,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 3,
+   "start_cell": "7,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 131,
+   "ball_cell_at_appear": [
+    5,
+    10
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 247,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     7
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 731
+  },
+  {
+   "id": "partial50_s003",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 131,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 3,
+   "start_cell": "7,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 131,
+   "ball_cell_at_appear": [
+    5,
+    10
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 247,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     7
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 731
+  },
+  {
+   "id": "full_s004",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 135,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 4,
+   "start_cell": "5,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 135,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 171,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 675
+  },
+  {
+   "id": "partial50_s004",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 135,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 4,
+   "start_cell": "5,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 135,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 171,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 675
+  },
+  {
+   "id": "full_s006",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 140,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 6,
+   "start_cell": "5,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 140,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 251,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 770
+  },
+  {
+   "id": "partial50_s006",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 140,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 6,
+   "start_cell": "5,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 140,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 251,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 770
+  },
+  {
+   "id": "full_s011",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 127,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 11,
+   "start_cell": "6,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 367,
+   "appear_t": 127,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 255,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 697
+  },
+  {
+   "id": "partial50_s011",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 127,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 11,
+   "start_cell": "6,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 367,
+   "appear_t": 127,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 255,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 697
+  },
+  {
+   "id": "full_s012",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 152,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 12,
+   "start_cell": "4,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 152,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 185,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 692
+  },
+  {
+   "id": "partial50_s012",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 152,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 12,
+   "start_cell": "4,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 152,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 185,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 692
+  },
+  {
+   "id": "full_s014",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 92,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 14,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 92,
+   "ball_cell_at_appear": [
+    3,
+    2
+   ],
+   "unblocked_cells_from_appear": 11,
+   "b0_enters_at": 191,
+   "detour_cells": 19,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 752
+  },
+  {
+   "id": "partial50_s014",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 92,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 14,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 92,
+   "ball_cell_at_appear": [
+    3,
+    2
+   ],
+   "unblocked_cells_from_appear": 11,
+   "b0_enters_at": 191,
+   "detour_cells": 19,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 752
+  },
+  {
+   "id": "full_s015",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 119,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 15,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 119,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 251,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 689
+  },
+  {
+   "id": "partial50_s015",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 119,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 15,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 119,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 251,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 689
+  },
+  {
+   "id": "full_s017",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 123,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 17,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 357,
+   "appear_t": 123,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 163,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 693
+  },
+  {
+   "id": "partial50_s017",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 123,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 17,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 357,
+   "appear_t": 123,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 163,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 693
+  },
+  {
+   "id": "full_s018",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 117,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 18,
+   "start_cell": "2,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 117,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 241,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 717
+  },
+  {
+   "id": "partial50_s018",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 117,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 18,
+   "start_cell": "2,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 117,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 241,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 717
+  },
+  {
+   "id": "full_s019",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 176,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 19,
+   "start_cell": "3,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 176,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 229,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 746
+  },
+  {
+   "id": "partial50_s019",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 176,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 19,
+   "start_cell": "3,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 176,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 229,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 746
+  },
+  {
+   "id": "full_s021",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 128,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 21,
+   "start_cell": "6,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 128,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 163,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 758
+  },
+  {
+   "id": "partial50_s021",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 128,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 21,
+   "start_cell": "6,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 128,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 163,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 758
+  },
+  {
+   "id": "full_s022",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 79,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 22,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 79,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 223,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 679
+  },
+  {
+   "id": "partial50_s022",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 79,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 22,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 79,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 223,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 679
+  },
+  {
+   "id": "full_s024",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      10
+     ],
+     "appear_t": 109,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 24,
+   "start_cell": "3,9",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 109,
+   "ball_cell_at_appear": [
+    1,
+    10
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 174,
+   "detour_cells": 13,
+   "detour_extra": 4,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     4,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 589
+  },
+  {
+   "id": "partial50_s024",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      10
+     ],
+     "appear_t": 109,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 24,
+   "start_cell": "3,9",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 109,
+   "ball_cell_at_appear": [
+    1,
+    10
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 174,
+   "detour_cells": 13,
+   "detour_extra": 4,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     4,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 589
+  },
+  {
+   "id": "full_s027",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 76,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 27,
+   "start_cell": "1,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 517,
+   "appear_t": 76,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 270,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 646
+  },
+  {
+   "id": "partial50_s027",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 76,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 27,
+   "start_cell": "1,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 517,
+   "appear_t": 76,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 270,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 646
+  },
+  {
+   "id": "full_s033",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 95,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 33,
+   "start_cell": "3,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 95,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 179,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 695
+  },
+  {
+   "id": "partial50_s033",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 95,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 33,
+   "start_cell": "3,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 95,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 179,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 695
+  },
+  {
+   "id": "full_s039",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 75,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 39,
+   "start_cell": "1,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 75,
+   "ball_cell_at_appear": [
+    1,
+    10
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 234,
+   "detour_cells": 13,
+   "detour_extra": 4,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     4,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 555
+  },
+  {
+   "id": "partial50_s039",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 75,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 39,
+   "start_cell": "1,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 75,
+   "ball_cell_at_appear": [
+    1,
+    10
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 234,
+   "detour_cells": 13,
+   "detour_extra": 4,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     4,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 555
+  },
+  {
+   "id": "full_s043",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      10
+     ],
+     "appear_t": 83,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 43,
+   "start_cell": "1,7",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 83,
+   "ball_cell_at_appear": [
+    1,
+    10
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 169,
+   "detour_cells": 13,
+   "detour_extra": 4,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     4,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 563
+  },
+  {
+   "id": "partial50_s043",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      10
+     ],
+     "appear_t": 83,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 43,
+   "start_cell": "1,7",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 83,
+   "ball_cell_at_appear": [
+    1,
+    10
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 169,
+   "detour_cells": 13,
+   "detour_extra": 4,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     4,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 563
+  },
+  {
+   "id": "full_s044",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 148,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 44,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 148,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 231,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 688
+  },
+  {
+   "id": "partial50_s044",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 148,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 44,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 148,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 231,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 688
+  },
+  {
+   "id": "full_s045",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 107,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 45,
+   "start_cell": "3,2",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 107,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 219,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 677
+  },
+  {
+   "id": "partial50_s045",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 107,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 45,
+   "start_cell": "3,2",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 107,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 219,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 677
+  },
+  {
+   "id": "full_s046",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 146,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 46,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 146,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 197,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 746
+  },
+  {
+   "id": "partial50_s046",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 146,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 46,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 146,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 197,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 746
+  },
+  {
+   "id": "full_s047",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 80,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 47,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 80,
+   "ball_cell_at_appear": [
+    2,
+    4
+   ],
+   "unblocked_cells_from_appear": 10,
+   "b0_enters_at": 181,
+   "detour_cells": 18,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 710
+  },
+  {
+   "id": "partial50_s047",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 80,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 47,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 80,
+   "ball_cell_at_appear": [
+    2,
+    4
+   ],
+   "unblocked_cells_from_appear": 10,
+   "b0_enters_at": 181,
+   "detour_cells": 18,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 710
+  },
+  {
+   "id": "full_s050",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 205,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 50,
+   "start_cell": "1,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 533,
+   "appear_t": 205,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 314,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 775
+  },
+  {
+   "id": "partial50_s050",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 205,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 50,
+   "start_cell": "1,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 533,
+   "appear_t": 205,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 314,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 775
+  },
+  {
+   "id": "full_s052",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 73,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 52,
+   "start_cell": "3,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 73,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 155,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 673
+  },
+  {
+   "id": "partial50_s052",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 73,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 52,
+   "start_cell": "3,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 73,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 155,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 673
+  },
+  {
+   "id": "full_s057",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 139,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 57,
+   "start_cell": "2,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 357,
+   "appear_t": 139,
+   "ball_cell_at_appear": [
+    2,
+    6
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 230,
+   "detour_cells": 14,
+   "detour_extra": 6,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     10
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 649
+  },
+  {
+   "id": "partial50_s057",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 139,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 57,
+   "start_cell": "2,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 357,
+   "appear_t": 139,
+   "ball_cell_at_appear": [
+    2,
+    6
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 230,
+   "detour_cells": 14,
+   "detour_extra": 6,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     10
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 649
+  },
+  {
+   "id": "full_s062",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 90,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 62,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 90,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 243,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 690
+  },
+  {
+   "id": "partial50_s062",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 90,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 62,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 90,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 243,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 690
+  },
+  {
+   "id": "full_s063",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 159,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 63,
+   "start_cell": "2,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 159,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 245,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 729
+  },
+  {
+   "id": "partial50_s063",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 159,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 63,
+   "start_cell": "2,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 159,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 245,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 729
+  },
+  {
+   "id": "full_s065",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 194,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 65,
+   "start_cell": "2,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 194,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 239,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 764
+  },
+  {
+   "id": "partial50_s065",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 194,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 65,
+   "start_cell": "2,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 194,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 239,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 764
+  },
+  {
+   "id": "full_s066",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 56,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 66,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 56,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 101,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 626
+  },
+  {
+   "id": "partial50_s066",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 56,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 66,
+   "start_cell": "3,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 56,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 101,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 626
+  },
+  {
+   "id": "full_s067",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 138,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 67,
+   "start_cell": "6,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 138,
+   "ball_cell_at_appear": [
+    7,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 237,
+   "detour_cells": 19,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 798
+  },
+  {
+   "id": "partial50_s067",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 138,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 67,
+   "start_cell": "6,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 138,
+   "ball_cell_at_appear": [
+    7,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 237,
+   "detour_cells": 19,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 798
+  },
+  {
+   "id": "full_s068",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 92,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 68,
+   "start_cell": "5,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 408,
+   "appear_t": 92,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 180,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 722
+  },
+  {
+   "id": "partial50_s068",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 92,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 68,
+   "start_cell": "5,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 408,
+   "appear_t": 92,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 180,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 722
+  },
+  {
+   "id": "full_s072",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 71,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 72,
+   "start_cell": "3,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 71,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 189,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 671
+  },
+  {
+   "id": "partial50_s072",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 71,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 72,
+   "start_cell": "3,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 71,
+   "ball_cell_at_appear": [
+    3,
+    4
+   ],
+   "unblocked_cells_from_appear": 9,
+   "b0_enters_at": 189,
+   "detour_cells": 17,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 671
+  },
+  {
+   "id": "full_s078",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 131,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 78,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 131,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 185,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 701
+  },
+  {
+   "id": "partial50_s078",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 131,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 78,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 131,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 185,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 701
+  },
+  {
+   "id": "full_s079",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 174,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 79,
+   "start_cell": "3,9",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 526,
+   "appear_t": 174,
+   "ball_cell_at_appear": [
+    5,
+    10
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 206,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     7
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 774
+  },
+  {
+   "id": "partial50_s079",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 174,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 79,
+   "start_cell": "3,9",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 526,
+   "appear_t": 174,
+   "ball_cell_at_appear": [
+    5,
+    10
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 206,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     7
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 774
+  },
+  {
+   "id": "full_s082",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 106,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 82,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 367,
+   "appear_t": 106,
+   "ball_cell_at_appear": [
+    3,
+    2
+   ],
+   "unblocked_cells_from_appear": 11,
+   "b0_enters_at": 213,
+   "detour_cells": 19,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 766
+  },
+  {
+   "id": "partial50_s082",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      6
+     ],
+     "appear_t": 106,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 82,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 367,
+   "appear_t": 106,
+   "ball_cell_at_appear": [
+    3,
+    2
+   ],
+   "unblocked_cells_from_appear": 11,
+   "b0_enters_at": 213,
+   "detour_cells": 19,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 766
+  },
+  {
+   "id": "full_s083",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 171,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 83,
+   "start_cell": "3,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 358,
+   "appear_t": 171,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 231,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 741
+  },
+  {
+   "id": "partial50_s083",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 171,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 83,
+   "start_cell": "3,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 358,
+   "appear_t": 171,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 231,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 741
+  },
+  {
+   "id": "full_s085",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 85,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 85,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 366,
+   "appear_t": 85,
+   "ball_cell_at_appear": [
+    3,
+    2
+   ],
+   "unblocked_cells_from_appear": 11,
+   "b0_enters_at": 267,
+   "detour_cells": 19,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 745
+  },
+  {
+   "id": "partial50_s085",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 85,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 85,
+   "start_cell": "5,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 366,
+   "appear_t": 85,
+   "ball_cell_at_appear": [
+    3,
+    2
+   ],
+   "unblocked_cells_from_appear": 11,
+   "b0_enters_at": 267,
+   "detour_cells": 19,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 745
+  },
+  {
+   "id": "full_s088",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 134,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 88,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 134,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 238,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 704
+  },
+  {
+   "id": "partial50_s088",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 134,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 88,
+   "start_cell": "1,3",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 134,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 238,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 704
+  },
+  {
+   "id": "full_s089",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 68,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 89,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 68,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 117,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 638
+  },
+  {
+   "id": "partial50_s089",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 68,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 89,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 363,
+   "appear_t": 68,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 117,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 638
+  },
+  {
+   "id": "full_s090",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      10
+     ],
+     "appear_t": 71,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 90,
+   "start_cell": "5,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 71,
+   "ball_cell_at_appear": [
+    3,
+    10
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 171,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 611
+  },
+  {
+   "id": "partial50_s090",
+   "obstacles": [
+    {
+     "cell": [
+      4,
+      10
+     ],
+     "appear_t": 71,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 1
+    }
+   ],
+   "seed": 90,
+   "start_cell": "5,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 71,
+   "ball_cell_at_appear": [
+    3,
+    10
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 171,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 611
+  },
+  {
+   "id": "full_s094",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 188,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 94,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 188,
+   "ball_cell_at_appear": [
+    5,
+    6
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 220,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 788
+  },
+  {
+   "id": "partial50_s094",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 188,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 94,
+   "start_cell": "3,5",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 360,
+   "appear_t": 188,
+   "ball_cell_at_appear": [
+    5,
+    6
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 220,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 788
+  },
+  {
+   "id": "full_s096",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 166,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 96,
+   "start_cell": "7,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 166,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 241,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 736
+  },
+  {
+   "id": "partial50_s096",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 166,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 96,
+   "start_cell": "7,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 166,
+   "ball_cell_at_appear": [
+    3,
+    5
+   ],
+   "unblocked_cells_from_appear": 8,
+   "b0_enters_at": 241,
+   "detour_cells": 16,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 736
+  },
+  {
+   "id": "full_s098",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 107,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 98,
+   "start_cell": "4,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 107,
+   "ball_cell_at_appear": [
+    3,
+    3
+   ],
+   "unblocked_cells_from_appear": 10,
+   "b0_enters_at": 236,
+   "detour_cells": 18,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 737
+  },
+  {
+   "id": "partial50_s098",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 107,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 98,
+   "start_cell": "4,1",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 107,
+   "ball_cell_at_appear": [
+    3,
+    3
+   ],
+   "unblocked_cells_from_appear": 10,
+   "b0_enters_at": 236,
+   "detour_cells": 18,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 737
+  },
+  {
+   "id": "full_s101",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 50,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 101,
+   "start_cell": "7,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 50,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 233,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 680
+  },
+  {
+   "id": "partial50_s101",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 50,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 101,
+   "start_cell": "7,6",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 50,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 233,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 680
+  },
+  {
+   "id": "full_s102",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 171,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 102,
+   "start_cell": "3,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 368,
+   "appear_t": 171,
+   "ball_cell_at_appear": [
+    4,
+    10
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 233,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 741
+  },
+  {
+   "id": "partial50_s102",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 171,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 102,
+   "start_cell": "3,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 368,
+   "appear_t": 171,
+   "ball_cell_at_appear": [
+    4,
+    10
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 233,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 741
+  },
+  {
+   "id": "full_s103",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 196,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 103,
+   "start_cell": "2,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 196,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 237,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 766
+  },
+  {
+   "id": "partial50_s103",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 196,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 103,
+   "start_cell": "2,4",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 361,
+   "appear_t": 196,
+   "ball_cell_at_appear": [
+    4,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 237,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 766
+  },
+  {
+   "id": "full_s105",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 194,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 105,
+   "start_cell": "3,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 365,
+   "appear_t": 194,
+   "ball_cell_at_appear": [
+    4,
+    10
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 238,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 764
+  },
+  {
+   "id": "partial50_s105",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      9
+     ],
+     "appear_t": 194,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 105,
+   "start_cell": "3,8",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 365,
+   "appear_t": 194,
+   "ball_cell_at_appear": [
+    4,
+    10
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 238,
+   "detour_cells": 16,
+   "detour_extra": 10,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     1,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 764
+  },
+  {
+   "id": "full_s107",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 68,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 107,
+   "start_cell": "5,7",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 68,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 240,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 698
+  },
+  {
+   "id": "partial50_s107",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 68,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 107,
+   "start_cell": "5,7",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 364,
+   "appear_t": 68,
+   "ball_cell_at_appear": [
+    6,
+    6
+   ],
+   "unblocked_cells_from_appear": 6,
+   "b0_enters_at": 240,
+   "detour_cells": 18,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 698
+  },
+  {
+   "id": "full_s112",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 120,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 112,
+   "start_cell": "5,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 359,
+   "appear_t": 120,
+   "ball_cell_at_appear": [
+    5,
+    6
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 234,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 720
+  },
+  {
+   "id": "partial50_s112",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 120,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "hi",
+     "axis": 0
+    }
+   ],
+   "seed": 112,
+   "start_cell": "5,10",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 359,
+   "appear_t": 120,
+   "ball_cell_at_appear": [
+    5,
+    6
+   ],
+   "unblocked_cells_from_appear": 5,
+   "b0_enters_at": 234,
+   "detour_cells": 17,
+   "detour_extra": 12,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     2,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 720
+  },
+  {
+   "id": "full_s113",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 159,
+     "kind": "full",
+     "frac": 1.0,
+     "side": "lo",
+     "axis": 1
+    }
+   ],
+   "seed": 113,
+   "start_cell": "5,9",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 159,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 214,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 699
+  },
+  {
+   "id": "partial50_s113",
+   "obstacles": [
+    {
+     "cell": [
+      5,
+      7
+     ],
+     "appear_t": 159,
+     "kind": "partial",
+     "frac": 0.5,
+     "side": "lo",
+     "axis": 0
+    }
+   ],
+   "seed": 113,
+   "start_cell": "5,9",
+   "b0_success_without_obstacle": true,
+   "b0_steps_without_obstacle": 362,
+   "appear_t": 159,
+   "ball_cell_at_appear": [
+    3,
+    6
+   ],
+   "unblocked_cells_from_appear": 7,
+   "b0_enters_at": 214,
+   "detour_cells": 15,
+   "detour_extra": 8,
+   "n_waypoints": 1,
+   "waypoints": [
+    [
+     3,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "est_steps_needed": 699
+  }
+ ]
+}

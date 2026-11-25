@@ -1,0 +1,122 @@
+{
+  "config": {
+    "name": "blocked_partial",
+    "description": "Main comparison: all full-blockage scenarios (about 50) x 4 methods.",
+    "env": "maze2d-large-v1",
+    "diffusion_loadpath": "diffusion/H384_T256",
+    "diffusion_epoch": "latest",
+    "device": "cuda",
+    "torch_threads": 8,
+    "success_radius": 0.5,
+    "max_steps": 800,
+    "collision_margin": 0.05,
+    "scenarios": "experiments/blocked/scenarios/scenarios_v1.json",
+    "kinds": [
+      "partial"
+    ],
+    "methods": [
+      "B0",
+      "B1",
+      "B2",
+      "Ours",
+      "Oracle"
+    ],
+    "method_params": {
+      "common": {
+        "n": 16,
+        "replan_horizon": "deadline",
+        "steps_per_cell": 30,
+        "h_margin": 32,
+        "h_min": 64,
+        "deadline_slack": 40
+      },
+      "B1": {
+        "k_periodic": 100
+      },
+      "B2": {
+        "k": 10
+      },
+      "Ours": {
+        "k": 10,
+        "waypoint_mode": "greedy",
+        "waypoint_radius": 0.5,
+        "exhaust_slack": 20
+      },
+      "Oracle": {
+        "p_gain": 10.0,
+        "d_gain": -1.0,
+        "switch_radius": 0.25
+      }
+    },
+    "save_png": true,
+    "out": "experiments/blocked/results/main",
+    "limit": null,
+    "max_wall_depth": 0.2
+  },
+  "config_path": "../partial.json",
+  "method": "B0",
+  "scenarios": "experiments/blocked/scenarios/scenarios_v1.json",
+  "scenario_ids": [
+    "partial50_s001",
+    "partial50_s003",
+    "partial50_s004",
+    "partial50_s006",
+    "partial50_s011",
+    "partial50_s012",
+    "partial50_s014",
+    "partial50_s015",
+    "partial50_s017",
+    "partial50_s018",
+    "partial50_s019",
+    "partial50_s021",
+    "partial50_s022",
+    "partial50_s024",
+    "partial50_s027",
+    "partial50_s033",
+    "partial50_s039",
+    "partial50_s043",
+    "partial50_s044",
+    "partial50_s045",
+    "partial50_s046",
+    "partial50_s047",
+    "partial50_s050",
+    "partial50_s052",
+    "partial50_s057",
+    "partial50_s062",
+    "partial50_s063",
+    "partial50_s065",
+    "partial50_s066",
+    "partial50_s067",
+    "partial50_s068",
+    "partial50_s072",
+    "partial50_s078",
+    "partial50_s079",
+    "partial50_s082",
+    "partial50_s083",
+    "partial50_s085",
+    "partial50_s088",
+    "partial50_s089",
+    "partial50_s090",
+    "partial50_s094",
+    "partial50_s096",
+    "partial50_s098",
+    "partial50_s101",
+    "partial50_s102",
+    "partial50_s103",
+    "partial50_s105",
+    "partial50_s107",
+    "partial50_s112",
+    "partial50_s113"
+  ],
+  "git_commit": "ea1b336+dirty",
+  "started": "2026-11-23 00:19:44",
+  "python": "3.8.20",
+  "fake": false,
+  "diffusion_epoch": 1960000,
+  "horizon": 384,
+  "n_diffusion_steps": 256,
+  "device": "cuda",
+  "torch_threads": 8,
+  "torch_version": "1.9.1+cu111",
+  "load_time_s": 36.76801651799997
+}

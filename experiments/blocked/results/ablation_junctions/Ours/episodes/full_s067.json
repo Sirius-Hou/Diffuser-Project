@@ -1,0 +1,589 @@
+{
+ "method": "Ours",
+ "seed": 67,
+ "scenario_id": "full_s067",
+ "obstacles": [
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "appear_t": 138,
+   "kind": "full",
+   "frac": 1.0,
+   "side": "lo",
+   "axis": 1
+  }
+ ],
+ "appear_t": 138,
+ "start_cell": "6,6",
+ "success": false,
+ "first_success_step": null,
+ "obstacle_collision": false,
+ "collision_step": null,
+ "final_dist_to_goal": 2.5668972055235932,
+ "min_dist_to_goal": 2.078621378588518,
+ "steps": 800,
+ "stop_reason": "max_steps",
+ "failure_reason": "timeout_still_moving",
+ "planning_time_s": 59.82974949899972,
+ "n_plan_calls": 14,
+ "n_plans": 209,
+ "planning_time_per_call_max_s": 5.466953721999971,
+ "episode_time_s": 62.72720014600009,
+ "first_replan_after_obstacle": 2,
+ "n_checks": 66,
+ "n_triggers": 4,
+ "n_all_collide": 7,
+ "n_astar": 4,
+ "n_astar_fail": 0,
+ "n_waypoints": 20,
+ "n_segments": 12,
+ "n_replans": 13,
+ "path_length": 22.70163395923195,
+ "wall_contact_steps": 41,
+ "wall_contact_events": 3,
+ "visited_blocked_cell": false,
+ "events": [
+  {
+   "t": 0,
+   "event": "adopt_plan",
+   "why": "initial",
+   "H": 384
+  },
+  {
+   "t": 138,
+   "event": "obstacle_appears",
+   "cell": [
+    5,
+    7
+   ],
+   "kind": "full"
+  },
+  {
+   "t": 140,
+   "event": "trigger"
+  },
+  {
+   "t": 140,
+   "event": "adopt_plan",
+   "why": "trigger",
+   "H": 384
+  },
+  {
+   "t": 140,
+   "event": "best_of_n",
+   "n": 16,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 140,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     5,
+     6
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 140,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 92
+  },
+  {
+   "t": 140,
+   "event": "segment",
+   "target": [
+    5,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 150,
+   "event": "trigger"
+  },
+  {
+   "t": 150,
+   "event": "adopt_plan",
+   "why": "trigger_in_chain",
+   "H": 92
+  },
+  {
+   "t": 150,
+   "event": "segment",
+   "target": [
+    5,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 150,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     5,
+     6
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 150,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 92
+  },
+  {
+   "t": 150,
+   "event": "segment",
+   "target": [
+    5,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 160,
+   "event": "trigger"
+  },
+  {
+   "t": 160,
+   "event": "adopt_plan",
+   "why": "trigger_in_chain",
+   "H": 92
+  },
+  {
+   "t": 160,
+   "event": "segment",
+   "target": [
+    5,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 160,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     5,
+     6
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 160,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 92
+  },
+  {
+   "t": 160,
+   "event": "segment",
+   "target": [
+    5,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 170,
+   "event": "trigger"
+  },
+  {
+   "t": 170,
+   "event": "adopt_plan",
+   "why": "trigger_in_chain",
+   "H": 92
+  },
+  {
+   "t": 170,
+   "event": "segment",
+   "target": [
+    5,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 0,
+   "n_ok": 0
+  },
+  {
+   "t": 170,
+   "event": "astar",
+   "here": [
+    7,
+    6
+   ],
+   "waypoints": [
+    [
+     5,
+     6
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "route_len": 19
+  },
+  {
+   "t": 170,
+   "event": "adopt_plan",
+   "why": "chain_start",
+   "H": 92
+  },
+  {
+   "t": 170,
+   "event": "segment",
+   "target": [
+    5,
+    6
+   ],
+   "H": 92,
+   "n_cells": 2,
+   "n_clear": 1,
+   "n_ok": 1
+  },
+  {
+   "t": 281,
+   "event": "segment_exhausted",
+   "cell": [
+    5,
+    6
+   ]
+  },
+  {
+   "t": 281,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 124
+  },
+  {
+   "t": 281,
+   "event": "segment",
+   "target": [
+    3,
+    6
+   ],
+   "H": 124,
+   "n_cells": 3,
+   "n_clear": 15,
+   "n_ok": 15
+  },
+  {
+   "t": 397,
+   "event": "waypoint_reached",
+   "cell": [
+    3,
+    6
+   ]
+  },
+  {
+   "t": 397,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 397,
+   "event": "segment",
+   "target": [
+    1,
+    8
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 15,
+   "n_ok": 15
+  },
+  {
+   "t": 527,
+   "event": "waypoint_reached",
+   "cell": [
+    1,
+    8
+   ]
+  },
+  {
+   "t": 527,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 527,
+   "event": "segment",
+   "target": [
+    3,
+    10
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 16,
+   "n_ok": 10
+  },
+  {
+   "t": 642,
+   "event": "waypoint_reached",
+   "cell": [
+    3,
+    10
+   ]
+  },
+  {
+   "t": 642,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 152
+  },
+  {
+   "t": 642,
+   "event": "segment",
+   "target": [
+    5,
+    8
+   ],
+   "H": 152,
+   "n_cells": 4,
+   "n_clear": 16,
+   "n_ok": 16
+  },
+  {
+   "t": 776,
+   "event": "waypoint_reached",
+   "cell": [
+    5,
+    8
+   ]
+  },
+  {
+   "t": 776,
+   "event": "adopt_plan",
+   "why": "next_segment",
+   "H": 124
+  },
+  {
+   "t": 776,
+   "event": "segment",
+   "target": [
+    7,
+    9
+   ],
+   "H": 124,
+   "n_cells": 3,
+   "n_clear": 16,
+   "n_ok": 15
+  }
+ ],
+ "plan_calls": [
+  {
+   "t": 0,
+   "n": 1,
+   "H": 384,
+   "seconds": 3.6035994329999994,
+   "purpose": "initial"
+  },
+  {
+   "t": 140,
+   "n": 16,
+   "H": 384,
+   "seconds": 4.721258992000003,
+   "purpose": "trigger"
+  },
+  {
+   "t": 140,
+   "n": 16,
+   "H": 92,
+   "seconds": 4.049039352999898,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 150,
+   "n": 16,
+   "H": 92,
+   "seconds": 4.0343129220000264,
+   "purpose": "trigger_in_chain"
+  },
+  {
+   "t": 150,
+   "n": 16,
+   "H": 92,
+   "seconds": 5.466953721999971,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 160,
+   "n": 16,
+   "H": 92,
+   "seconds": 4.029629215999876,
+   "purpose": "trigger_in_chain"
+  },
+  {
+   "t": 160,
+   "n": 16,
+   "H": 92,
+   "seconds": 3.9597870430000057,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 170,
+   "n": 16,
+   "H": 92,
+   "seconds": 4.715986921999956,
+   "purpose": "trigger_in_chain"
+  },
+  {
+   "t": 170,
+   "n": 16,
+   "H": 92,
+   "seconds": 4.57127339900012,
+   "purpose": "chain_start"
+  },
+  {
+   "t": 281,
+   "n": 16,
+   "H": 124,
+   "seconds": 3.9840752089999114,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 397,
+   "n": 16,
+   "H": 152,
+   "seconds": 4.470137840999996,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 527,
+   "n": 16,
+   "H": 152,
+   "seconds": 4.434209426000052,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 642,
+   "n": 16,
+   "H": 152,
+   "seconds": 3.856998902999976,
+   "purpose": "next_segment"
+  },
+  {
+   "t": 776,
+   "n": 16,
+   "H": 124,
+   "seconds": 3.9324871179999263,
+   "purpose": "next_segment"
+  }
+ ]
+}
