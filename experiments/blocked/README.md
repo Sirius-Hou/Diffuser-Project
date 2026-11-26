@@ -58,6 +58,8 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 | `fig_guidance_partial` | the same for partial blockage (gap 0.5): guided samples pass through the gap; usable plans with no other route (1% -> 27-32%); closed loop B2 vs b2_guided, with each obstacle hit split into planning (no clear sample) and execution (the ball left a clear plan) |
 | `fig_interior` | `diag/interior_sampling`: interior inpainting (proposal option b). Plans with x-y fixed on the A* detour (probe seed 0) jump to each fixed point and back; outcome per group on the 13 long detours (0 usable everywhere) and usable plans on the 9 short ones |
 | `fig_followup` | 11/23 follow-ups on fresh seeds: (a) B0 B1 B2, B2 + lag replan, oracle on 23 longer full-blockage detours; (b) partial blockage, B2 / b2_guided with the original and the path executor, oracle |
+| `fig_budget_loop` | 11/26, post hoc: (a) main success by the route left when the obstacle appears (ball's cell); (b) ours' leg samples clear of the obstacle, by whether the leg's own shortest route is blocked |
+| `fig_budget_tests` | 11/26, planning layer: (a) E0 plans intact vs distance, no obstacle; (b) E1 + E1r valid / hits obstacle / broken by group |
 | `anim_methods` | seed 1042 (12 cells longer): B2, ours (junctions), astar_line + lag, oracle |
 | `anim_junction` | seed 1026, (3,3) blocked: junction waypoints hit the obstacle, corner waypoints get through (post-hoc finding 1) |
 | `anim_lag` | seed 1046: B2 falls behind a clear plan and stalls on a wall; B1's periodic replanning recovers (post-hoc finding 2) |
@@ -174,7 +176,7 @@ Discordant pairs on the fresh scenarios: only B2 1, only b2_guided 2 (exact McNe
 
 ## Follow-up experiments (2026-11-23, exploratory)
 
-Plan and decision rules written before the runs: `final_project/補強實驗計畫_2026-11-23.md`. All on fresh seeds; none changes the pre-registered main comparison. Figures: `fig_interior`, `fig_followup`.
+Plan and decision rules written before the runs: `experiment_progress/補強實驗計畫_2026-11-23.md`. All on fresh seeds; none changes the pre-registered main comparison. Figures: `fig_interior`, `fig_followup`.
 
 **1. Interior inpainting (proposal option b), offline** (`diag/interior_sampling.py`, `diag/summarize_interior.py` -> `results/diag/interior_sampling/summary.md`). One plan to the goal with the x-y of plan points on the A* detour fixed (`guidance.guided_sample(..., via=)`; with no via points the output equals `planner.plan`, max |diff| 0), at indices in proportion to the A* distance. Same 22 probe states and seeds as the guidance E1.
 
@@ -192,3 +194,24 @@ No group passes the decision rule. The plan jumps to each fixed point and straig
 
 **3. B2 with lag replanning** (`full_fresh`, 30 full blockages, seeds 4000+, 23 with a longer detour; `results/full_fresh/extra.md`): longer detours B0 0/23, B1 7/23, B2 7/23, **B2 + lag replan 11/23**, oracle 23/23. B2 vs B2 + lag: discordant 0 vs 4, exact McNemar p = 0.125. All four rescues are a ball falling behind a clear plan: one stuck behind a wall, three cutting into the obstacle (B2's execution-layer hits 6 -> 3). Unlike main, B1 does not beat B2 here (7 vs 7).
 
+## Why long detours are not sampled: time budget (2026-11-26, exploratory)
+
+Plans with rules written and committed before each run: `experiment_progress/時間預算實驗計畫_2026-11-25.md` (E0-E2;
+sections 10 and 11 are a pre-run amendment and the E1r replication).
+Results are in the plan's last section; figures `fig_budget_loop`, `fig_budget_tests`.
+
+| Script | What | Output |
+|---|---|---|
+| `analyze_budget_closed_loop.py` | main / full_fresh success by the route left at t_appear (ball's cell); ours' legs | `results/diag/budget/closed_loop.md` |
+| `diag/budget_sampling.py` | E0 (no obstacle, far starts), E1 and E1r (total length x extra cells, ball at rest, H 384, 64 samples) | `results/diag/budget/{e0,e1,e1r}/` |
+| `diag/budget_dataset.py` | E2: A -> G segments in the training set, avoiding b, within 384 steps | `results/diag/budget/e2/summary.md` |
+| `diag/summarize_budget.py` | applies the plan's decision rules | `results/diag/budget/summary.md` |
+
+- E1 + E1r (rule: supports the time budget, both batches): route left <= 13 cells needing 8-10 extra cells 140/768 valid;
+  route left >= 17 cells needing only 2-4 extra cells 1/768.
+- E0: without an obstacle, plans from 17-18 cells away are intact 33-41% (through walls), 8-16 cells 67-100%.
+- E2: the long detours exist in the training set, but never within 384 steps.
+- Within the budget the model still keeps to the blocked shortest corridor (S-large 79% of samples pass the blocked cell;
+  junction legs whose own shortest route is blocked: 8/488 clear).
+- A denoising probe (`diag/denoise_probe.py`) failed its calibration and is not evidence; it is kept as a record in
+  `experiment_progress/去噪探針實驗計畫_2026-11-26.md`.

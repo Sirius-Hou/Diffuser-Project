@@ -1,0 +1,291 @@
+{
+  "n_episodes": 1062,
+  "groups": {
+    "S-small": {
+      "n_segments": 4178,
+      "n_avoid_b": 1335,
+      "avoid_le_H": 954
+    },
+    "S-large": {
+      "n_segments": 5469,
+      "n_avoid_b": 936,
+      "avoid_le_H": 560
+    },
+    "L-small": {
+      "n_segments": 1492,
+      "n_avoid_b": 156,
+      "avoid_le_H": 0
+    },
+    "L-large": {
+      "n_segments": 4914,
+      "n_avoid_b": 504,
+      "avoid_le_H": 0
+    }
+  },
+  "rows": [
+    {
+      "id": "e1_00",
+      "group": "S-small",
+      "total": 9,
+      "extra": 2,
+      "n_segments": 473,
+      "n_avoid_b": 104,
+      "avoid_steps_median": 502.5,
+      "avoid_le_H": 35,
+      "all_steps_median": 238.0
+    },
+    {
+      "id": "e1_01",
+      "group": "S-small",
+      "total": 8,
+      "extra": 2,
+      "n_segments": 677,
+      "n_avoid_b": 121,
+      "avoid_steps_median": 516.0,
+      "avoid_le_H": 42,
+      "all_steps_median": 154.0
+    },
+    {
+      "id": "e1_02",
+      "group": "S-small",
+      "total": 11,
+      "extra": 4,
+      "n_segments": 831,
+      "n_avoid_b": 247,
+      "avoid_steps_median": 295.0,
+      "avoid_le_H": 178,
+      "all_steps_median": 368.0
+    },
+    {
+      "id": "e1_03",
+      "group": "S-small",
+      "total": 7,
+      "extra": 4,
+      "n_segments": 812,
+      "n_avoid_b": 393,
+      "avoid_steps_median": 167.0,
+      "avoid_le_H": 335,
+      "all_steps_median": 245.0
+    },
+    {
+      "id": "e1_04",
+      "group": "S-small",
+      "total": 6,
+      "extra": 2,
+      "n_segments": 600,
+      "n_avoid_b": 189,
+      "avoid_steps_median": 263.0,
+      "avoid_le_H": 119,
+      "all_steps_median": 522.0
+    },
+    {
+      "id": "e1_05",
+      "group": "S-small",
+      "total": 9,
+      "extra": 2,
+      "n_segments": 785,
+      "n_avoid_b": 281,
+      "avoid_steps_median": 241.0,
+      "avoid_le_H": 245,
+      "all_steps_median": 365.0
+    },
+    {
+      "id": "e1_06",
+      "group": "S-large",
+      "total": 13,
+      "extra": 8,
+      "n_segments": 976,
+      "n_avoid_b": 230,
+      "avoid_steps_median": 355.0,
+      "avoid_le_H": 160,
+      "all_steps_median": 355.0
+    },
+    {
+      "id": "e1_07",
+      "group": "S-large",
+      "total": 13,
+      "extra": 10,
+      "n_segments": 373,
+      "n_avoid_b": 74,
+      "avoid_steps_median": 713.0,
+      "avoid_le_H": 6,
+      "all_steps_median": 64.0
+    },
+    {
+      "id": "e1_08",
+      "group": "S-large",
+      "total": 12,
+      "extra": 8,
+      "n_segments": 1805,
+      "n_avoid_b": 333,
+      "avoid_steps_median": 316.0,
+      "avoid_le_H": 257,
+      "all_steps_median": 319.0
+    },
+    {
+      "id": "e1_09",
+      "group": "S-large",
+      "total": 12,
+      "extra": 8,
+      "n_segments": 664,
+      "n_avoid_b": 91,
+      "avoid_steps_median": 677.0,
+      "avoid_le_H": 12,
+      "all_steps_median": 93.0
+    },
+    {
+      "id": "e1_10",
+      "group": "S-large",
+      "total": 13,
+      "extra": 8,
+      "n_segments": 1219,
+      "n_avoid_b": 138,
+      "avoid_steps_median": 352.5,
+      "avoid_le_H": 120,
+      "all_steps_median": 126.0
+    },
+    {
+      "id": "e1_11",
+      "group": "S-large",
+      "total": 13,
+      "extra": 10,
+      "n_segments": 432,
+      "n_avoid_b": 70,
+      "avoid_steps_median": 680.5,
+      "avoid_le_H": 5,
+      "all_steps_median": 53.0
+    },
+    {
+      "id": "e1_12",
+      "group": "L-small",
+      "total": 17,
+      "extra": 4,
+      "n_segments": 268,
+      "n_avoid_b": 16,
+      "avoid_steps_median": 523.5,
+      "avoid_le_H": 0,
+      "all_steps_median": 455.0
+    },
+    {
+      "id": "e1_13",
+      "group": "L-small",
+      "total": 17,
+      "extra": 4,
+      "n_segments": 299,
+      "n_avoid_b": 16,
+      "avoid_steps_median": 501.5,
+      "avoid_le_H": 0,
+      "all_steps_median": 463.0
+    },
+    {
+      "id": "e1_14",
+      "group": "L-small",
+      "total": 17,
+      "extra": 4,
+      "n_segments": 375,
+      "n_avoid_b": 24,
+      "avoid_steps_median": 522.5,
+      "avoid_le_H": 0,
+      "all_steps_median": 462.0
+    },
+    {
+      "id": "e1_15",
+      "group": "L-small",
+      "total": 18,
+      "extra": 4,
+      "n_segments": 289,
+      "n_avoid_b": 15,
+      "avoid_steps_median": 497.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 495.0
+    },
+    {
+      "id": "e1_16",
+      "group": "L-small",
+      "total": 20,
+      "extra": 4,
+      "n_segments": 89,
+      "n_avoid_b": 7,
+      "avoid_steps_median": 653.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 641.0
+    },
+    {
+      "id": "e1_17",
+      "group": "L-small",
+      "total": 19,
+      "extra": 2,
+      "n_segments": 172,
+      "n_avoid_b": 78,
+      "avoid_steps_median": 534.5,
+      "avoid_le_H": 0,
+      "all_steps_median": 549.5
+    },
+    {
+      "id": "e1_18",
+      "group": "L-large",
+      "total": 18,
+      "extra": 10,
+      "n_segments": 1550,
+      "n_avoid_b": 169,
+      "avoid_steps_median": 498.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 313.0
+    },
+    {
+      "id": "e1_19",
+      "group": "L-large",
+      "total": 27,
+      "extra": 12,
+      "n_segments": 111,
+      "n_avoid_b": 10,
+      "avoid_steps_median": 770.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 418.0
+    },
+    {
+      "id": "e1_20",
+      "group": "L-large",
+      "total": 20,
+      "extra": 12,
+      "n_segments": 860,
+      "n_avoid_b": 84,
+      "avoid_steps_median": 561.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 361.0
+    },
+    {
+      "id": "e1_21",
+      "group": "L-large",
+      "total": 24,
+      "extra": 12,
+      "n_segments": 234,
+      "n_avoid_b": 21,
+      "avoid_steps_median": 673.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 322.5
+    },
+    {
+      "id": "e1_22",
+      "group": "L-large",
+      "total": 20,
+      "extra": 12,
+      "n_segments": 857,
+      "n_avoid_b": 87,
+      "avoid_steps_median": 564.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 293.0
+    },
+    {
+      "id": "e1_23",
+      "group": "L-large",
+      "total": 17,
+      "extra": 12,
+      "n_segments": 1302,
+      "n_avoid_b": 133,
+      "avoid_steps_median": 472.0,
+      "avoid_le_H": 0,
+      "all_steps_median": 114.0
+    }
+  ]
+}

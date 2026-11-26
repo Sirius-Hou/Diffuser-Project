@@ -1,0 +1,186 @@
+{
+  "e0": {
+    "groups": {
+      "far": {
+        "n_scen": 3,
+        "n": 192,
+        "intact": 107,
+        "clear": 192,
+        "valid": 107,
+        "via_b": 0,
+        "broken": 85,
+        "intact_but_hit": 0,
+        "scen_with_valid": 3
+      },
+      "mid": {
+        "n_scen": 3,
+        "n": 192,
+        "intact": 154,
+        "clear": 192,
+        "valid": 154,
+        "via_b": 0,
+        "broken": 38,
+        "intact_but_hit": 0,
+        "scen_with_valid": 3
+      },
+      "control": {
+        "n_scen": 3,
+        "n": 192,
+        "intact": 173,
+        "clear": 192,
+        "valid": 173,
+        "via_b": 0,
+        "broken": 19,
+        "intact_but_hit": 0,
+        "scen_with_valid": 3
+      }
+    },
+    "decision": "uncertain"
+  },
+  "e1": {
+    "groups": {
+      "S-small": {
+        "n_scen": 6,
+        "n": 384,
+        "intact": 324,
+        "clear": 150,
+        "valid": 107,
+        "via_b": 233,
+        "broken": 60,
+        "intact_but_hit": 217,
+        "scen_with_valid": 3
+      },
+      "S-large": {
+        "n_scen": 6,
+        "n": 384,
+        "intact": 320,
+        "clear": 75,
+        "valid": 66,
+        "via_b": 308,
+        "broken": 64,
+        "intact_but_hit": 254,
+        "scen_with_valid": 5
+      },
+      "L-small": {
+        "n_scen": 6,
+        "n": 384,
+        "intact": 334,
+        "clear": 29,
+        "valid": 1,
+        "via_b": 353,
+        "broken": 50,
+        "intact_but_hit": 333,
+        "scen_with_valid": 1
+      },
+      "L-large": {
+        "n_scen": 6,
+        "n": 384,
+        "intact": 353,
+        "clear": 0,
+        "valid": 0,
+        "via_b": 384,
+        "broken": 31,
+        "intact_but_hit": 353,
+        "scen_with_valid": 0
+      }
+    },
+    "verdicts": {
+      "S-small": "found",
+      "S-large": "found",
+      "L-small": "not found",
+      "L-large": "not found"
+    },
+    "setup_intact": 0.8385416666666666,
+    "decision": "supports the time budget"
+  },
+  "e1r": {
+    "E1r alone": {
+      "groups": {
+        "S-small": {
+          "n_scen": 6,
+          "n": 384,
+          "intact": 343,
+          "clear": 136,
+          "valid": 126,
+          "via_b": 245,
+          "broken": 41,
+          "intact_but_hit": 217,
+          "scen_with_valid": 6
+        },
+        "S-large": {
+          "n_scen": 6,
+          "n": 384,
+          "intact": 307,
+          "clear": 84,
+          "valid": 74,
+          "via_b": 297,
+          "broken": 77,
+          "intact_but_hit": 233,
+          "scen_with_valid": 5
+        },
+        "L-small": {
+          "n_scen": 6,
+          "n": 384,
+          "intact": 368,
+          "clear": 0,
+          "valid": 0,
+          "via_b": 384,
+          "broken": 16,
+          "intact_but_hit": 368,
+          "scen_with_valid": 0
+        }
+      },
+      "verdicts": {
+        "S-small": "found",
+        "S-large": "found",
+        "L-small": "not found"
+      },
+      "setup_intact": 0.8463541666666666,
+      "decision": "supports the time budget"
+    },
+    "E1 + E1r": {
+      "groups": {
+        "S-small": {
+          "n_scen": 12,
+          "n": 768,
+          "intact": 667,
+          "clear": 286,
+          "valid": 233,
+          "via_b": 478,
+          "broken": 101,
+          "intact_but_hit": 434,
+          "scen_with_valid": 9
+        },
+        "S-large": {
+          "n_scen": 12,
+          "n": 768,
+          "intact": 627,
+          "clear": 159,
+          "valid": 140,
+          "via_b": 605,
+          "broken": 141,
+          "intact_but_hit": 487,
+          "scen_with_valid": 10
+        },
+        "L-small": {
+          "n_scen": 12,
+          "n": 768,
+          "intact": 702,
+          "clear": 29,
+          "valid": 1,
+          "via_b": 737,
+          "broken": 66,
+          "intact_but_hit": 701,
+          "scen_with_valid": 1
+        }
+      },
+      "verdicts": {
+        "S-small": "found",
+        "S-large": "found",
+        "L-small": "not found"
+      },
+      "setup_intact": 0.8424479166666666,
+      "decision": "supports the time budget"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "data_p90": 0.00461073895683512,
+  "excluded": [],
+  "c1": false,
+  "c2": false,
+  "length_decision": "probe not usable (calibration failed)",
+  "shape_decision": "probe not usable (calibration failed)",
+  "shape_A": 0.6805555555555556,
+  "n_pairs": 144,
+  "fast_high": [
+    12,
+    12
+  ],
+  "mid_high": [
+    14,
+    18
+  ],
+  "wall_high": [
+    18,
+    18
+  ],
+  "kroute_high": [
+    18,
+    18
+  ]
+}

@@ -940,9 +940,121 @@ def fig_followup(_m):
     save(fig, 'fig_followup')
 
 
+
+BUDGET = os.path.join(RES, 'diag', 'budget')
+BUDGET_BINS = ((0, 12, '<= 12'), (13, 15, '13-15'), (16, 18, '16-18'), (19, 99, '>= 19'))
+E1_GROUPS = [('S-small', 'S-small\ntot<=13\nex 2-4'), ('S-large', 'S-large\ntot<=13\nex>=8'),
+             ('L-small', 'L-small\ntot>=17\nex 2-4'), ('L-large', 'L-large\ntot>=17\nex>=8')]
+
+
+def fig_budget_loop(_m):
+    """Closed loop, post hoc (analyze_budget_closed_loop.py): (a) success by the route left when the obstacle appears
+    (ball's cell); (b) ours' leg plans clear the obstacle unless the leg's own shortest route is blocked."""
+    d = json.load(open(os.path.join(BUDGET, 'closed_loop.json')))
+    rows = d['remaining']['main']['rows']
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(7.6, 3.0), gridspec_kw=dict(width_ratios=[1.35, 1]))
+    xs = np.arange(len(BUDGET_BINS))
+    for i, (m, c, mk) in enumerate([('B2', MUTED, 'o'), ('ours (junctions)', BLUE, 's'), ('ours (corners)', AQUA, 'D'),
+                                    ('oracle', INK2, '^')]):
+        ks, ns = [], []
+        for lo, hi, _ in BUDGET_BINS:
+            b = [r for r in rows if lo <= r['total'] <= hi]
+            ks.append(sum(r['success'][m] for r in b))
+            ns.append(len(b))
+        p = np.array([k / n for k, n in zip(ks, ns)])
+        lo_hi = np.array([wilson(k, n) for k, n in zip(ks, ns)])
+        off = (i - 1.5) * 0.07
+        ax.errorbar(xs + off, p, yerr=[p - lo_hi[:, 0], lo_hi[:, 1] - p], c=c, marker=mk, ms=5, lw=2, capsize=2,
+                    label=m, mec='white')
+    ax.set_xticks(xs)
+    ax.set_xticklabels([f'{lab}\n(n={sum(lo <= r["total"] <= hi for r in rows)})' for lo, hi, lab in BUDGET_BINS], fontsize=7.5)
+    ax.set_xlabel('cells of route left when the obstacle appears')
+    ax.set_ylabel('success')
+    ax.set_ylim(-0.03, 1.05)
+    ax.grid(axis='y', color=GRID, lw=0.8)
+    ax.legend(fontsize=7, frameon=False, loc='lower left')
+    ax.set_title('(a) main, full blockage (46 scenarios), post hoc', fontsize=8, loc='left')
+    groups = []
+    for name, lab in (('ours (corners)', 'corners'), ('ours (junctions)', 'junctions')):
+        for v, vl in ((False, 'leg route open'), (True, 'leg route blocked')):
+            xs_ = [x for x in d['legs'][name] if x['leg_shortest_blocked'] == v]
+            if xs_:
+                groups.append((f'{lab}\n{vl}', sum(x['n_clear'] for x in xs_), sum(x['n'] for x in xs_), len(xs_),
+                               len({x['seed'] for x in xs_})))
+    ys = np.arange(len(groups))[::-1]
+    for y, (lab, k, n, npl, nsc) in zip(ys, groups):
+        bx.barh(y, k / n, height=0.6, color=RED if 'blocked' in lab else BLUE)
+        inside = k / n > 0.5
+        bx.text(0.03 if inside else k / n + 0.02, y, f'{k}/{n} samples\n{npl} plans, {nsc} scenarios', va='center',
+                fontsize=6.8, color='white' if inside else INK2)
+    bx.set_yticks(ys)
+    bx.set_yticklabels([g[0] for g in groups], fontsize=7.5)
+    bx.set_xlim(0, 1.0)
+    bx.set_xlabel('leg samples clear of the obstacle')
+    bx.grid(axis='x', color=GRID, lw=0.8)
+    bx.set_axisbelow(True)
+    bx.set_title("(b) ours' legs: does the leg itself need a detour?", fontsize=8, loc='left')
+    fig.tight_layout()
+    save(fig, 'fig_budget_loop')
+
+
+def fig_budget_tests(_m):
+    """Planning layer, rules fixed in advance: (a) E0 no obstacle, start far from the goal; (b) E1 total length x
+    extra cells."""
+    s = json.load(open(os.path.join(BUDGET, 'summary.json')))
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(6.0, 3.4), gridspec_kw=dict(width_ratios=[0.8, 1.2]))
+    e0 = sorted((json.load(open(f)) for f in glob_rows('e0')), key=lambda r: r['total'])
+    col = {'control': AQUA, 'mid': YELLOW, 'far': RED}
+    for r in e0:
+        ax.plot(r['total'], r['n_intact'] / r['n'], 'o', c=col[r['group']], ms=6, mec='white')
+    ax.set_xlabel('BFS cells to the goal')
+    ax.set_ylabel('plans intact (no obstacle)')
+    ax.set_ylim(-0.03, 1.05)
+    ax.grid(color=GRID, lw=0.8)
+    ax.legend(handles=[Line2D([], [], ls='', marker='o', c=c, label=k) for k, c in col.items()], fontsize=6.5, frameon=False)
+    ax.set_title(f"(a) E0: {s.get('e0', {}).get('decision', 'not run')}", fontsize=7.5, loc='left')
+    e1 = s.get('e1', {})
+    e1rows = [json.load(open(f)) for f in glob_rows('e1')] + (
+        [json.load(open(f)) for f in glob_rows('e1r')] if os.path.isdir(os.path.join(BUDGET, 'e1r', 'rows')) else [])
+    for g, _ in E1_GROUPS:                          # E1 + E1r replication pooled (L-large only in E1)
+        rs = [r for r in e1rows if r['group'] == g]
+        e1['groups'][g] = dict(n=sum(r['n'] for r in rs), n_scen=len(rs), valid=sum(r['n_valid'] for r in rs),
+                               scen_with_valid=sum(r['n_valid'] > 0 for r in rs),
+                               broken=sum(r['n'] - r['n_intact'] for r in rs),
+                               intact_but_hit=sum(sum(x['intact'] and not x['clear'] for x in r['samples']) for r in rs))
+    xs = np.arange(len(E1_GROUPS))
+    parts = [('valid', 'valid (clear, intact)', BLUE), ('intact_but_hit', 'intact, hits obstacle', RED),
+             ('broken', 'broken (walls / jumps)', VIOLET)]
+    for i, (g, lab) in enumerate(E1_GROUPS):
+        p = e1['groups'][g]
+        bottom = 0.0
+        for key, _, c in parts:
+            v = p[key] / p['n']
+            bx.bar(i, v, bottom=bottom, width=0.62, color=c, ec='white', lw=1.2)
+            bottom += v
+        bx.text(i, 1.02, f"{p['valid']}/{p['n']}\n{p['scen_with_valid']}/{p['n_scen']}", ha='center', va='bottom', fontsize=6.3,
+                color=INK2)
+    bx.set_xticks(xs)
+    bx.set_xticklabels([lab for _, lab in E1_GROUPS], fontsize=6.8)
+    bx.set_ylim(0, 1.25)
+    bx.text(-0.45, 1.24, 'valid / scenarios with valid', fontsize=6, color=MUTED, va='top')
+    bx.set_ylabel('share of samples (64 per scenario)')
+    bx.legend(handles=[Patch(color=c, label=lab) for _, lab, c in parts], fontsize=6.3, frameon=False, loc='upper center',
+              bbox_to_anchor=(0.5, -0.22), ncol=3)
+    rep = s.get('e1r', {}).get('E1 + E1r', {}).get('decision')
+    bx.set_title(f"(b) E1{' + E1r' if rep else ''}: {rep or e1.get('decision', 'not run')}", fontsize=7.5, loc='left')
+    fig.tight_layout()
+    save(fig, 'fig_budget_tests')
+
+
+def glob_rows(exp):
+    d = os.path.join(BUDGET, exp, 'rows')
+    return [os.path.join(d, f) for f in sorted(os.listdir(d)) if f.endswith('.json')]
+
 FIGURES = dict(pipeline=fig_pipeline, scenario=fig_scenario, primary=fig_primary, by_extra=fig_by_extra,
                outcomes=fig_outcomes, failures=fig_failures, cost=fig_cost, samples=fig_samples, legs=fig_legs,
                guidance=fig_guidance, guidance_partial=fig_guidance_partial, interior=fig_interior, followup=fig_followup,
+               budget_loop=fig_budget_loop, budget_tests=fig_budget_tests,
                anim_methods=anim_methods, anim_junction=anim_junction, anim_lag=anim_lag)
 
 
