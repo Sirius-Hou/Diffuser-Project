@@ -1047,6 +1047,108 @@ def fig_budget_tests(_m):
     save(fig, 'fig_budget_tests')
 
 
+CORRIDOR = os.path.join(RES, 'diag', 'corridor')
+
+
+def fig_corridor(_m):
+    """Planning layer (experiment_progress/走廊偏好實驗計畫_2026-11-27.md): (a) e1_11's 64 plans: spare time spent on a
+    turn-back, then through b; (b) when the corridor is decided during denoising (scenarios with mixed outcomes);
+    (c) F4 denoising started from a noised route; (d) F5 same starting noise; (e) F2/F6/F7 training-data share vs the
+    model's share; (f) F1 straight-line distance."""
+    s = json.load(open(os.path.join(CORRIDOR, 'summary.json')))
+    geo = {g['id']: g for g in json.load(open(os.path.join(CORRIDOR, 'geometry.json')))}
+    fig, axes = plt.subplots(2, 3, figsize=(9.0, 6.2))
+    ax = axes[0, 0]
+    sid = 'e1_11'
+    g, d = geo[sid], np.load(os.path.join(CORRIDOR, 'plans', f'{sid}.npz'))
+    maze_axes(ax)
+    b = tuple(g['b'])
+    ax.add_patch(Rectangle((b[1] + mu.CELL_LO, b[0] + mu.CELL_LO), 1, 1, color=RED, alpha=0.25, lw=0))
+    plans = d['xy'][:, list(d['steps']).index(255), 1:-1].astype(float)
+    for p, v in zip(plans, d['final_via_b']):
+        ax.plot(*xy(p), c=RED if v else BLUE, lw=0.6, alpha=0.35)
+    for c, lab in ((tuple(g['A']), 'A'), (tuple(g['G']), 'G')):
+        ax.text(*xy(mu.cell_center(c)), lab, ha='center', va='center', fontsize=8, fontweight='bold', color=INK)
+    ax.text(*xy(mu.cell_center(b)), 'b', ha='center', va='center', fontsize=8, color=RED)
+    ax.set_title(f"(a) {sid}: 64 plans, {int(np.sum(d['final_via_b']))} through b", fontsize=7.5, loc='left')
+    ax.legend(handles=[Line2D([], [], c=RED, label='through b'), Line2D([], [], c=BLUE, label='not through b')],
+              fontsize=6.3, frameon=False, loc='lower left', bbox_to_anchor=(0, -0.16), ncol=2)
+    bx = axes[0, 1]
+    rows = [json.load(open(f)) for f in sorted(glob_json(os.path.join(CORRIDOR, 'trace')))]
+    mixed = [r for r in rows if 0.1 <= 1 - np.mean(r['final_via_b']) <= 0.9]
+    js = np.arange(256)
+    for rs, c, lab in ((rows, MUTED, f'all {len(rows)} scenarios'), (mixed, BLUE, f'{len(mixed)} with mixed outcomes')):
+        locks = np.concatenate([r['lock'] for r in rs])
+        bx.plot(js, [(locks <= j).mean() for j in js], c=c, lw=2, label=lab)
+    bx.axvline(64, c=GRID, lw=1)
+    bx.set_xlabel('denoising step (0 = first, noisiest)')
+    bx.set_ylabel('share of samples, corridor fixed')
+    bx.set_ylim(0, 1.02)
+    bx.grid(color=GRID, lw=0.8)
+    bx.legend(fontsize=6.3, frameon=False, loc='lower right')
+    bx.set_title('(b) F3: corridor fixed early in denoising', fontsize=7.5, loc='left')
+    cx = axes[0, 2]
+    pooled, base = s['F4']['pooled'], s['F4']['baseline_avoid']
+    ks = sorted({int(k.rsplit('_k', 1)[1]) for k in pooled})
+    for route, c, lab in (('route_d', BLUE, 'start from detour'), ('route_b', RED, 'start from route via b')):
+        cx.plot(ks, [pooled[f'{route}_k{k}']['avoid'] for k in ks], c=c, marker='o', lw=2, ms=5, mec='white',
+                label=f'{lab}: not through b')
+        cx.plot(ks, [pooled[f'{route}_k{k}']['valid'] for k in ks], c=c, marker='s', lw=1, ms=4, ls='--', mec='white',
+                alpha=0.7, label=f'{lab}: valid')
+    cx.axhline(base, c=MUTED, lw=1.2, ls=':', label='plain sampling: not through b')
+    cx.set_xticks(ks)
+    cx.set_xlabel('steps left when started (of 256)')
+    cx.set_ylabel('share of samples')
+    cx.set_ylim(-0.03, 1.05)
+    cx.grid(color=GRID, lw=0.8)
+    cx.legend(fontsize=5.6, frameon=False, loc='center left')
+    cx.set_title('(c) F4: start from a noised route', fontsize=7.5, loc='left')
+    dx = axes[1, 0]
+    for r in (json.load(open(f)) for f in sorted(glob_json(os.path.join(CORRIDOR, 'noise')))):
+        via = np.array(r['via_b'])
+        dx.plot(np.full(len(via), via.mean()), via.mean(1), 'o', c=BLUE, ms=3.5, alpha=0.6, mec='none')
+    dx.plot([0, 1], [0, 1], c=GRID, lw=1)
+    dx.set_xlabel('scenario share through b')
+    dx.set_ylabel('share through b, one starting noise')
+    dx.set_xlim(-0.03, 1.03), dx.set_ylim(-0.03, 1.03)
+    dx.grid(color=GRID, lw=0.8)
+    dx.text(0.97, 0.03, f"W {s['F5']['W']:.2f} vs Q {s['F5']['Q']:.2f}", transform=dx.transAxes, ha='right', va='bottom',
+            fontsize=6.5, color=INK2)
+    dx.set_title('(d) F5: starting noise does not decide', fontsize=7.5, loc='left')
+    ex = axes[1, 1]
+    y = {r['id']: r['y'] for r in geo.values()}
+    f2 = json.load(open(os.path.join(CORRIDOR, 'e2_all', 'summary_e1.json')))['rows'] + \
+        json.load(open(os.path.join(CORRIDOR, 'e2_all', 'summary_e1r.json')))['rows']
+    sets = (([(r['n_avoid_b'] / r['n_segments'], y[r['id']]) for r in f2 if r['id'] in y], MUTED, 'o', 'F2 all segments', 'F2'),
+            ([(r['x6'], r['y']) for r in json.load(open(os.path.join(CORRIDOR, 'dataset.json')))['rows'] if r['n'] >= 10],
+             ORANGE, '^', 'F6 300-420 steps', 'F6'),
+            ([(r['x7'], r['y']) for r in json.load(open(os.path.join(CORRIDOR, 'window.json')))['rows'] if r['clusters'] >= 5],
+             BLUE, 's', 'F7 384-step windows', 'F7'))
+    for pts, c, m, lab, key in sets:
+        ex.plot(*zip(*pts), m, c=c, ms=4.5, alpha=0.8, mec='white', mew=0.5, label=f"{lab} (rho {s[key]['rho']:.2f})")
+    ex.plot([0, 1], [0, 1], c=GRID, lw=1)
+    ex.set_xlabel('training data: share avoiding b')
+    ex.set_ylabel('model: share avoiding b')
+    ex.set_xlim(-0.03, 1.03), ex.set_ylim(-0.03, 1.03)
+    ex.grid(color=GRID, lw=0.8)
+    ex.legend(fontsize=5.6, frameon=True, framealpha=0.6, edgecolor='none', loc='center right')
+    ex.set_title('(e) F2/F6/F7: not the data frequency', fontsize=7.5, loc='left')
+    fx = axes[1, 2]
+    fx.plot([r['delta'] for r in geo.values()], [r['y'] for r in geo.values()], 'o', c=BLUE, ms=4.5, alpha=0.8, mec='white',
+            mew=0.5)
+    fx.set_xlabel('detour minus route-via-b distance to line A-G (cells)')
+    fx.set_ylabel('model: share avoiding b')
+    fx.set_ylim(-0.03, 1.03)
+    fx.grid(color=GRID, lw=0.8)
+    fx.set_title(f"(f) F1: straight line (rho {s['F1']['rho']:.2f}, p {s['F1']['p']:.3f})", fontsize=7.5, loc='left')
+    fig.tight_layout()
+    save(fig, 'fig_corridor')
+
+
+def glob_json(d):
+    return [os.path.join(d, f) for f in os.listdir(d) if f.endswith('.json')]
+
+
 def glob_rows(exp):
     d = os.path.join(BUDGET, exp, 'rows')
     return [os.path.join(d, f) for f in sorted(os.listdir(d)) if f.endswith('.json')]
@@ -1054,7 +1156,7 @@ def glob_rows(exp):
 FIGURES = dict(pipeline=fig_pipeline, scenario=fig_scenario, primary=fig_primary, by_extra=fig_by_extra,
                outcomes=fig_outcomes, failures=fig_failures, cost=fig_cost, samples=fig_samples, legs=fig_legs,
                guidance=fig_guidance, guidance_partial=fig_guidance_partial, interior=fig_interior, followup=fig_followup,
-               budget_loop=fig_budget_loop, budget_tests=fig_budget_tests,
+               budget_loop=fig_budget_loop, budget_tests=fig_budget_tests, corridor=fig_corridor,
                anim_methods=anim_methods, anim_junction=anim_junction, anim_lag=anim_lag)
 
 

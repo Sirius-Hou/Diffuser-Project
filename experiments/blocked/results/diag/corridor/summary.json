@@ -1,0 +1,138 @@
+{
+  "F1": {
+    "rho": -0.3985191500731659,
+    "p": 0.058994100589941006,
+    "decision": "uncertain",
+    "sign_agree": [
+      18,
+      24
+    ]
+  },
+  "F2": {
+    "rho": -0.09984779580607767,
+    "p": 0.6446355364463554,
+    "decision": "does not support data frequency",
+    "e1r_rho": 0.0634945323077438,
+    "e1r_p": 0.8397160283971603
+  },
+  "F3": {
+    "n_scen": 24,
+    "reproduced": 24,
+    "lock_median": 0.0,
+    "decision": "decided early",
+    "premise": [
+      2,
+      24
+    ],
+    "agree": {
+      "0": 0.7272135416666666,
+      "16": 0.8170572916666666,
+      "32": 0.8873697916666666,
+      "64": 0.970703125,
+      "128": 0.9876302083333334
+    },
+    "lock_quantiles": [
+      0.0,
+      0.0,
+      47.0
+    ]
+  },
+  "F4": {
+    "n_scen": 24,
+    "baseline_avoid": 0.294921875,
+    "pooled": {
+      "route_d_k64": {
+        "n": 768,
+        "intact": 0.9283854166666666,
+        "clear": 0.9596354166666666,
+        "valid": 0.8971354166666666,
+        "via_b": 0.009114583333333334,
+        "avoid": 0.9908854166666666
+      },
+      "route_d_k128": {
+        "n": 768,
+        "intact": 0.9388020833333334,
+        "clear": 0.91796875,
+        "valid": 0.8697916666666666,
+        "via_b": 0.049479166666666664,
+        "avoid": 0.9505208333333334
+      },
+      "route_d_k192": {
+        "n": 768,
+        "intact": 0.8424479166666666,
+        "clear": 0.7682291666666666,
+        "valid": 0.6979166666666666,
+        "via_b": 0.20833333333333334,
+        "avoid": 0.7916666666666666
+      },
+      "route_b_k64": {
+        "n": 768,
+        "intact": 0.375,
+        "clear": 0.15494791666666666,
+        "valid": 0.015625,
+        "via_b": 0.7708333333333334,
+        "avoid": 0.22916666666666663
+      },
+      "route_b_k128": {
+        "n": 768,
+        "intact": 0.71875,
+        "clear": 0.05078125,
+        "valid": 0.028645833333333332,
+        "via_b": 0.94140625,
+        "avoid": 0.05859375
+      },
+      "route_b_k192": {
+        "n": 768,
+        "intact": 0.6901041666666666,
+        "clear": 0.06901041666666667,
+        "valid": 0.05078125,
+        "via_b": 0.9205729166666666,
+        "avoid": 0.07942708333333337
+      }
+    },
+    "decision": "supports: the early coarse shape sets the corridor"
+  },
+  "F5": {
+    "n_scen": 10,
+    "W": 0.6982142857142857,
+    "Q": 0.6983642578125,
+    "decision": "does not support: later noise matters as much as x_T"
+  },
+  "F6": {
+    "window": [
+      300,
+      420
+    ],
+    "n_scen": 22,
+    "excluded": [
+      "e1_07",
+      "e1r_08"
+    ],
+    "rho": 0.2143875556484421,
+    "p": 0.3347665233476652,
+    "decision": "does not support time-matched data frequency",
+    "mean_abs_diff": 0.45291128795742247,
+    "via_turn_back": [
+      858,
+      868
+    ]
+  },
+  "F7": {
+    "n_scen": 24,
+    "excluded": [],
+    "rho": -0.037497425499225676,
+    "p": 0.8598140185981402,
+    "decision": "does not support the training distribution under the planning endpoints",
+    "mean_abs_diff": 0.3460384039304611,
+    "mean_x7": 0.34247693833569254,
+    "mean_y": 0.294921875,
+    "rho_cluster": 0.010464397813737397,
+    "p_cluster": 0.9612038796120388
+  },
+  "turnback": {
+    "n_via": 1083,
+    "turn_back": 1036,
+    "turn_back2": 855,
+    "along_detour": 295
+  }
+}

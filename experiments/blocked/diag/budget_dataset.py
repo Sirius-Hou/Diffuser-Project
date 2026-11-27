@@ -7,8 +7,11 @@ goal changes), find each segment from the last step in A to the next first arriv
 Records how many there are, how many avoid the blocked cell b, how long those take, and how many fit in 384 steps.
 
     bash experiments/common/setup/run.sh python experiments/blocked/diag/budget_dataset.py
-Writes results/diag/budget/e2/summary.{md,json}.
+    bash experiments/common/setup/run.sh python experiments/blocked/diag/budget_dataset.py --exp e1r --out ../corridor/e2_all
+Writes results/diag/budget/e2/summary.{md,json} (--out: a directory relative to results/diag/budget).
+--exp e1r was added for F2 of experiment_progress/走廊偏好實驗計畫_2026-11-27.md.
 """
+import argparse
 import json
 import os
 import sys
@@ -38,8 +41,12 @@ def segments(cells, a, g):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--exp', choices=['e1', 'e1r'], default='e1')
+    ap.add_argument('--out', default='e2')
+    args = ap.parse_args()
     base = os.path.join(REPO, 'experiments/blocked/results/diag/budget')
-    scen = json.load(open(os.path.join(base, 'e1', 'scenarios.json')))['scenarios']
+    scen = json.load(open(os.path.join(base, args.exp, 'scenarios.json')))['scenarios']
     planner = FrozenDiffuserPlanner('maze2d-large-v1', 'diffusion/H384_T256', 'latest', 'cpu')
     ds = planner.experiment.dataset
     obs, lengths = ds.fields.observations, ds.fields.path_lengths
@@ -56,7 +63,8 @@ def main():
                     avoid.append(t1 - t0)
         rows.append(dict(id=s['id'], group=s['group'], total=s['total'], extra=s['extra'], n_segments=len(seg),
                          n_avoid_b=len(avoid), avoid_steps_median=float(np.median(avoid)) if avoid else None,
-                         avoid_le_H=sum(x <= H for x in avoid), all_steps_median=float(np.median(seg)) if seg else None))
+                         avoid_le_H=sum(x <= H for x in avoid), all_le_H=sum(x <= H for x in seg),
+                         all_steps_median=float(np.median(seg)) if seg else None))
         print(f"[e2] {s['id']} {s['group']:8s} total {s['total']:2d} extra {s['extra']:2d} | segments {len(seg):4d} | "
               f"avoid b {len(avoid):3d} (<= {H} steps: {rows[-1]['avoid_le_H']}) | median steps all "
               f"{rows[-1]['all_steps_median']} avoid {rows[-1]['avoid_steps_median']}", flush=True)
@@ -65,9 +73,9 @@ def main():
         rs = [r for r in rows if r['group'] == gname]
         groups[gname] = dict(n_segments=sum(r['n_segments'] for r in rs), n_avoid_b=sum(r['n_avoid_b'] for r in rs),
                              avoid_le_H=sum(r['avoid_le_H'] for r in rs))
-    out = os.path.join(base, 'e2')
+    out = os.path.normpath(os.path.join(base, args.out))
     os.makedirs(out, exist_ok=True)
-    with open(os.path.join(out, 'summary.json'), 'w') as f:
+    with open(os.path.join(out, f'summary_{args.exp}.json' if args.exp != 'e1' or args.out != 'e2' else 'summary.json'), 'w') as f:
         json.dump(dict(n_episodes=int(len(lengths)), groups=groups, rows=rows), f, indent=2)
     lines = ['# E2: A -> G segments in the training set (descriptive)', '',
              f'{len(lengths)} training episodes (split where the goal changes); segments of at most {MAX_STEPS} steps.', '',
@@ -77,7 +85,7 @@ def main():
               '|---|---|---|---|---|---|---|---|']
     lines += [f"| {r['id']} | {r['group']} | {r['total']} | {r['extra']} | {r['n_segments']} | {r['n_avoid_b']} | "
               f"{r['avoid_le_H']} | {r['all_steps_median']} / {r['avoid_steps_median']} |" for r in rows]
-    with open(os.path.join(out, 'summary.md'), 'w') as f:
+    with open(os.path.join(out, f'summary_{args.exp}.md' if args.exp != 'e1' or args.out != 'e2' else 'summary.md'), 'w') as f:
         f.write('\n'.join(lines) + '\n')
     print('\n'.join(lines))
 

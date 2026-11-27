@@ -60,6 +60,7 @@ Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route
 | `fig_followup` | 11/23 follow-ups on fresh seeds: (a) B0 B1 B2, B2 + lag replan, oracle on 23 longer full-blockage detours; (b) partial blockage, B2 / b2_guided with the original and the path executor, oracle |
 | `fig_budget_loop` | 11/26, post hoc: (a) main success by the route left when the obstacle appears (ball's cell); (b) ours' leg samples clear of the obstacle, by whether the leg's own shortest route is blocked |
 | `fig_budget_tests` | 11/26, planning layer: (a) E0 plans intact vs distance, no obstacle; (b) E1 + E1r valid / hits obstacle / broken by group |
+| `fig_corridor` | 11/27, planning layer: (a) e1_11's 64 plans (turn-back, then through b); (b) when the corridor is fixed during denoising; (c) F4 denoising from a noised route; (d) F5 same starting noise; (e) training-data share vs model share (F2/F6/F7); (f) F1 straight-line distance |
 | `anim_methods` | seed 1042 (12 cells longer): B2, ours (junctions), astar_line + lag, oracle |
 | `anim_junction` | seed 1026, (3,3) blocked: junction waypoints hit the obstacle, corner waypoints get through (post-hoc finding 1) |
 | `anim_lag` | seed 1046: B2 falls behind a clear plan and stalls on a wall; B1's periodic replanning recovers (post-hoc finding 2) |
@@ -215,3 +216,30 @@ Results are in the plan's last section; figures `fig_budget_loop`, `fig_budget_t
   junction legs whose own shortest route is blocked: 8/488 clear).
 - A denoising probe (`diag/denoise_probe.py`) failed its calibration and is not evidence; it is kept as a record in
   `experiment_progress/去噪探針實驗計畫_2026-11-26.md`.
+
+## Why the blocked corridor is kept within the budget (2026-11-27, exploratory)
+
+Plan: `experiment_progress/走廊偏好實驗計畫_2026-11-27.md` (F1-F4 rules in section 3, F5 in section 6, written before
+running; F6 and F7 in sections 7 and 8 were added after seeing earlier results). Results are in the plan's last section;
+figure `fig_corridor`. The 24 S scenarios of E1 + E1r; y = share of a scenario's 64 samples that do not pass the blocked cell.
+
+| Script | What | Output |
+|---|---|---|
+| `diag/corridor_geometry.py` | F1: distance of the route via b and the detour to the line A-G | `results/diag/corridor/geometry.json` |
+| `diag/budget_dataset.py --exp e1r --out ../corridor/e2_all` | F2: A -> G segments in the training set | `results/diag/corridor/e2_all/` |
+| `diag/corridor_trace.py --mode trace/init/noise` | F3 denoising trace, F4 start from a noised route, F5 fixed starting noise | `results/diag/corridor/{trace,init,noise}/` |
+| `diag/corridor_dataset.py` | F6: training segments of 300-420 steps | `results/diag/corridor/dataset.json` |
+| `diag/corridor_window.py` | F7: 384-step training windows with step 0 in A and step 383 in G | `results/diag/corridor/window.json` |
+| `diag/corridor_turnback.py --npz <dir>` | turn-backs in the final plans (needs the trace npz files, not committed) | `results/diag/corridor/turnback.json` |
+| `diag/summarize_corridor.py` | applies the plan's decision rules | `results/diag/corridor/summary.md` |
+
+- The model can draw the detour: started from a noised detour with 128 of 256 steps left, 0.95 of samples avoid b and
+  0.87 are valid (F4).
+- The corridor is fixed in about the first 30 denoising steps by the noise added then, not by the starting noise
+  (F3; F5: agreement under the same starting noise 0.70 = 0.70 expected without it).
+- The share is not the training data's: rho = -0.10 (all segments), 0.21 (segments of 300-420 steps), -0.04 (windows
+  with the planning endpoints). It is stable per scenario (resampling gives nearly the same share); 11 of 24 scenarios
+  are at <= 0.1.
+- Plans through b spend the spare time on a turn-back into a side corridor (1036/1083); so do the training segments of
+  similar length through b (858/868).
+- Open: what sets each scenario's share (straight-line distance: rho = -0.40, p = 0.059, uncertain).
