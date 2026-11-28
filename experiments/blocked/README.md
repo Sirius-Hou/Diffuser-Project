@@ -23,7 +23,8 @@ Seeds with no usable cell are listed under `excluded`.
 | B1 | every `k_fixed` steps | best-of-N against the obstacle once it is known (one sample before that) |
 | B2 | every `k` steps, if the rest of the plan hits the obstacle | best-of-N; if all N hit, takes the one that hits latest |
 | b2_guided | same trigger as B2 | best-of-N, but the samples after the obstacle appears are drawn with test-time guidance by an analytic obstacle cost (`common/guidance.py`, config key `guide`); no A*. With guide scale 0 it draws exactly B2's samples |
-| ours | same trigger as B2 | best-of-N; if all N hit: A* around the blocked cell, junctions and turns become waypoints, one short plan per straight leg. Optional `gap_route` for partial obstacles with no detour (see results) |
+| ours | same trigger as B2 | best-of-N; if all N hit: A* around the blocked cell, waypoints on the A* route, one short plan per leg. `waypoint_mode`: `corners` (junctions and turns, so each leg is straight) or `junctions` (junctions only; the pre-registered primary comparison in `main`). Optional `gap_route` for partial obstacles with no detour (see results) |
+| astar_line | same as ours | ours with every leg drawn as a constant-speed line through the turns of its A* route instead of sampled from the Diffuser. With `lag_trigger` (also for ours), a ball more than `lag_trigger` behind its plan to the goal at a check step is handed to the A* legs as well |
 | oracle | at t = 0 and at `t_appear` | A* on the known map + speed-limited PD controller (gains untuned) |
 
 Config options that change a method without renaming it (default: the old behaviour, checked identical on main seeds 1000, 1001, 1004):
@@ -33,7 +34,7 @@ The obstacle is a virtual region: the first step on which the ball overlaps it e
 
 Settings shared by all methods: `n_samples`, `check_margin` (extra clearance in the predicted-collision check), and `replan_horizon`. With `"remaining"`, a plan to the goal is shortened so that it ends before the step limit; with `"full"` it is always 384 steps; with `"shrink"` it ends when the t = 0 plan would have ended.
 
-Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route is a waypoint, so each leg is straight (`r3_horizon` F3: bent legs cut through walls). A waypoint counts as reached when the ball is within `waypoint_radius` of the cell centre (0.5 = inside the cell); a leg is replanned if its plan runs out `leg_grace_steps` before that. Each leg is planned with `n_samples_leg` samples and a horizon of `steps_per_cell` per cell; with `leg_start_at_rest` the start velocity in the inpainted first state is set to zero (the ball still moves; it only changes the conditioning). Among the leg samples that are clear of the obstacle, the loop prefers one that stays on the A* route cells, then one with fewer points inside walls, then one that ends at rest.
+Waypoint legs (ours): with `waypoint_mode: "corners"` every turn of the A* route is a waypoint, so each leg is straight (`r3_horizon` F2: bent legs cut through walls). A waypoint counts as reached when the ball is within `waypoint_radius` of the cell centre (0.5 = inside the cell); a leg is replanned if its plan runs out `leg_grace_steps` before that. Each leg is planned with `n_samples_leg` samples and a horizon of `steps_per_cell` per cell; with `leg_start_at_rest` the start velocity in the inpainted first state is set to zero (the ball still moves; it only changes the conditioning). Among the leg samples that are clear of the obstacle, the loop prefers one that stays on the A* route cells, then one with fewer points inside walls, then one that ends at rest.
 
 ## Outputs (`results/<config>/`)
 
@@ -83,7 +84,26 @@ In the animations the blue dot is the plan point the controller tracks at that s
 
 `steps_per_cell` = 32 and `min_horizon` = 32 come from `r3_horizon` (F1, F2).
 
-## Results (probe runs, CPU in the Lima VM)
+## Results
+
+### Main (2026-11-21, pre-registered, CPU in the Lima VM)
+
+50 full blockages, random goal, seeds 1000+; 4 dropped, 46 paired; 29 need a longer detour. Pre-registration: `PREREGISTRATION_main.md`; full tables: `results/main_primary.md`.
+
+| Method | Longer detour (29) | Same-length route (17) |
+|---|---|---|
+| B0 | 0/29 | 7/17 |
+| B1 | 14/29 | 11/17 |
+| B2 | 10/29 | 15/17 |
+| ours (corners) | 25/29 | 16/17 |
+| **ours (junctions)** | **23/29** | 16/17 |
+| astar_line + lag trigger | 29/29 | 17/17 |
+| oracle | 29/29 | 17/17 |
+
+- **Primary comparison (pre-registered)**: B2 10/29 (34%, Wilson 95% CI 20-53%) vs ours (junctions) 23/29 (79%, 62-90%). Discordant pairs 0 vs 13, exact McNemar p = 0.0002.
+- The diagnostics below (guidance, follow-ups, time budget, corridor preference) explain why B2 fails on long detours.
+
+### Early probes (2026-11-17, CPU in the Lima VM)
 
 All methods start from the same stored start state and t = 0 plan, so each row is paired by seed. n is small (12 + 8 scenarios): the Wilson intervals are wide, and the numbers say whether the method works, not how well. Full tables: `results/probe/summary.md`, `results/probe_partial/summary.md`.
 
@@ -189,7 +209,7 @@ Plan and decision rules written before the runs: `experiment_progress/補強實�
 | I3 junctions + corners, H by route length (384-628) | 0/832 | 31/576 |
 | I4 = I3 + guidance (obstacle, walls, smooth) | 0/832 | not run |
 
-No group passes the decision rule. The plan jumps to each fixed point and straight back (median largest step 4.3-4.4 maze units) and otherwise follows its old route through the obstacle; a longer horizon does not help, and the smooth term cannot pull the rest of the plan to the fixed points. On short detours fixing points makes things worse (84 -> 30).
+No group passes the decision rule. The plan jumps to each fixed point and straight back (median largest step 4.3-4.4 maze units) and otherwise follows its old route through the obstacle; a longer horizon does not help either (but 448-628 steps is outside the training length, so this does not rule out the horizon; see the time-budget section below), and the smooth term cannot pull the rest of the plan to the fixed points. On short detours fixing points makes things worse (84 -> 30).
 
 **2. Partial blockage with a path-following executor** (`partial_exec`, 16 scenarios, seeds 5000+; `analyze_extra.py` -> `results/partial_exec/extra.md`): oracle 13/16, B2 5/16, b2_guided 4/16, B2 + path 5/16, b2_guided + path 4/16; every pairwise p = 1.0. As on `partial_fresh`, guidance moves the obstacle hits from the planning layer (B2: 8 of 9) to the execution layer (b2_guided: 9 of 12). The path executor (lookahead 10 points, about 0.35) is not more accurate: it deviates 0.12-0.16 from the plan, about the gap's tolerance, and is slower (4 timeouts). Whether a better executor closes the gap to the oracle stays open.
 
